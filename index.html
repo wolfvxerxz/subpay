@@ -1,9 +1,1685 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><title>SubPay — Payments that just work</title><meta name="description" content="The payments platform built for modern businesses. Accept cards, manage subscriptions, and move money across the world — all from a single dashboard."/><style>:root{--bg-page:#09090b;--bg-elevated:#18181b;--bg-card:#27272a;--bg-input-overlay:hsla(0,0%,98%,.03);--border-section:#27272a;--border-subtle:hsla(0,0%,98%,.08);--border-medium:hsla(0,0%,98%,.1);--border-strong:hsla(0,0%,98%,.2);--border-divider:hsla(0,0%,100%,.08);--border-ghost:hsla(0,0%,100%,.1);--text-primary:#fafafa;--text-strong:hsla(0,0%,98%,.85);--text-mid:hsla(0,0%,98%,.55);--text-faint:hsla(0,0%,98%,.25);--text-on-light:#09090b;--text-on-dark:#fafafa;--text-zinc-light:#e4e4e7;--text-zinc-300:#d4d4d8;--text-zinc-400:#9f9fa9;--text-zinc-500:hsla(240,6%,90%,.5);--brand-primary:#b8ff5c;--brand-secondary:#5ceab8;--brand-deep:#006045;--brand-glow:rgba(184,255,92,.25);--brand-grad:linear-gradient(135deg,#b8ff5c,#5ceab8);--brand-soft-bg:rgba(184,255,92,.12);--accent-green:#34d399;--accent-emerald:#00bc7d;--accent-emerald-bright:#05df72;--accent-emerald-dark:#00a63e;--accent-lime:#bef264;--accent-blue:#155dfc;--accent-blue-soft:#51a2ff;--accent-amber:#ffb224;--accent-pink:#e93d82;--accent-cyan:#12a594;--accent-orange:#f05f22;--font-display:"Google Sans Flex","Inter",system-ui,sans-serif;--font-body:"Figtree",system-ui,sans-serif;--font-mono:"DM Mono",ui-monospace,monospace;--font-ui:"Inter",system-ui,sans-serif;--r-card:16px;--r-pill:9999px;--r-input:14px;--r-modal:24px;--shadow-card:0px 25px 50px -12px rgba(0,0,0,.25);--shadow-pop:0px 20px 25px -5px rgba(0,0,0,.1),0px 8px 10px -6px rgba(0,0,0,.1);--shadow-btn:0px 1px 2px rgba(0,0,0,.05);--shadow-glass:0px 3px 7px rgba(0,0,0,.2),inset 0px -8px 17px rgba(0,0,0,.15);--shadow-glass-sm:0px 1px 3px rgba(0,0,0,.2),inset 0px -4px 7px rgba(0,0,0,.15);--ease-out:cubic-bezier(0.22,1,0.36,1);--ease-spring:cubic-bezier(0.34,1.56,0.64,1);--t-fast:160ms;--t-base:280ms;--t-slow:420ms;--section-pad-x:175px;--section-pad-outer:32px;--container-max:1400px}*,:after,:before{box-sizing:border-box}body,html{margin:0;padding:0;background:var(--bg-page);color:var(--text-primary);font-family:var(--font-body);font-size:14px;line-height:20px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth}a{text-decoration:none}a,button{color:inherit}button{font-family:inherit;cursor:pointer;border:0;background:none;padding:0}::selection{background:var(--brand-primary);color:var(--text-on-light)}::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#1f1f1f;border-radius:5px}::-webkit-scrollbar-thumb:hover{background:#2a2a2a}.container{width:100%;max-width:var(--container-max);margin:0 auto}.section{position:relative;padding:0 var(--section-pad-outer);border-top:1px solid var(--border-section);border-bottom:1px solid var(--border-section)}.section-frame{border:1px solid var(--border-section);background:var(--bg-page);position:relative}.section-label-row{display:flex;flex-direction:row;justify-content:space-between;align-items:center;height:64px;padding:0 var(--section-pad-x);border-bottom:1px solid var(--border-section)}.section-label{font-family:var(--font-mono);font-weight:500;font-size:14px;line-height:20px;letter-spacing:.7px;color:var(--text-zinc-500);text-transform:uppercase}.btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 16px;border-radius:var(--r-pill);font-family:var(--font-body);font-weight:500;font-size:16px;line-height:24px;gap:8px;box-shadow:var(--shadow-btn);transition:transform var(--t-fast) var(--ease-out),background var(--t-fast) var(--ease-out),border-color var(--t-fast) var(--ease-out),box-shadow var(--t-base) var(--ease-out);white-space:nowrap}.btn--ghost{background:var(--bg-input-overlay);border:1px solid var(--border-medium);color:var(--text-primary);padding:0 24px}.btn--ghost:hover{background:hsla(0,0%,98%,.06);border-color:var(--border-strong);transform:translateY(-1px)}.btn--primary{background:var(--brand-grad);color:var(--text-on-light);font-weight:600;box-shadow:0 4px 16px var(--brand-glow),var(--shadow-btn)}.btn--primary:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(184,255,92,.4),var(--shadow-btn);filter:brightness(1.04)}.btn--white{background:var(--text-zinc-light);color:var(--text-on-light);font-weight:500}.btn--white:hover{background:#fff;transform:translateY(-1px)}@keyframes fadeUp{0%{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes float{0%,to{transform:translateY(0)}50%{transform:translateY(-6px)}}@keyframes pulse-dot{0%,to{box-shadow:0 0 0 0 var(--brand-glow)}50%{box-shadow:0 0 0 8px rgba(184,255,92,0)}}@keyframes shimmer{0%{background-position:-200% 0}to{background-position:200% 0}}.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}.reveal.in{opacity:1;transform:translateY(0)}@media (max-width:1024px){:root{--section-pad-x:60px;--section-pad-outer:16px}}@media (max-width:720px){:root{--section-pad-x:24px;--section-pad-outer:12px}.section-label-row{padding:0 24px}}</style></head><body><main><header style="position:sticky;top:0;z-index:50;background:rgba(9, 9, 11, 0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border-section)"><nav style="max-width:1400px;margin:0 auto;padding:0 80px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:8px"><a href="#top" style="display:inline-flex"><span style="display:inline-flex;align-items:center;gap:10px;line-height:1" aria-label="SubPay"><span style="width:28px;height:28px;border-radius:50%;background:var(--brand-deep);display:inline-flex;align-items:center;justify-content:center;position:relative;box-shadow:inset 0px 0px 10px 1px rgba(0,0,0,0.18), 0px 8px 20px -8px rgba(184, 255, 92, 0.5);flex-shrink:0;overflow:hidden"><svg width="21.84" height="21.84" viewBox="0 0 32 32" fill="none" aria-hidden="true"><defs><radialGradient id="sp-glow" cx="60%" cy="100%" r="80%"><stop offset="0%" stop-color="#BEF264" stop-opacity="1"></stop><stop offset="100%" stop-color="#BEF264" stop-opacity="0"></stop></radialGradient><linearGradient id="sp-fill" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B8FF5C"></stop><stop offset="100%" stop-color="#5CEAB8"></stop></linearGradient></defs><circle cx="16" cy="16" r="16" fill="url(#sp-glow)" opacity="0.7"></circle><path d="M21.5 11.5C21.5 9.5 19.8 8 16.5 8C13 8 11 9.7 11 12.2C11 14.7 13 15.6 16 16.2C19 16.8 20.5 17.4 20.5 19.4C20.5 21.2 18.9 22.2 16.5 22.2C13.7 22.2 11.5 20.8 11 18.5" stroke="url(#sp-fill)" stroke-width="2.4" stroke-linecap="round" fill="none"></path><path d="M16.5 5.5V8M16.5 22.2V25" stroke="url(#sp-fill)" stroke-width="2.4" stroke-linecap="round"></path></svg></span><span style="font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:600;font-size:18px;color:var(--text-primary);letter-spacing:-0.4px">SubPay</span></span></a><div style="display:flex;align-items:center;gap:4px;padding:0 28px"><a href="#top" style="display:inline-flex;align-items:center;height:36px;padding:0 16px;border-radius:9999px;font-size:14px;font-weight:500;color:var(--text-zinc-light);transition:color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out)">Home</a><a href="#pricing" style="display:inline-flex;align-items:center;height:36px;padding:0 16px;border-radius:9999px;font-size:14px;font-weight:500;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out)">Pricing</a><a href="#docs" style="display:inline-flex;align-items:center;height:36px;padding:0 16px;border-radius:9999px;font-size:14px;font-weight:500;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out)">Docs</a><a href="#changelog" style="display:inline-flex;align-items:center;height:36px;padding:0 16px;border-radius:9999px;font-size:14px;font-weight:500;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out)">Changelog</a></div><div style="display:flex;align-items:center;gap:8px"><button class="btn" style="height:32px;padding:0 14px;background:transparent;border:none;color:var(--text-mid);font-size:14px;box-shadow:none">Sign in</button><a href="#cta" class="btn btn--primary" style="height:36px;font-size:14px"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>Start free</a></div></nav></header><section id="top" style="padding:0 32px;display:flex;flex-direction:column;align-items:center"><div style="width:100%;max-width:1400px;padding:48px 0 80px;display:flex;flex-direction:column;align-items:center;gap:32px"><div style="display:flex;flex-direction:column;align-items:center;gap:13px;max-width:720px;text-align:center;animation:fadeUp 0.7s var(--ease-out) both"><h1 style="margin:0;max-width:600px;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:56px;line-height:60px;letter-spacing:-1.5px;color:var(--text-primary)">Payments infrastructure that just works</h1><p style="margin:0;max-width:580px;font-size:18px;line-height:28px;color:var(--text-mid)">Accept cards, manage subscriptions, and move money across borders. SubPay handles the hard parts so you can ship in under a day.</p><div style="display:flex;align-items:center;gap:8px;opacity:0.8;margin-top:4px"><span style="font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:12px;color:var(--text-mid)">Trusted by</span><div style="display:flex;align-items:center;gap:18px"><span style="font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:1px;color:var(--text-mid)">LINEAR</span><span style="font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:1px;color:var(--text-mid)">VERCEL</span><span style="font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:1px;color:var(--text-mid)">RAMP</span><span style="font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:1px;color:var(--text-mid)">RETOOL</span></div></div></div><div style="display:flex;align-items:center;gap:8px;animation:fadeUp 0.8s 0.1s var(--ease-out) both"><a href="#cta" class="btn btn--ghost">Talk to sales</a><div style="display:flex;border-radius:9999px;overflow:hidden"><a href="#cta" class="btn btn--white" style="border-radius:0;padding-left:16px;padding-right:16px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 7H13M8 2V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>Start free</a><button class="btn btn--white" style="border-radius:0;width:40px;padding:0;border-left:1px solid rgba(0,0,0,0.08)" aria-label="More options"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></div></div></div><div style="width:100%;max-width:1400px;height:384px;border-radius:12px;position:relative;overflow:hidden;background:linear-gradient(180deg, #0c0f1c 0%, #0a1820 40%, #08221c 70%, #051a13 100%);box-shadow:0 60px 120px -40px rgba(184, 255, 92, 0.15);animation:fadeUp 0.9s 0.2s var(--ease-out) both"><div style="position:absolute;inset:0;background:radial-gradient(70% 60% at 30% 30%, rgba(92, 234, 184, 0.15), transparent 60%), radial-gradient(60% 70% at 80% 70%, rgba(184, 255, 92, 0.12), transparent 60%);pointer-events:none"></div><div style="position:absolute;inset:0;background-image:radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);background-size:24px 24px;opacity:0.6"></div><div style="position:relative;height:36px;padding:0 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.25);backdrop-filter:blur(8px)"><div style="display:flex;gap:6px"><span style="width:10px;height:10px;border-radius:5px;background:#ff5f57"></span><span style="width:10px;height:10px;border-radius:5px;background:#febc2e"></span><span style="width:10px;height:10px;border-radius:5px;background:#28c840"></span></div><div style="display:inline-flex;align-items:center;gap:8px;height:22px;padding:0 10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:6px;font-family:var(--font-mono);font-size:11px;color:var(--text-mid)"><span style="width:8px;height:8px;border-radius:4px;background:var(--brand-primary)"></span>dashboard.subpay.com</div></div><div style="position:absolute;left:50%;top:96px;transform:translateX(-50%);display:flex;align-items:flex-start;gap:0;animation:float 5s ease-in-out infinite"><div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;z-index:2"><span style="display:inline-flex;align-items:center;gap:10px;line-height:1" aria-label="SubPay"><span style="width:32px;height:32px;border-radius:50%;background:var(--brand-deep);display:inline-flex;align-items:center;justify-content:center;position:relative;box-shadow:inset 0px 0px 10px 1px rgba(0,0,0,0.18), 0px 8px 20px -8px rgba(184, 255, 92, 0.5);flex-shrink:0;overflow:hidden"><svg width="24.96" height="24.96" viewBox="0 0 32 32" fill="none" aria-hidden="true"><defs><radialGradient id="sp-glow" cx="60%" cy="100%" r="80%"><stop offset="0%" stop-color="#BEF264" stop-opacity="1"></stop><stop offset="100%" stop-color="#BEF264" stop-opacity="0"></stop></radialGradient><linearGradient id="sp-fill" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B8FF5C"></stop><stop offset="100%" stop-color="#5CEAB8"></stop></linearGradient></defs><circle cx="16" cy="16" r="16" fill="url(#sp-glow)" opacity="0.7"></circle><path d="M21.5 11.5C21.5 9.5 19.8 8 16.5 8C13 8 11 9.7 11 12.2C11 14.7 13 15.6 16 16.2C19 16.8 20.5 17.4 20.5 19.4C20.5 21.2 18.9 22.2 16.5 22.2C13.7 22.2 11.5 20.8 11 18.5" stroke="url(#sp-fill)" stroke-width="2.4" stroke-linecap="round" fill="none"></path><path d="M16.5 5.5V8M16.5 22.2V25" stroke="url(#sp-fill)" stroke-width="2.4" stroke-linecap="round"></path></svg></span></span></div><div style="position:relative;margin-left:-16px;padding-left:28px;padding-right:6px;height:40px;display:flex;align-items:center;gap:12px;border-radius:24px;background:rgba(0,0,0,0.45);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 25px 50px -12px rgba(0,0,0,0.45), 0 3px 6px rgba(0,0,0,0.2), inset 0 -7px 15px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.08)"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:var(--font-ui);font-weight:600;font-size:13px;color:var(--text-primary);letter-spacing:-0.2px;line-height:13px">Payment received</span><span style="font-family:var(--font-ui);font-weight:500;font-size:11px;color:var(--text-mid);line-height:11px">Atlas Technologies · $1,240.00</span></div><span style="width:28px;height:28px;border-radius:14px;background:rgba(184, 255, 92, 0.12);border:1px solid rgba(184, 255, 92, 0.2);display:inline-flex;align-items:center;justify-content:center;color:var(--brand-primary);animation:pulse-dot 2.4s var(--ease-out) infinite"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8L7 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div></div><div style="position:absolute;left:80px;right:80px;bottom:40px;display:grid;grid-template-columns:repeat(4, 1fr);gap:12px"><div style="padding:14px 16px;border-radius:12px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(8px);animation:fadeUp 0.7s 0.3s var(--ease-out) both"><div style="font-size:11px;color:var(--text-mid);margin-bottom:4px">Volume today</div><div style="font-family:var(--font-display, &#x27;Figtree&#x27;);font-size:20px;font-weight:600;color:var(--text-primary);letter-spacing:-0.5px;margin-bottom:2px;font-feature-settings:&#x27;tnum&#x27;">$184,392</div><div style="font-size:11px;color:var(--brand-primary);font-weight:500">+12.4%</div></div><div style="padding:14px 16px;border-radius:12px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(8px);animation:fadeUp 0.7s 0.38s var(--ease-out) both"><div style="font-size:11px;color:var(--text-mid);margin-bottom:4px">Successful</div><div style="font-family:var(--font-display, &#x27;Figtree&#x27;);font-size:20px;font-weight:600;color:var(--text-primary);letter-spacing:-0.5px;margin-bottom:2px;font-feature-settings:&#x27;tnum&#x27;">2,841</div><div style="font-size:11px;color:var(--brand-primary);font-weight:500">+8.1%</div></div><div style="padding:14px 16px;border-radius:12px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(8px);animation:fadeUp 0.7s 0.45999999999999996s var(--ease-out) both"><div style="font-size:11px;color:var(--text-mid);margin-bottom:4px">Avg ticket</div><div style="font-family:var(--font-display, &#x27;Figtree&#x27;);font-size:20px;font-weight:600;color:var(--text-primary);letter-spacing:-0.5px;margin-bottom:2px;font-feature-settings:&#x27;tnum&#x27;">$64.91</div><div style="font-size:11px;color:#ef4444;font-weight:500">−2.3%</div></div><div style="padding:14px 16px;border-radius:12px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(8px);animation:fadeUp 0.7s 0.54s var(--ease-out) both"><div style="font-size:11px;color:var(--text-mid);margin-bottom:4px">New customers</div><div style="font-family:var(--font-display, &#x27;Figtree&#x27;);font-size:20px;font-weight:600;color:var(--text-primary);letter-spacing:-0.5px;margin-bottom:2px;font-feature-settings:&#x27;tnum&#x27;">347</div><div style="font-size:11px;color:var(--brand-primary);font-weight:500">+18.7%</div></div></div></div></section><section class="section" style="border-top:1px solid var(--border-section)"><div class="section-label-row"><span class="section-label">[01] LIVE PAYMENTS</span><span class="section-label">/ FEATURES</span></div><div style="border-bottom:1px solid var(--border-section);padding:48px var(--section-pad-x);text-align:center"><h2 style="margin:0;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:30px;line-height:40px;color:var(--text-primary);max-width:720px;margin-inline:auto;letter-spacing:-0.5px">SubPay gives you<!-- --> <span style="background:linear-gradient(90deg, #B8FF5C 0%, #5CEAB8 50%, #FFB224 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic">instant settlement</span> <!-- -->on every charge. Never wait days for your money again.</h2></div><div style="display:grid;grid-template-columns:1fr 1fr;background:var(--border-section);gap:1px"><div style="background:var(--bg-page);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:background var(--t-base) var(--ease-out)"><div style="padding:28px 32px"><h3 style="margin:0 0 8px;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:24px;line-height:30px;letter-spacing:-0.6px;color:var(--text-primary)">Cards from anywhere</h3><p style="margin:0;font-size:17px;line-height:25px;color:var(--text-mid);max-width:460px">Accept Visa, Mastercard, Amex, Apple Pay, Google Pay and 30+ local methods. One integration, every market.</p></div><div style="flex:1;min-height:408px;position:relative;background:linear-gradient(180deg, transparent 50%, rgba(184, 255, 92, 0.10) 100%)"><div style="position:absolute;left:24px;right:24px;top:16px;bottom:40px;display:flex;flex-direction:column;gap:12px"><div style="border-top:1px solid rgba(250, 250, 250, 0.08);border-left:1px solid rgba(250, 250, 250, 0.08);border-radius:16px 0 0 0;padding:16px;background:rgba(0,0,0,0.3);backdrop-filter:blur(4px)"><div style="font-size:12px;color:var(--text-mid);margin-bottom:12px;display:flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:3px;background:var(--brand-primary)"></span>checkout.subpay.com</div><div style="background:#0c0c10;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px"><div style="font-size:11px;color:var(--text-mid);margin-bottom:4px">Pay Atlas Technologies</div><div style="font-family:var(--font-display, &#x27;Figtree&#x27;);font-size:28px;font-weight:600;color:var(--text-primary);letter-spacing:-0.8px">$1,240.00</div><div style="margin-top:8px;padding:8px 12px;border:1px solid rgba(255,255,255,0.08);border-radius:8px;font-size:12px;color:var(--text-mid);font-family:var(--font-mono);display:flex;align-items:center;gap:8px"><span style="width:24px;height:16px;background:linear-gradient(135deg, #1a1f71, #2563eb);border-radius:3px;font-size:8px;color:#fff;font-weight:700;display:inline-flex;align-items:center;justify-content:center">VISA</span>•••• 4242</div><button style="margin-top:4px;height:36px;border-radius:8px;background:var(--brand-grad);color:#000;font-weight:600;font-size:13px;font-family:inherit">Pay $1,240.00</button></div></div><div style="display:flex;gap:6px;flex-wrap:wrap;padding:0 4px"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:24px;padding:0 8px;border-radius:4px;background:linear-gradient(135deg, #1a1f71, #2563eb);color:#fff;font-size:9px;font-weight:700;border:1px solid rgba(255,255,255,0.1)">VISA</span><span style="display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:24px;padding:0 8px;border-radius:4px;background:linear-gradient(135deg, #eb001b, #f79e1b);color:#fff;font-size:9px;font-weight:700;border:1px solid rgba(255,255,255,0.1)">MC</span><span style="display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:24px;padding:0 8px;border-radius:4px;background:linear-gradient(135deg, #006fcf, #00aeef);color:#fff;font-size:9px;font-weight:700;border:1px solid rgba(255,255,255,0.1)">AMEX</span><span style="display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:24px;padding:0 8px;border-radius:4px;background:#000;color:#fff;font-size:9px;font-weight:700;border:1px solid rgba(255,255,255,0.1)">Pay</span><span style="display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:24px;padding:0 8px;border-radius:4px;background:#fff;color:#000;font-size:9px;font-weight:700;border:1px solid rgba(255,255,255,0.1)">G</span></div></div></div></div><div style="background:var(--bg-page);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:background var(--t-base) var(--ease-out)"><div style="padding:28px 32px"><h3 style="margin:0 0 8px;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:24px;line-height:30px;letter-spacing:-0.6px;color:var(--text-primary)">Stop fraud before it starts</h3><p style="margin:0;font-size:17px;line-height:25px;color:var(--text-mid);max-width:460px">Machine-learning risk scoring blocks bad actors and lets good customers through. 99.4% accuracy out of the box.</p></div><div style="flex:1;min-height:408px;position:relative;background:linear-gradient(180deg, transparent 50%, rgba(81, 162, 255, 0.10) 100%)"><div style="position:absolute;left:50%;top:24px;transform:translateX(-50%);width:280px"><svg viewBox="0 0 280 280" width="280" height="280" style="position:absolute;left:0;top:40px;opacity:0.5" aria-hidden="true"><circle cx="140" cy="140" r="60" stroke="#51A2FF" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.6"></circle><circle cx="140" cy="140" r="90" stroke="#51A2FF" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.52"></circle><circle cx="140" cy="140" r="120" stroke="#51A2FF" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.43999999999999995"></circle><circle cx="140" cy="140" r="150" stroke="#51A2FF" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.36"></circle><circle cx="140" cy="140" r="180" stroke="#51A2FF" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.27999999999999997"></circle><circle cx="140" cy="140" r="220" stroke="#51A2FF" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity="0.19999999999999996"></circle></svg><div style="position:absolute;left:50%;top:160px;transform:translate(-50%, -50%);width:56px;height:56px;border-radius:28px;background:rgba(239, 68, 68, 0.18);border:1px solid rgba(239, 68, 68, 0.4);display:flex;align-items:center;justify-content:center;color:#ef4444;backdrop-filter:blur(4px)"><svg width="22" height="22" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"></circle><path d="M3.5 3.5L12.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div><div style="position:absolute;left:20px;top:16px;width:150px;height:28px;border-radius:14px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.10);backdrop-filter:blur(8px);display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-ui);font-size:12px;color:var(--text-strong);box-shadow:0 2px 6px rgba(0,0,0,0.2);animation:float 4s 0s ease-in-out infinite">Card testing pattern</div><div style="position:absolute;left:140px;top:64px;width:120px;height:28px;border-radius:14px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.10);backdrop-filter:blur(8px);display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-ui);font-size:12px;color:var(--text-strong);box-shadow:0 2px 6px rgba(0,0,0,0.2);animation:float 4s 0.6s ease-in-out infinite">Risk score 92</div><div style="position:absolute;left:0;top:220px;width:110px;height:28px;border-radius:14px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.10);backdrop-filter:blur(8px);display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-ui);font-size:12px;color:var(--text-strong);box-shadow:0 2px 6px rgba(0,0,0,0.2);animation:float 4s 1.2s ease-in-out infinite">VPN detected</div></div></div></div><div style="background:var(--bg-page);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:background var(--t-base) var(--ease-out)"><div style="padding:28px 32px"><h3 style="margin:0 0 8px;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:24px;line-height:30px;letter-spacing:-0.6px;color:var(--text-primary)">Subscriptions, simplified</h3><p style="margin:0;font-size:17px;line-height:25px;color:var(--text-mid);max-width:460px">Recurring billing, trials, dunning, proration, tax — all handled. Your team focuses on the product, not the plumbing.</p></div><div style="flex:1;min-height:408px;position:relative;background:linear-gradient(180deg, transparent 50%, rgba(255, 178, 36, 0.10) 100%)"><div style="position:absolute;left:24px;right:24px;top:24px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:12px;backdrop-filter:blur(4px)"><div style="width:8px;height:8px;border-radius:4px;background:var(--brand-primary);box-shadow:0 0 0 3px var(--brand-primary)33;flex-shrink:0"></div><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:500;color:var(--text-strong)">Atlas Technologies</div><div style="font-size:11px;color:var(--text-mid)">Enterprise · annual</div></div><div style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--text-primary)">$24,000/yr</div></div><div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:12px;backdrop-filter:blur(4px)"><div style="width:8px;height:8px;border-radius:4px;background:#51A2FF;box-shadow:0 0 0 3px #51A2FF33;flex-shrink:0"></div><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:500;color:var(--text-strong)">Lumen Studio</div><div style="font-size:11px;color:var(--text-mid)">Starter · monthly</div></div><div style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--text-primary)">$78/mo</div></div><div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:12px;backdrop-filter:blur(4px)"><div style="width:8px;height:8px;border-radius:4px;background:var(--brand-primary);box-shadow:0 0 0 3px var(--brand-primary)33;flex-shrink:0"></div><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:500;color:var(--text-strong)">Mira Ventures</div><div style="font-size:11px;color:var(--text-mid)">Pro · annual</div></div><div style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--text-primary)">$4,890/yr</div></div><div style="margin-top:8px;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:9999px;background:rgba(255, 178, 36, 0.10);border:1px solid rgba(255, 178, 36, 0.20);color:var(--accent-amber);font-size:12px;font-weight:500"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 10L8 5L13 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>MRR up 9.2% this month</div></div></div></div><div style="background:var(--bg-page);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:background var(--t-base) var(--ease-out)"><div style="padding:28px 32px"><h3 style="margin:0 0 8px;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:24px;line-height:30px;letter-spacing:-0.6px;color:var(--text-primary)">Pay out everywhere</h3><p style="margin:0;font-size:17px;line-height:25px;color:var(--text-mid);max-width:460px">Send funds to bank accounts in 135+ currencies. Same-day payouts in 22 countries. No hidden FX fees.</p></div><div style="flex:1;min-height:408px;position:relative;background:linear-gradient(180deg, transparent 50%, rgba(92, 234, 184, 0.10) 100%)"><div style="position:absolute;left:24px;right:24px;top:24px;display:flex;flex-direction:column;gap:12px"><svg viewBox="0 0 380 140" width="100%" height="140" aria-hidden="true"><defs><linearGradient id="arc" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#5CEAB8" stop-opacity="0"></stop><stop offset="50%" stop-color="#5CEAB8" stop-opacity="1"></stop><stop offset="100%" stop-color="#B8FF5C" stop-opacity="0"></stop></linearGradient></defs><path d="M20 110 Q 190 -10 360 110" stroke="url(#arc)" stroke-width="2" fill="none" stroke-dasharray="4 4"></path><circle cx="20" cy="110" r="6" fill="#5CEAB8"></circle><circle cx="360" cy="110" r="6" fill="#B8FF5C"></circle><text x="20" y="130" font-size="10" fill="rgba(250,250,250,0.55)" font-family="DM Mono">USD</text><text x="345" y="130" font-size="10" fill="rgba(250,250,250,0.55)" font-family="DM Mono">EUR</text></svg><div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:8px"><div style="padding:12px 14px;border-radius:12px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(4px)"><div style="font-size:18px;margin-bottom:4px">🇺🇸</div><div style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--text-primary);font-feature-settings:&#x27;tnum&#x27;">$48,210</div><div style="font-size:10px;color:var(--text-mid)">USD</div></div><div style="padding:12px 14px;border-radius:12px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(4px)"><div style="font-size:18px;margin-bottom:4px">🇪🇺</div><div style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--text-primary);font-feature-settings:&#x27;tnum&#x27;">€14,290</div><div style="font-size:10px;color:var(--text-mid)">EUR</div></div><div style="padding:12px 14px;border-radius:12px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(4px)"><div style="font-size:18px;margin-bottom:4px">🇬🇧</div><div style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--text-primary);font-feature-settings:&#x27;tnum&#x27;">£8,940</div><div style="font-size:10px;color:var(--text-mid)">GBP</div></div></div></div></div></div></div></section><section class="section"><div class="section-label-row"><span class="section-label">[02] FOR DEVELOPERS</span><span class="section-label">/ INTEGRATE</span></div><div style="display:grid;grid-template-columns:1fr 1fr;background:var(--border-section);gap:1px"><div style="background:var(--bg-page);display:flex;flex-direction:column;position:relative;min-height:384px"><div style="padding:32px"><h3 style="margin:0 0 8px;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:24px;line-height:30px;letter-spacing:-0.6px;color:var(--text-primary)">One line. Real money.</h3><p style="margin:0;font-size:17px;line-height:25px;color:var(--text-mid);max-width:460px">Drop our SDK in, charge a card, and you&#x27;re live. No PCI scope, no redirects, no surprises.</p></div><div style="flex:1;padding:0 32px 32px;display:flex;align-items:flex-end"><pre style="width:100%;margin:0;background:#0a0a0c;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px 18px;font-family:var(--font-mono);font-size:13px;line-height:22px;color:var(--text-strong);overflow-x:auto;box-shadow:0 25px 50px -12px rgba(0,0,0,0.4)"><code><span style="color:var(--text-mid)">// Charge a card</span>
-<span style="color:#c084fc">const</span> <span style="color:var(--text-primary)">charge</span> <span style="color:var(--text-mid)">=</span> <span style="color:#c084fc">await</span> <span style="color:#5CEAB8">subpay</span>.charges.<span style="color:#B8FF5C">create</span>(<span style="color:var(--text-mid)">{</span>
-  amount: <span style="color:#FFB224">1240_00</span>,<!-- -->
-  currency: <span style="color:#5CEAB8">&quot;usd&quot;</span>,<!-- -->
-  source: <span style="color:#5CEAB8">&quot;tok_visa&quot;</span>,<!-- -->
-  description: <span style="color:#5CEAB8">&quot;Atlas Tech invoice&quot;</span>
-<span style="color:var(--text-mid)">}</span>);<!-- -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1440" />
+<title>Condor — The energy OS for industrial buyers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Hugeicons stroke-rounded font -->
+<link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg-page:#0A0A0A;
+  --bg-card:#141414;
+  --bg-card-outer:#1C1C1C;
+  --bg-card-alt:#1F1F1F;
+  --bg-row:#181818;
+  --bg-input:#0F0F0F;
+  --bg-pill-dark:#1A1A1A;
+  --bg-chip:#2A2A2A;
 
-<span style="color:var(--text-mid)">// → succeeded in 240ms</span></code></pre></div></div><div style="background:var(--bg-page);display:flex;flex-direction:column;position:relative;min-height:384px;overflow:hidden"><div style="padding:32px"><h3 style="margin:0 0 8px;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:24px;line-height:30px;letter-spacing:-0.6px;color:var(--text-primary)">Works on every stack</h3><p style="margin:0;font-size:17px;line-height:25px;color:var(--text-mid);max-width:460px">Native SDKs for JavaScript, Python, Ruby, Go, PHP, Java, .NET, and more. Or use our REST API directly.</p></div><div style="position:absolute;left:0;right:0;bottom:24px;display:flex;justify-content:center"><div style="display:flex;align-items:center;gap:12px;padding:8px 16px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.10) 100%);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08);box-shadow:0 5px 10px rgba(0,0,0,0.08), inset 0 10px 3px 1px rgba(255,255,255,0.10)"><div style="width:48px;height:48px;border-radius:14px;background:#f7df1e;color:#000;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:15px;font-weight:700;box-shadow:0 4px 8px rgba(0,0,0,0.2);transition:transform var(--t-base) var(--ease-spring);cursor:pointer;animation:float 3s 0s ease-in-out infinite">JS</div><div style="width:48px;height:48px;border-radius:14px;background:#3776ab;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:15px;font-weight:700;box-shadow:0 4px 8px rgba(0,0,0,0.2);transition:transform var(--t-base) var(--ease-spring);cursor:pointer;animation:float 3.3s 0.15s ease-in-out infinite">PY</div><div style="width:48px;height:48px;border-radius:14px;background:#cc342d;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:15px;font-weight:700;box-shadow:0 4px 8px rgba(0,0,0,0.2);transition:transform var(--t-base) var(--ease-spring);cursor:pointer;animation:float 3.6s 0.3s ease-in-out infinite">RB</div><div style="width:48px;height:48px;border-radius:14px;background:#00add8;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:15px;font-weight:700;box-shadow:0 4px 8px rgba(0,0,0,0.2);transition:transform var(--t-base) var(--ease-spring);cursor:pointer;animation:float 3.9s 0.44999999999999996s ease-in-out infinite">GO</div><div style="width:48px;height:48px;border-radius:14px;background:#777bb4;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:15px;font-weight:700;box-shadow:0 4px 8px rgba(0,0,0,0.2);transition:transform var(--t-base) var(--ease-spring);cursor:pointer;animation:float 4.2s 0.6s ease-in-out infinite">PHP</div></div></div></div></div></section><section style="padding:0 var(--section-pad-outer)"><div class="section-label-row" style="border-top:1px solid var(--border-section)"><span class="section-label">[03] AFTER THE SALE</span><span class="section-label">/ REVENUE OPS</span></div><div style="display:grid;grid-template-columns:1fr 1fr;background:var(--border-section);gap:1px;border-bottom:1px solid var(--border-section)"><div style="background:var(--bg-page);padding:32px;display:flex;flex-direction:column;gap:24px;position:relative;min-height:460px;overflow:hidden"><div><h3 style="margin:0 0 8px;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:24px;line-height:30px;letter-spacing:-0.6px;color:var(--text-primary)">Reconcile in real time</h3><p style="margin:0;font-size:17px;line-height:25px;color:var(--text-mid);max-width:460px">Every payment, refund, and payout is matched to your books automatically. Close the month in minutes, not days.</p></div><div style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;flex:1;display:flex;flex-direction:column"><div style="padding:10px 14px;font-size:11px;color:var(--text-mid);font-family:var(--font-mono);letter-spacing:0.5px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:3px;background:var(--brand-primary);box-shadow:0 0 0 3px rgba(184, 255, 92, 0.2)"></span>Live ledger · QuickBooks</div><div style="display:grid;grid-template-columns:auto 1fr auto auto;gap:12px;padding:12px 14px;align-items:center;border-bottom:1px solid rgba(255,255,255,0.04);transition:background var(--t-fast) var(--ease-out)"><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-mid)">pi_3OqZ4f</span><span style="font-size:13px;color:var(--text-strong)">Atlas Technologies</span><span style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--brand-primary);font-feature-settings:&#x27;tnum&#x27;">+$1,240.00</span><span style="padding:2px 8px;border-radius:9999px;background:rgba(184, 255, 92, 0.10);border:1px solid rgba(184, 255, 92, 0.20);color:var(--brand-primary);font-size:10px;font-weight:600;font-family:var(--font-mono)">✓ <!-- -->INV-2847</span></div><div style="display:grid;grid-template-columns:auto 1fr auto auto;gap:12px;padding:12px 14px;align-items:center;border-bottom:1px solid rgba(255,255,255,0.04);transition:background var(--t-fast) var(--ease-out)"><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-mid)">pi_3OqX7m</span><span style="font-size:13px;color:var(--text-strong)">Northshore Retail</span><span style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--brand-primary);font-feature-settings:&#x27;tnum&#x27;">+$489.50</span><span style="padding:2px 8px;border-radius:9999px;background:rgba(184, 255, 92, 0.10);border:1px solid rgba(184, 255, 92, 0.20);color:var(--brand-primary);font-size:10px;font-weight:600;font-family:var(--font-mono)">✓ <!-- -->INV-2846</span></div><div style="display:grid;grid-template-columns:auto 1fr auto auto;gap:12px;padding:12px 14px;align-items:center;border-bottom:none;transition:background var(--t-fast) var(--ease-out)"><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-mid)">po_3OqM2j</span><span style="font-size:13px;color:var(--text-strong)">Payout to Chase</span><span style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:#ef4444;font-feature-settings:&#x27;tnum&#x27;">−$1,729.50</span><span style="padding:2px 8px;border-radius:9999px;background:rgba(184, 255, 92, 0.10);border:1px solid rgba(184, 255, 92, 0.20);color:var(--brand-primary);font-size:10px;font-weight:600;font-family:var(--font-mono)">✓ <!-- -->auto</span></div></div></div><div style="background:var(--bg-page);padding:32px;display:flex;flex-direction:column;gap:24px;position:relative;min-height:460px;overflow:hidden"><div><h3 style="margin:0 0 8px;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:24px;line-height:30px;letter-spacing:-0.6px;color:var(--text-primary)">Plug into your stack</h3><p style="margin:0;font-size:17px;line-height:25px;color:var(--text-mid);max-width:460px">SubPay syncs with Slack, Salesforce, HubSpot, QuickBooks, NetSuite, and 50+ tools you already use.</p></div><div style="flex:1;display:grid;grid-template-columns:repeat(3, 1fr);gap:16px;align-content:center"><div style="aspect-ratio:1 / 1;border-radius:24px;background:var(--bg-card);border:1px solid rgba(250, 250, 250, 0.08);box-shadow:var(--shadow-card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:transform var(--t-base) var(--ease-spring), border-color var(--t-base) var(--ease-out)"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="6" y="20" width="12" height="4" rx="2" fill="#E01E5A"></rect><rect x="20" y="6" width="4" height="12" rx="2" fill="#36C5F0"></rect><rect x="26" y="20" width="12" height="4" rx="2" fill="#2EB67D"></rect><rect x="20" y="26" width="4" height="12" rx="2" fill="#ECB22E"></rect></svg><span style="font-size:11px;color:var(--text-mid)">Slack</span></div><div style="aspect-ratio:1 / 1;border-radius:24px;background:var(--bg-card);border:1px solid rgba(250, 250, 250, 0.08);box-shadow:var(--shadow-card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:transform var(--t-base) var(--ease-spring), border-color var(--t-base) var(--ease-out)"><div style="width:44px;height:44px;border-radius:12px;background:#0D9DDA;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:700;font-size:22px">S</div><span style="font-size:11px;color:var(--text-mid)">Salesforce</span></div><div style="aspect-ratio:1 / 1;border-radius:24px;background:var(--bg-card);border:1px solid rgba(250, 250, 250, 0.08);box-shadow:var(--shadow-card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:transform var(--t-base) var(--ease-spring), border-color var(--t-base) var(--ease-out)"><div style="width:44px;height:44px;border-radius:12px;background:#FF7A59;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:700;font-size:22px">H</div><span style="font-size:11px;color:var(--text-mid)">HubSpot</span></div><div style="aspect-ratio:1 / 1;border-radius:24px;background:var(--bg-card);border:1px solid rgba(250, 250, 250, 0.08);box-shadow:var(--shadow-card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:transform var(--t-base) var(--ease-spring), border-color var(--t-base) var(--ease-out)"><div style="width:44px;height:44px;border-radius:12px;background:#635BFF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:700;font-size:22px">S</div><span style="font-size:11px;color:var(--text-mid)">Stripe</span></div><div style="aspect-ratio:1 / 1;border-radius:24px;background:var(--bg-card);border:1px solid rgba(250, 250, 250, 0.08);box-shadow:var(--shadow-card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:transform var(--t-base) var(--ease-spring), border-color var(--t-base) var(--ease-out)"><div style="width:44px;height:44px;border-radius:12px;background:#2CA01C;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:700;font-size:22px">Q</div><span style="font-size:11px;color:var(--text-mid)">QuickBooks</span></div><div style="aspect-ratio:1 / 1;border-radius:24px;background:var(--bg-card);border:1px solid rgba(250, 250, 250, 0.08);box-shadow:var(--shadow-card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:transform var(--t-base) var(--ease-spring), border-color var(--t-base) var(--ease-out)"><div style="width:44px;height:44px;border-radius:12px;background:#fff;color:#000;display:flex;align-items:center;justify-content:center;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:700;font-size:22px">N</div><span style="font-size:11px;color:var(--text-mid)">Notion</span></div></div></div></div><div style="background:var(--bg-page);padding:48px 32px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;border-bottom:1px solid var(--border-section)"><div><h3 style="margin:0 0 8px;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:24px;line-height:30px;letter-spacing:-0.6px;color:var(--text-primary)">Insights that pay for themselves</h3><p style="margin:0;font-size:17px;line-height:25px;color:var(--text-mid);max-width:480px">See your top customers, churn risk, payment health, and revenue forecast — auto-updating, no SQL required.</p></div><div style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:16px"><div style="display:flex;align-items:baseline;justify-content:space-between"><div><div style="font-size:11px;color:var(--text-mid);margin-bottom:4px">30-day revenue</div><div style="font-family:var(--font-display, &#x27;Figtree&#x27;);font-size:28px;font-weight:600;color:var(--text-primary);letter-spacing:-0.8px;font-feature-settings:&#x27;tnum&#x27;">$1,284,910</div></div><span style="padding:4px 10px;border-radius:9999px;background:rgba(184, 255, 92, 0.10);border:1px solid rgba(184, 255, 92, 0.20);color:var(--brand-primary);font-size:11px;font-weight:600">↑ 24.6%</span></div><svg viewBox="0 0 380 100" width="100%" height="100" preserveAspectRatio="none"><defs><linearGradient id="rev-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#B8FF5C" stop-opacity="0.4"></stop><stop offset="100%" stop-color="#B8FF5C" stop-opacity="0"></stop></linearGradient></defs><path d="M0 80 L40 70 L80 75 L120 55 L160 60 L200 40 L240 48 L280 28 L320 35 L380 12 L380 100 L0 100 Z" fill="url(#rev-grad)"></path><path d="M0 80 L40 70 L80 75 L120 55 L160 60 L200 40 L240 48 L280 28 L320 35 L380 12" stroke="#B8FF5C" stroke-width="2" fill="none"></path></svg></div></div></section><section style="padding:0 var(--section-pad-outer);border-top:1px solid var(--border-section);border-bottom:1px solid var(--border-section)"><div style="padding:143px var(--section-pad-x) 0;background:var(--bg-page);border-left:1px solid var(--border-section);border-right:1px solid var(--border-section);position:relative;background-image:radial-gradient(circle at 10% 10%, rgba(184, 255, 92, 0.04) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(92, 234, 184, 0.04) 0%, transparent 40%)"><div style="padding-bottom:104px;border-bottom:1px solid var(--border-section)"><h2 style="margin:0;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:600;font-size:32px;line-height:42px;letter-spacing:-0.8px;color:var(--text-primary);max-width:940px">Bank-grade security, by default.<!-- --> <span style="color:var(--text-mid)">PCI DSS Level 1 certified. SOC 2 Type II. Card data tokenized at the edge — your servers never touch a PAN.</span></h2></div><div style="display:grid;grid-template-columns:1fr 1fr;background:var(--border-section);gap:1px;margin:0 calc(var(--section-pad-x) * -1)"><div style="background:var(--bg-page);padding:20px 24px 0;display:flex;flex-direction:column;gap:8px;min-height:340px"><h3 style="margin:0;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:20px;line-height:26px;letter-spacing:-0.5px;color:var(--text-primary)">PCI DSS Level 1</h3><p style="margin:0;font-size:16px;line-height:24px;color:var(--text-mid);max-width:460px">The highest level of payment-card compliance, audited annually.</p><div style="flex:1;position:relative;margin-top:16px"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:8px 0 24px"><div style="width:100%;max-width:320px;background:linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 100%);border:1px solid rgba(184, 255, 92, 0.18);border-radius:12px;padding:14px 16px;box-shadow:0 12px 32px -12px rgba(184, 255, 92, 0.20), inset 0 1px 0 rgba(255,255,255,0.04);display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden"><div style="position:absolute;right:-20px;top:-10px;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:700;font-size:64px;letter-spacing:-3px;color:rgba(184, 255, 92, 0.04);line-height:1;pointer-events:none;user-select:none">✓</div><div style="display:flex;align-items:center;gap:8px"><span style="width:24px;height:24px;border-radius:12px;background:rgba(184, 255, 92, 0.12);border:1px solid rgba(184, 255, 92, 0.3);display:inline-flex;align-items:center;justify-content:center;color:var(--brand-primary);flex-shrink:0"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8L7 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><div style="flex:1;min-width:0"><div style="font-family:var(--font-display, &#x27;Figtree&#x27;);font-size:13px;font-weight:600;color:var(--text-primary);letter-spacing:-0.2px;line-height:16px">PCI DSS</div><div style="font-family:var(--font-mono);font-size:10px;color:var(--text-mid);letter-spacing:0.4px;text-transform:uppercase">Level 1 · Service Provider</div></div><span style="font-family:var(--font-mono);font-size:9.5px;color:var(--brand-primary);padding:2px 6px;border-radius:4px;background:rgba(184, 255, 92, 0.08);border:1px solid rgba(184, 255, 92, 0.18);letter-spacing:0.3px">ACTIVE</span></div><div style="border-top:1px dashed rgba(255,255,255,0.08);padding-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-family:var(--font-mono);font-size:10px;line-height:14px"><span style="color:var(--text-faint)">Auditor</span><span style="color:var(--text-strong);text-align:right">Coalfire QSA</span><span style="color:var(--text-faint)">Valid through</span><span style="color:var(--text-strong);text-align:right">Mar 2027</span><span style="color:var(--text-faint)">Cert ID</span><span style="color:var(--text-strong);text-align:right;overflow:hidden;text-overflow:ellipsis">PCI-SP-0294-21</span></div></div></div></div></div><div style="background:var(--bg-page);padding:20px 24px 0;display:flex;flex-direction:column;gap:8px;min-height:340px"><h3 style="margin:0;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:20px;line-height:26px;letter-spacing:-0.5px;color:var(--text-primary)">SOC 2 Type II</h3><p style="margin:0;font-size:16px;line-height:24px;color:var(--text-mid);max-width:460px">Independently audited security, availability, and confidentiality controls.</p><div style="flex:1;position:relative;margin-top:16px"><div style="position:absolute;inset:0;padding:8px 0 24px;display:flex;align-items:center"><div style="width:100%;max-width:360px;background:linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;font-family:var(--font-mono);font-size:9.5px;color:var(--text-faint);letter-spacing:0.5px;text-transform:uppercase"><span>Trust Services Criteria</span><span style="color:var(--brand-primary)">5 / 5</span></div><div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-top:none"><span style="width:14px;height:14px;border-radius:7px;background:rgba(184, 255, 92, 0.14);border:1px solid rgba(184, 255, 92, 0.3);display:inline-flex;align-items:center;justify-content:center;color:var(--brand-primary);flex-shrink:0"><svg width="8" height="8" viewBox="0 0 16 16" fill="none"><path d="M3 8L7 12L13 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span style="flex:1;font-size:12px;color:var(--text-strong)">Security</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--text-mid)">0 findings</span></div><div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-top:1px solid rgba(255,255,255,0.04)"><span style="width:14px;height:14px;border-radius:7px;background:rgba(184, 255, 92, 0.14);border:1px solid rgba(184, 255, 92, 0.3);display:inline-flex;align-items:center;justify-content:center;color:var(--brand-primary);flex-shrink:0"><svg width="8" height="8" viewBox="0 0 16 16" fill="none"><path d="M3 8L7 12L13 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span style="flex:1;font-size:12px;color:var(--text-strong)">Availability</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--text-mid)">99.99% uptime</span></div><div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-top:1px solid rgba(255,255,255,0.04)"><span style="width:14px;height:14px;border-radius:7px;background:rgba(184, 255, 92, 0.14);border:1px solid rgba(184, 255, 92, 0.3);display:inline-flex;align-items:center;justify-content:center;color:var(--brand-primary);flex-shrink:0"><svg width="8" height="8" viewBox="0 0 16 16" fill="none"><path d="M3 8L7 12L13 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span style="flex:1;font-size:12px;color:var(--text-strong)">Confidentiality</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--text-mid)">Reviewed Q1 2026</span></div><div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-top:1px solid rgba(255,255,255,0.04)"><span style="width:14px;height:14px;border-radius:7px;background:rgba(184, 255, 92, 0.14);border:1px solid rgba(184, 255, 92, 0.3);display:inline-flex;align-items:center;justify-content:center;color:var(--brand-primary);flex-shrink:0"><svg width="8" height="8" viewBox="0 0 16 16" fill="none"><path d="M3 8L7 12L13 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span style="flex:1;font-size:12px;color:var(--text-strong)">Processing integrity</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--text-mid)">0 findings</span></div><div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-top:1px solid rgba(255,255,255,0.04)"><span style="width:14px;height:14px;border-radius:7px;background:rgba(184, 255, 92, 0.14);border:1px solid rgba(184, 255, 92, 0.3);display:inline-flex;align-items:center;justify-content:center;color:var(--brand-primary);flex-shrink:0"><svg width="8" height="8" viewBox="0 0 16 16" fill="none"><path d="M3 8L7 12L13 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span style="flex:1;font-size:12px;color:var(--text-strong)">Privacy</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--text-mid)">GDPR aligned</span></div></div></div></div></div><div style="background:var(--bg-page);padding:20px 24px 0;display:flex;flex-direction:column;gap:8px;min-height:340px"><h3 style="margin:0;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:20px;line-height:26px;letter-spacing:-0.5px;color:var(--text-primary)">End-to-end encrypted</h3><p style="margin:0;font-size:16px;line-height:24px;color:var(--text-mid);max-width:460px">AES-256-GCM in transit and at rest. Card data tokenized before it ever leaves the browser.</p><div style="flex:1;position:relative;margin-top:16px"><div style="position:absolute;inset:0;padding:8px 0 24px;display:flex;align-items:center"><div style="width:100%;max-width:380px;background:linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;font-family:var(--font-mono);font-size:11px;line-height:16px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;align-items:center;justify-content:space-between;font-size:9.5px;color:var(--text-faint);letter-spacing:0.5px;text-transform:uppercase"><span>AES-256-GCM · RSA-4096</span><span style="display:inline-flex;align-items:center;gap:4px;color:var(--brand-primary)"><span style="width:5px;height:5px;border-radius:3px;background:var(--brand-primary);box-shadow:0 0 0 2px rgba(184,255,92,0.2)"></span>in browser</span></div><div style="display:flex;align-items:center;gap:8px"><span style="color:var(--text-faint);width:14px">1</span><span style="color:var(--text-mid);width:84px;flex-shrink:0">card input</span><span style="color:var(--text-strong);letter-spacing:0.5px">4242 4242 4242 4242</span></div><div style="display:flex;align-items:center;gap:8px"><span style="color:var(--text-faint);width:14px">2</span><span style="color:var(--text-mid);width:84px;flex-shrink:0">encrypted</span><span style="color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">8f3a·c7e1·b29d·…</span></div><div style="display:flex;align-items:center;gap:8px"><span style="color:var(--brand-primary);width:14px">3</span><span style="color:var(--brand-primary);width:84px;flex-shrink:0">token</span><span style="color:var(--brand-primary)">tok_a1f9_c8b3</span></div><div style="border-top:1px dashed rgba(255,255,255,0.08);padding-top:8px;display:flex;align-items:center;gap:6px;font-size:10px;color:var(--text-mid)"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M5 7V5a3 3 0 016 0v2M4 7h8v6H4z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>PAN never reaches your servers</span></div></div></div></div></div><div style="background:var(--bg-page);padding:20px 24px 0;display:flex;flex-direction:column;gap:8px;min-height:340px"><h3 style="margin:0;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:20px;line-height:26px;letter-spacing:-0.5px;color:var(--text-primary)">3D Secure &amp; SCA ready</h3><p style="margin:0;font-size:16px;line-height:24px;color:var(--text-mid);max-width:460px">Strong customer authentication built in. Frictionless checkout when allowed, robust fallback when not.</p><div style="flex:1;position:relative;margin-top:16px"><div style="position:absolute;inset:0;padding:8px 0 24px;display:flex;align-items:center"><div style="width:100%;max-width:380px;background:linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:10px"><div style="display:flex;align-items:center;gap:10px"><div style="flex:1;min-width:0"><div style="font-family:var(--font-mono);font-size:9.5px;color:var(--text-faint);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:3px">Risk score</div><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,0.06);overflow:hidden"><div style="width:18%;height:100%;background:var(--brand-primary);border-radius:3px"></div></div><span style="font-family:var(--font-mono);font-size:11px;color:var(--brand-primary);font-weight:600">18</span></div></div><span style="padding:3px 8px;border-radius:9999px;background:rgba(184,255,92,0.10);border:1px solid rgba(184,255,92,0.25);color:var(--brand-primary);font-family:var(--font-mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.4px">Low</span></div><div style="display:flex;gap:8px"><div style="flex:1;padding:8px 10px;border-radius:8px;border:1px solid rgba(184,255,92,0.25);background:rgba(184,255,92,0.06);display:flex;flex-direction:column;gap:3px;position:relative"><span style="position:absolute;top:-7px;right:6px;padding:1px 5px;border-radius:4px;background:var(--brand-primary);color:#000;font-family:var(--font-mono);font-size:8.5px;font-weight:700;letter-spacing:0.4px">CHOSEN</span><div style="display:flex;align-items:center;gap:5px"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M2 8L6 4M2 8L6 12M2 8H14" stroke="var(--brand-primary)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="font-size:11px;font-weight:600;color:var(--text-primary)">Frictionless</span></div><span style="font-family:var(--font-mono);font-size:9.5px;color:var(--text-mid)">3DS exempted</span></div><div style="flex:1;padding:8px 10px;border-radius:8px;border:1px dashed rgba(255,255,255,0.10);background:transparent;display:flex;flex-direction:column;gap:3px;opacity:0.5"><div style="display:flex;align-items:center;gap:5px"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M5 7V5a3 3 0 016 0v2M4 7h8v6H4z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="font-size:11px;font-weight:500;color:var(--text-strong)">Challenge</span></div><span style="font-family:var(--font-mono);font-size:9.5px;color:var(--text-mid)">SCA fallback ready</span></div></div><div style="border-top:1px dashed rgba(255,255,255,0.08);padding-top:8px;display:flex;align-items:center;justify-content:space-between;font-family:var(--font-mono);font-size:10px"><span style="color:var(--text-mid)">Auth · 412 ms</span><span style="color:var(--brand-primary);display:inline-flex;align-items:center;gap:4px"><span style="width:6px;height:6px;border-radius:3px;background:var(--brand-primary)"></span>Approved</span></div></div></div></div></div></div></div></section><section id="cta" style="padding:0 var(--section-pad-outer)"><div style="max-width:1400px;margin:0 auto;padding:40px 44px;display:flex;flex-direction:column;gap:64px;background:rgba(250, 250, 250, 0.06);border-left:1px solid var(--border-section);border-right:1px solid var(--border-section);position:relative;overflow:hidden"><div style="position:absolute;left:-120px;top:-120px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle, rgba(184, 255, 92, 0.15) 0%, transparent 70%);pointer-events:none"></div><div style="position:relative;display:flex;flex-direction:column;gap:16px"><h2 style="margin:0;font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:500;font-size:36px;line-height:44px;letter-spacing:-1px;color:var(--text-primary)">Start accepting payments today</h2><p style="margin:0;font-size:18px;line-height:28px;color:var(--text-mid);max-width:600px">No setup fees. No monthly minimums. Just 2.7% + 30¢ per successful transaction. Volume discounts kick in at $80K/mo.</p></div><div style="display:flex;align-items:center;gap:12px;position:relative"><a href="#" class="btn btn--primary" style="padding-inline:20px"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M8 3V13" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>Create your account</a><a href="#" class="btn btn--ghost" style="height:40px;padding:0 20px">Talk to sales</a></div></div></section><div style="position:relative;height:220px;overflow:hidden;border-top:1px solid var(--border-section);border-bottom:1px solid var(--border-section);display:flex;align-items:center;justify-content:center;mask-image:linear-gradient(180deg, transparent 0%, #000 30%, #000 70%, transparent 100%);-webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 30%, #000 70%, transparent 100%)"><span style="font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:700;font-size:280px;line-height:1;letter-spacing:-12px;color:rgba(250, 250, 250, 0.04);user-select:none">SubPay</span></div><footer style="padding:0 var(--section-pad-outer)"><div style="max-width:1400px;margin:0 auto;padding:40px 0;border-left:1px solid var(--border-section);border-right:1px solid var(--border-section);display:grid;grid-template-columns:1fr 2fr;gap:48px;padding-inline:60px"><div style="display:flex;flex-direction:column;gap:16px"><span style="display:inline-flex;align-items:center;gap:10px;line-height:1" aria-label="SubPay"><span style="width:28px;height:28px;border-radius:50%;background:var(--brand-deep);display:inline-flex;align-items:center;justify-content:center;position:relative;box-shadow:inset 0px 0px 10px 1px rgba(0,0,0,0.18), 0px 8px 20px -8px rgba(184, 255, 92, 0.5);flex-shrink:0;overflow:hidden"><svg width="21.84" height="21.84" viewBox="0 0 32 32" fill="none" aria-hidden="true"><defs><radialGradient id="sp-glow" cx="60%" cy="100%" r="80%"><stop offset="0%" stop-color="#BEF264" stop-opacity="1"></stop><stop offset="100%" stop-color="#BEF264" stop-opacity="0"></stop></radialGradient><linearGradient id="sp-fill" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B8FF5C"></stop><stop offset="100%" stop-color="#5CEAB8"></stop></linearGradient></defs><circle cx="16" cy="16" r="16" fill="url(#sp-glow)" opacity="0.7"></circle><path d="M21.5 11.5C21.5 9.5 19.8 8 16.5 8C13 8 11 9.7 11 12.2C11 14.7 13 15.6 16 16.2C19 16.8 20.5 17.4 20.5 19.4C20.5 21.2 18.9 22.2 16.5 22.2C13.7 22.2 11.5 20.8 11 18.5" stroke="url(#sp-fill)" stroke-width="2.4" stroke-linecap="round" fill="none"></path><path d="M16.5 5.5V8M16.5 22.2V25" stroke="url(#sp-fill)" stroke-width="2.4" stroke-linecap="round"></path></svg></span><span style="font-family:var(--font-display, &#x27;Figtree&#x27;);font-weight:600;font-size:18px;color:var(--text-primary);letter-spacing:-0.4px">SubPay</span></span><p style="margin:0;font-size:13px;color:var(--text-mid);line-height:20px;max-width:240px">The payments platform built for modern businesses.</p><p style="margin:0;font-size:12px;color:var(--text-faint)">45 Lansing St, San Francisco CA 94105</p></div><div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:32px"><div style="display:flex;flex-direction:column;gap:12px"><h4 style="margin:0;font-family:var(--font-mono);font-size:11px;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-faint);font-weight:500">Product</h4><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px"><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Payments</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Subscriptions</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Payouts</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Terminal</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Radar</a></li></ul></div><div style="display:flex;flex-direction:column;gap:12px"><h4 style="margin:0;font-family:var(--font-mono);font-size:11px;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-faint);font-weight:500">Developers</h4><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px"><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Documentation</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">API Reference</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Changelog</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Status</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">GitHub</a></li></ul></div><div style="display:flex;flex-direction:column;gap:12px"><h4 style="margin:0;font-family:var(--font-mono);font-size:11px;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-faint);font-weight:500">Company</h4><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px"><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">About</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Customers</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Careers</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Press</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Blog</a></li></ul></div><div style="display:flex;flex-direction:column;gap:12px"><h4 style="margin:0;font-family:var(--font-mono);font-size:11px;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-faint);font-weight:500">Legal</h4><ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px"><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Terms</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Privacy</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Security</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">Cookies</a></li><li><a href="#" style="font-size:13px;color:var(--text-mid);transition:color var(--t-fast) var(--ease-out)">DPA</a></li></ul></div></div></div><div style="max-width:1400px;margin:0 auto;padding:24px 60px;border-top:1px solid var(--border-section);border-left:1px solid var(--border-section);border-right:1px solid var(--border-section);border-bottom:1px solid var(--border-section);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px"><span style="font-size:13px;color:var(--text-mid)">© 2026 SubPay, Inc. All rights reserved.</span><div style="display:flex;gap:16px;align-items:center"><span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text-mid)"><span style="width:8px;height:8px;border-radius:4px;background:var(--brand-primary);box-shadow:0 0 0 3px rgba(184, 255, 92, 0.2)"></span>All systems operational</span></div></div></footer></main></body></html>
+  --t-white:#FFFFFF;
+  --t-fafa:#FAFAFA;
+  --t-c8:#C8C8C8;
+  --t-979:#979797;
+  --t-meta:#7A7A7A;
+  --t-727:#626262;
+  --t-b7:#B7B7B7;
+  --t-muted:rgba(255,255,255,.4);
+  --t-soft:rgba(255,255,255,.7);
+
+  --border-1:#2A2A2A;
+  --border-2:#222222;
+  --border-3:#1C1C1C;
+  --border-nav:rgba(255,255,255,.08);
+
+  /* ===== SEMANTIC PALETTE =====
+     Blue   → brand / active / informational
+     Green  → positive financial outcome (savings, coverage up)
+     Red    → urgent action required (renewals, breaches)
+     Amber  → caution / watchlist / opportunity
+     Purple → AI output / forecast / model
+  */
+  --acc-blue:#3B82F6;
+  --acc-blue-light:#60A5FA;
+  --acc-blue-bright:#93BBFF;
+  --acc-blue-deep:#1D4ED8;
+  --acc-blue-bg:rgba(59,130,246,.1);
+  --acc-blue-border:rgba(59,130,246,.18);
+
+  --acc-purple:#A78BFA;
+  --acc-purple-bg:rgba(167,139,250,.1);
+  --acc-purple-border:rgba(167,139,250,.2);
+
+  --acc-green:#22C55E;
+  --acc-green-text:#86EFAC;
+  --acc-green-bg:rgba(34,197,94,.1);
+  --acc-green-border:rgba(34,197,94,.18);
+
+  --acc-amber:#F59E0B;
+  --acc-amber-text:#FCD34D;
+  --acc-amber-bg:rgba(245,158,11,.1);
+  --acc-amber-border:rgba(245,158,11,.18);
+
+  --acc-red:#EF4444;
+  --acc-red-text:#FCA5A5;
+  --acc-red-bg:rgba(239,68,68,.1);
+  --acc-red-border:rgba(239,68,68,.18);
+
+  --acc-yc:#FB651E;
+
+  /* ===== CATEGORICAL SCALE (energy sources / cost components) =====
+     Used ONLY for non-semantic grouping like Grid / Solar / PPA
+     Same blue family so the eye reads them as related data, not signals
+  */
+  --cat-1:#3B82F6;  /* primary blue   — Grid / Supply */
+  --cat-2:#22D3EE;  /* cyan           — Solar PV / Grid fees */
+  --cat-3:#14B8A6;  /* teal           — PPA / Taxes */
+
+  --r-btn:8px;
+  --r-card:12px;
+  --r-card-lg:16px;
+  --r-card-xl:20px;
+  --r-pill:9999px;
+
+  --font:'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:'Geist Mono', ui-monospace, monospace;
+
+  --shadow-card:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.2);
+  --shadow-dash:0 40px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  background:var(--bg-page);color:var(--t-white);font-family:var(--font);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"ss01","ss02","cv11";
+  letter-spacing:-0.011em;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img,svg{display:block}
+.wrap{width:1440px;margin:0 auto;position:relative;overflow:hidden}
+
+/* Hugeicons sizing helper */
+.hgi-stroke{font-style:normal;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+.ic-sm{font-size:14px}
+.ic-md{font-size:16px}
+.ic-lg{font-size:18px}
+
+/* ============ NAV ============ */
+.nav-wrap{
+  position:absolute;top:0;left:0;right:0;z-index:20;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 48px;
+}
+.nav-logo{display:inline-flex;align-items:center;gap:9px}
+.nav-logo .mk{width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;color:#fff}
+.nav-logo .word{font-weight:500;font-size:13px;letter-spacing:.22em;color:rgba(255,255,255,.92)}
+.nav-links{display:flex;align-items:center;gap:2px;position:absolute;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:9999px;padding:4px;backdrop-filter:blur(20px)}
+.nav-link{padding:7px 14px;font-weight:500;font-size:13px;color:rgba(255,255,255,.7);border-radius:9999px;transition:color .15s, background .15s}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-link.active{color:#fff;background:rgba(255,255,255,.08)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang{
+  display:inline-flex;padding:3px;border-radius:9999px;
+  border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
+  font-size:11px;font-weight:500;
+}
+.lang span{padding:4px 9px;color:rgba(255,255,255,.5);border-radius:9999px;letter-spacing:.04em;font-family:var(--font-mono)}
+.lang span.on{background:rgba(255,255,255,.1);color:#fff}
+.nav-signin{font-size:13px;color:rgba(255,255,255,.7);padding:8px 14px;font-weight:500}
+.nav-signin:hover{color:#fff}
+.btn-primary{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  height:36px;padding:0 18px;border-radius:var(--r-btn);
+  background:#fff;color:#000;font-weight:500;font-size:13px;
+  transition:transform .15s ease, box-shadow .15s ease;
+  box-shadow:0 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.06);
+}
+.btn-primary:hover{transform:translateY(-.5px);box-shadow:0 8px 24px rgba(255,255,255,.1), inset 0 -1px 0 rgba(0,0,0,.06)}
+.btn-primary i{font-size:14px;color:#000}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;padding:148px 0 0;text-align:center;
+  overflow:hidden;
+  background:
+    radial-gradient(70% 50% at 50% 0%, rgba(59,130,246,.18) 0%, transparent 65%),
+    linear-gradient(180deg, #0A1B3E 0%, #0B1A36 30%, #0A1228 55%, #0A0A0A 100%);
+}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.yc-pill{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:9999px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  font-weight:500;font-size:12px;color:rgba(255,255,255,.9);
+  backdrop-filter:blur(10px);
+}
+.yc-mark{
+  width:16px;height:16px;border-radius:3px;background:var(--acc-yc);color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:10px;font-family:var(--font);
+}
+.hero-h1{
+  margin-top:24px;font-weight:600;font-size:68px;line-height:68px;letter-spacing:-2px;
+  color:#fff;max-width:840px;
+}
+.hero-h1 .accent{
+  background:linear-gradient(180deg, #93BBFF 0%, #3B82F6 50%, #1D4ED8 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{
+  margin-top:22px;font-weight:400;font-size:18px;line-height:28px;color:rgba(255,255,255,.72);
+  max-width:620px;letter-spacing:-.01em;
+}
+.hero-sub b{color:#fff;font-weight:600}
+.hero-ctas{display:flex;gap:10px;margin-top:34px;align-items:center}
+.btn-hero-primary{
+  display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;
+  border-radius:9px;background:#fff;color:#0A0A0A;font-weight:600;font-size:14px;
+  box-shadow:0 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.06);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn-hero-primary:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(255,255,255,.12), inset 0 -1px 0 rgba(0,0,0,.06)}
+.btn-hero-primary i{font-size:15px;color:#000}
+.btn-hero-ghost{
+  display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 22px;
+  border-radius:9px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;font-weight:500;font-size:14px;
+  backdrop-filter:blur(10px);
+  transition:background .15s;
+}
+.btn-hero-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-hero-ghost i{font-size:15px;color:rgba(255,255,255,.7)}
+.hero-trust{
+  margin-top:18px;display:flex;align-items:center;gap:14px;
+  font-size:12.5px;color:rgba(255,255,255,.5);font-weight:400;
+}
+.hero-trust .dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.3)}
+.hero-trust .ok{color:var(--acc-green-text);display:inline-flex;align-items:center;gap:6px}
+.hero-trust .ok i{font-size:13px}
+
+/* ============ DASHBOARD PREVIEW ============ */
+.hero-dash-wrap{position:relative;z-index:3;margin:68px auto 0;width:1240px;padding-bottom:120px}
+.hero-dash-wrap::after{
+  content:"";position:absolute;left:-40px;right:-40px;top:30%;bottom:60px;
+  background:radial-gradient(50% 40% at 50% 50%, rgba(59,130,246,.18) 0%, transparent 70%);
+  pointer-events:none;z-index:-1;filter:blur(40px);
+}
+.hero-dash{
+  background:var(--bg-card);border:1px solid var(--border-1);border-radius:14px;
+  overflow:hidden;box-shadow:var(--shadow-dash);
+}
+.dash-chrome{
+  display:flex;align-items:center;gap:6px;padding:11px 14px;
+  border-bottom:1px solid var(--border-2);background:#0F0F0F;
+}
+.dash-chrome .traffic{display:flex;gap:6px;margin-right:10px}
+.dash-chrome .traffic span{width:11px;height:11px;border-radius:50%}
+.dash-chrome .traffic span:nth-child(1){background:#FF5F57}
+.dash-chrome .traffic span:nth-child(2){background:#FEBC2E}
+.dash-chrome .traffic span:nth-child(3){background:#28C840}
+.dash-chrome .url{
+  flex:1;text-align:center;font-size:11px;color:var(--t-meta);
+  font-family:var(--font-mono);letter-spacing:-.01em;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+}
+.dash-chrome .url i{font-size:11px;color:var(--t-meta)}
+.dash-chrome .browser-actions{display:flex;gap:4px}
+.dash-chrome .browser-actions i{width:20px;height:20px;color:var(--t-meta);font-size:12px;display:inline-flex;align-items:center;justify-content:center}
+
+.dash-body{display:flex;min-height:760px;background:var(--bg-card)}
+
+/* ====== SIDEBAR ====== */
+.h-side{width:236px;flex:0 0 236px;border-right:1px solid var(--border-2);display:flex;flex-direction:column;background:#0F0F0F}
+.h-side-brand{padding:16px 16px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border-2)}
+.h-side-brand .word{font-weight:500;font-size:11.5px;letter-spacing:.22em;color:#fff}
+.h-side-brand .plan{margin-left:auto;font-size:9px;font-family:var(--font-mono);padding:2px 6px;border-radius:4px;background:rgba(59,130,246,.12);color:var(--acc-blue-light);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+
+.h-side-search{margin:12px;padding:7px 10px;background:var(--bg-card-alt);border:1px solid var(--border-2);border-radius:7px;display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--t-meta)}
+.h-side-search i{font-size:13px}
+.h-side-search .kbd{margin-left:auto;font-family:var(--font-mono);font-size:10px;padding:1px 5px;border-radius:3px;background:rgba(255,255,255,.06);color:var(--t-meta)}
+
+.h-side-section{font-size:9.5px;color:var(--t-meta);text-transform:uppercase;letter-spacing:.12em;font-weight:600;padding:14px 18px 6px;display:flex;align-items:center;justify-content:space-between}
+.h-side-section .add{color:var(--t-meta);font-size:12px;cursor:pointer}
+.h-side-section .add:hover{color:#fff}
+
+.h-side-nav{padding:0 8px;display:flex;flex-direction:column;gap:1px}
+.h-side-item{display:flex;align-items:center;gap:11px;padding:7px 10px;border-radius:6px;font-size:12.5px;color:var(--t-c8);font-weight:400;transition:background .12s}
+.h-side-item i{font-size:14px;color:var(--t-meta)}
+.h-side-item:hover{background:rgba(255,255,255,.03);color:#fff}
+.h-side-item:hover i{color:#fff}
+.h-side-item.active{background:rgba(255,255,255,.06);color:#fff}
+.h-side-item.active i{color:var(--acc-blue-light)}
+.h-side-item .badge{margin-left:auto;background:var(--acc-red);color:#fff;font-size:9px;font-weight:600;min-width:16px;height:16px;padding:0 4px;border-radius:9999px;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-mono)}
+.h-side-item .badge.neu{background:rgba(255,255,255,.1);color:var(--t-c8)}
+.h-side-item .dot-live{margin-left:auto;width:6px;height:6px;border-radius:50%;background:var(--acc-green);box-shadow:0 0 6px var(--acc-green)}
+
+.h-side-org{margin:12px;padding:10px;display:flex;align-items:center;gap:10px;border-radius:8px;background:rgba(255,255,255,.025);border:1px solid var(--border-2)}
+.h-side-org .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#3B82F6,#1D4ED8);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:11px;flex:none;letter-spacing:-.5px}
+.h-side-org .info{min-width:0;flex:1}
+.h-side-org .name{font-size:12px;font-weight:500;color:#fff;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h-side-org .co{font-size:10px;color:var(--t-meta);margin-top:2px}
+.h-side-org .more{color:var(--t-meta);font-size:13px}
+
+.h-side-bottom{margin-top:auto;padding:8px;border-top:1px solid var(--border-2)}
+
+/* ====== MAIN ====== */
+.h-main{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--bg-card)}
+
+/* topbar */
+.h-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 22px;border-bottom:1px solid var(--border-2);
+  background:rgba(255,255,255,.005);
+}
+.h-breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--t-meta)}
+.h-breadcrumb .crumb{color:var(--t-meta)}
+.h-breadcrumb .crumb.cur{color:#fff;font-weight:500}
+.h-breadcrumb .sep{font-size:11px;color:var(--t-meta)}
+.h-topbar-right{display:flex;align-items:center;gap:8px}
+.h-iconbtn{
+  width:30px;height:30px;border-radius:7px;background:transparent;
+  border:1px solid var(--border-2);
+  display:inline-flex;align-items:center;justify-content:center;color:var(--t-c8);
+  position:relative;transition:background .12s, border-color .12s;
+}
+.h-iconbtn:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.14)}
+.h-iconbtn i{font-size:14px}
+.h-iconbtn .ind{position:absolute;top:4px;right:5px;width:6px;height:6px;border-radius:50%;background:var(--acc-red);border:2px solid var(--bg-card)}
+.h-divider{width:1px;height:18px;background:var(--border-2)}
+.h-share-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 12px;border-radius:7px;
+  background:#fff;color:#000;font-size:12px;font-weight:500;
+}
+.h-share-btn i{font-size:12px;color:#000}
+
+/* hero area */
+.h-hero{padding:22px 22px 18px}
+.h-hero-row{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+.h-hero-left .ttl{font-size:18px;font-weight:600;color:#fff;letter-spacing:-.4px;display:flex;align-items:center;gap:10px}
+.h-hero-left .sub{font-size:12.5px;color:var(--t-979);margin-top:6px;line-height:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.h-hero-left .sub b{color:#fff;font-weight:500}
+.h-hero-left .sub .sep{color:var(--t-meta)}
+.h-hero-left .sub .badge-good{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:9999px;background:rgba(34,197,94,.1);color:var(--acc-green-text);font-size:11px;font-weight:500;border:1px solid rgba(34,197,94,.18)}
+.h-hero-left .sub .badge-good i{font-size:10px}
+
+.h-period{
+  display:inline-flex;border:1px solid var(--border-2);border-radius:8px;
+  background:var(--bg-card-alt);padding:3px;
+}
+.h-period span{
+  padding:5px 10px;font-size:11px;color:var(--t-meta);font-weight:500;
+  border-radius:5px;font-family:var(--font-mono);letter-spacing:.04em;
+}
+.h-period span.on{background:rgba(255,255,255,.08);color:#fff}
+
+/* KPI strip */
+.h-kpis{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  margin:18px 22px 0;border:1px solid var(--border-2);border-radius:12px;
+  background:var(--bg-card-outer);overflow:hidden;
+}
+.h-kpi{
+  padding:16px 18px;border-right:1px solid var(--border-2);
+  display:flex;flex-direction:column;gap:6px;position:relative;
+}
+.h-kpi:last-child{border-right:0}
+.h-kpi .top{display:flex;align-items:center;justify-content:space-between}
+.h-kpi .lbl{display:inline-flex;align-items:center;gap:6px;font-size:10px;color:var(--t-meta);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.h-kpi .lbl i{font-size:11px}
+.h-kpi .lbl .sw{width:6px;height:6px;border-radius:50%;background:var(--acc-blue)}
+.h-kpi .info-btn{font-size:11px;color:var(--t-meta);cursor:pointer}
+.h-kpi .v{
+  font-weight:600;font-size:24px;line-height:28px;color:#fff;letter-spacing:-.8px;
+  font-feature-settings:"tnum";display:flex;align-items:baseline;gap:4px;margin-top:2px;
+}
+.h-kpi .v .unit{font-size:12px;color:var(--t-meta);font-weight:500;letter-spacing:0}
+.h-kpi .bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px}
+.h-kpi .d{font-size:11px;font-weight:500;display:inline-flex;align-items:center;gap:4px}
+.h-kpi .d i{font-size:11px}
+.h-kpi .d.up{color:var(--acc-green-text)}
+.h-kpi .d.dn{color:#FB7185}
+.h-kpi .d.warn{color:var(--acc-amber-text)}
+.h-kpi .spark{flex:0 0 64px;height:22px}
+
+/* main grid */
+.h-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;padding:18px 22px}
+
+/* main chart card */
+.h-chart-card{background:var(--bg-card-outer);border:1px solid var(--border-2);border-radius:12px;overflow:hidden}
+.h-chart-head{
+  padding:14px 16px;border-bottom:1px solid var(--border-2);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+}
+.h-chart-head .left{display:flex;flex-direction:column;gap:3px}
+.h-chart-head .ttl{font-size:13px;font-weight:600;color:#fff;letter-spacing:-.2px;display:flex;align-items:center;gap:8px}
+.h-chart-head .ttl i{font-size:14px;color:var(--t-meta)}
+.h-chart-head .sub{font-size:11.5px;color:var(--t-meta)}
+.h-chart-head .right{display:flex;align-items:center;gap:8px}
+.h-segmented{display:inline-flex;background:var(--bg-card-alt);border:1px solid var(--border-2);border-radius:7px;padding:2px}
+.h-segmented span{font-size:10.5px;color:var(--t-meta);padding:4px 9px;border-radius:5px;font-family:var(--font-mono);letter-spacing:.04em;cursor:pointer}
+.h-segmented span.on{background:rgba(255,255,255,.08);color:#fff}
+
+.h-chart-body{padding:18px 16px 14px}
+.h-chart-summary{display:flex;align-items:flex-end;gap:18px;margin-bottom:12px}
+.h-chart-summary .big{
+  font-size:32px;font-weight:600;color:#fff;letter-spacing:-1.2px;line-height:34px;
+  font-feature-settings:"tnum";
+}
+.h-chart-summary .big .u{font-size:14px;color:var(--t-meta);font-weight:500;margin-left:4px;letter-spacing:0}
+.h-chart-summary .delta-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:3px 8px;border-radius:9999px;
+  background:rgba(34,197,94,.1);color:var(--acc-green-text);font-size:11px;font-weight:500;
+  border:1px solid rgba(34,197,94,.18);margin-bottom:2px;
+}
+.h-chart-summary .delta-pill i{font-size:10px}
+.h-chart-summary .vs{font-size:11.5px;color:var(--t-meta);margin-bottom:4px;margin-left:auto}
+
+.h-chart-legend{display:flex;align-items:center;gap:16px;margin-bottom:10px;font-size:11px;color:var(--t-979)}
+.h-chart-legend .item{display:inline-flex;align-items:center;gap:6px}
+.h-chart-legend .sw{width:8px;height:8px;border-radius:2px}
+
+.h-chart-area{height:180px;position:relative}
+.h-chart-area svg{width:100%;height:100%;display:block}
+.h-chart-x{display:flex;justify-content:space-between;margin-top:8px;font-size:10px;color:var(--t-meta);font-family:var(--font-mono);padding:0 2px}
+
+/* right column */
+.h-right-col{display:flex;flex-direction:column;gap:14px;min-width:0}
+
+/* alerts card */
+.h-alerts{background:var(--bg-card-outer);border:1px solid var(--border-2);border-radius:12px;overflow:hidden}
+.h-alerts-head{padding:13px 16px;border-bottom:1px solid var(--border-2);display:flex;align-items:center;justify-content:space-between}
+.h-alerts-head .ttl{font-size:13px;font-weight:600;color:#fff;display:flex;align-items:center;gap:8px;letter-spacing:-.2px}
+.h-alerts-head .ttl i{font-size:14px;color:var(--t-meta)}
+.h-alerts-head .ttl .ct{background:rgba(239,68,68,.12);color:var(--acc-red-text);font-size:10px;padding:1px 6px;border-radius:9999px;font-weight:600;font-family:var(--font-mono);border:1px solid rgba(239,68,68,.18)}
+.h-alerts-head a{font-size:11px;color:var(--t-meta);display:inline-flex;align-items:center;gap:3px}
+.h-alerts-head a:hover{color:#fff}
+.h-alerts-list{display:flex;flex-direction:column}
+.h-alert-row{
+  display:flex;gap:11px;align-items:flex-start;padding:12px 16px;
+  border-bottom:1px solid var(--border-2);
+}
+.h-alert-row:last-child{border-bottom:0}
+.h-alert-row .icn{
+  width:28px;height:28px;border-radius:7px;flex:0 0 28px;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.h-alert-row .icn.red{background:rgba(239,68,68,.1);color:var(--acc-red-text)}
+.h-alert-row .icn.amber{background:rgba(245,158,11,.1);color:var(--acc-amber-text)}
+.h-alert-row .icn.blue{background:rgba(59,130,246,.1);color:var(--acc-blue-light)}
+.h-alert-row .icn.purple{background:rgba(167,139,250,.1);color:var(--acc-purple)}
+.h-alert-row .icn i{font-size:13px}
+.h-alert-row .body{flex:1;min-width:0}
+.h-alert-row .ttl{font-size:12.5px;color:#fff;font-weight:500;line-height:17px;letter-spacing:-.2px}
+.h-alert-row .meta{font-size:10.5px;color:var(--t-meta);margin-top:3px;display:flex;align-items:center;gap:6px}
+.h-alert-row .meta .dot{width:2px;height:2px;border-radius:50%;background:var(--t-meta)}
+.h-alert-row .arr{color:var(--t-meta);font-size:12px;margin-top:8px}
+
+/* contracts card */
+.h-contracts{background:var(--bg-card-outer);border:1px solid var(--border-2);border-radius:12px;overflow:hidden}
+.h-contracts-head{padding:13px 16px;border-bottom:1px solid var(--border-2);display:flex;align-items:center;justify-content:space-between}
+.h-contracts-head .ttl{font-size:13px;font-weight:600;color:#fff;display:flex;align-items:center;gap:8px;letter-spacing:-.2px}
+.h-contracts-head .ttl i{font-size:14px;color:var(--t-meta)}
+.h-contracts-head a{font-size:11px;color:var(--t-meta);display:inline-flex;align-items:center;gap:3px}
+.h-contracts-list{display:flex;flex-direction:column}
+.h-contract-row{
+  display:flex;align-items:center;gap:11px;padding:12px 16px;
+  border-bottom:1px solid var(--border-2);
+}
+.h-contract-row:last-child{border-bottom:0}
+.h-contract-row .sup{
+  width:28px;height:28px;border-radius:7px;flex:0 0 28px;
+  display:inline-flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:700;font-size:10px;letter-spacing:-.5px;
+}
+.h-contract-row .body{flex:1;min-width:0}
+.h-contract-row .nm{font-size:12.5px;color:#fff;font-weight:500;line-height:16px;letter-spacing:-.2px;display:flex;align-items:center;gap:6px}
+.h-contract-row .nm .pill{font-size:9px;padding:1px 5px;border-radius:3px;background:rgba(255,255,255,.06);color:var(--t-c8);font-weight:500;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.04em}
+.h-contract-row .ctx{font-size:10.5px;color:var(--t-meta);margin-top:3px;font-family:var(--font-mono)}
+.h-contract-row .right{text-align:right}
+.h-contract-row .price{font-size:12px;font-weight:600;color:#fff;font-feature-settings:"tnum";font-family:var(--font-mono)}
+.h-contract-row .renew{font-size:10px;color:var(--t-meta);margin-top:3px;display:inline-flex;align-items:center;gap:3px}
+.h-contract-row .renew.soon{color:var(--acc-amber-text)}
+.h-contract-row .renew i{font-size:9px}
+
+/* cost breakdown card (bottom row) */
+.h-bottom-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;padding:0 22px 22px}
+.h-cost{background:var(--bg-card-outer);border:1px solid var(--border-2);border-radius:12px;padding:16px}
+.h-cost-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.h-cost-head .ttl{font-size:13px;font-weight:600;color:#fff;display:flex;align-items:center;gap:8px;letter-spacing:-.2px}
+.h-cost-head .ttl i{font-size:14px;color:var(--t-meta)}
+.h-cost-head .total{font-size:12px;color:var(--t-meta);font-family:var(--font-mono)}
+.h-cost-head .total b{color:#fff;font-weight:600}
+.h-bar{height:10px;border-radius:9999px;overflow:hidden;display:flex;margin-bottom:14px;background:rgba(255,255,255,.03)}
+.h-bar span{display:block;height:100%}
+.h-rows{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.h-rcol{display:flex;flex-direction:column;gap:4px}
+.h-rcol .lbl{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:var(--t-meta);font-weight:500}
+.h-rcol .lbl .sw{width:7px;height:7px;border-radius:2px}
+.h-rcol .v{font-size:16px;font-weight:600;color:#fff;font-feature-settings:"tnum";letter-spacing:-.4px}
+.h-rcol .pct{font-size:11px;color:var(--t-c8);font-family:var(--font-mono)}
+
+/* news/signals card */
+.h-news{background:var(--bg-card-outer);border:1px solid var(--border-2);border-radius:12px;overflow:hidden}
+.h-news-head{padding:13px 16px;border-bottom:1px solid var(--border-2);display:flex;align-items:center;justify-content:space-between}
+.h-news-head .ttl{font-size:13px;font-weight:600;color:#fff;display:flex;align-items:center;gap:8px;letter-spacing:-.2px}
+.h-news-head .ttl i{font-size:14px;color:var(--t-meta)}
+.h-news-head a{font-size:11px;color:var(--t-meta)}
+.h-news-list{display:flex;flex-direction:column}
+.h-news-item{padding:11px 16px;border-bottom:1px solid var(--border-2);display:flex;flex-direction:column;gap:5px}
+.h-news-item:last-child{border-bottom:0}
+.h-news-tagrow{display:flex;align-items:center;justify-content:space-between}
+.h-news-tag{padding:2px 7px;border-radius:4px;font-size:9px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-family:var(--font-mono)}
+.h-news-tag.policy{background:rgba(59,130,246,.12);color:#93C5FD}
+.h-news-tag.grid{background:rgba(34,211,238,.12);color:#67E8F9}
+.h-news-tag.market{background:rgba(20,184,166,.12);color:#5EEAD4}
+.h-news-date{font-size:10px;color:var(--t-meta);font-family:var(--font-mono)}
+.h-news-title{font-size:11.5px;color:#fff;line-height:15px;font-weight:400}
+
+/* ============ LOGO STRIP ============ */
+.logos{
+  margin-top:36px;padding:0 80px;text-align:center;
+}
+.logos-label{
+  font-size:11px;letter-spacing:.32em;color:rgba(255,255,255,.36);
+  font-weight:500;text-transform:uppercase;
+}
+.logos-row{
+  margin-top:36px;display:flex;justify-content:space-between;align-items:center;
+  max-width:1080px;margin-left:auto;margin-right:auto;
+  opacity:.62;
+}
+.logo-mark{
+  font-weight:500;font-size:18px;color:rgba(255,255,255,.7);letter-spacing:-.4px;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:opacity .15s, color .15s;
+}
+.logo-mark:hover{color:#fff}
+.logo-mark .mk{
+  width:22px;height:22px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.08);color:#fff;font-weight:600;font-size:11px;
+}
+.logo-mark.italic{font-style:italic;font-family:Georgia,serif;font-weight:400}
+.logo-mark.serif{font-family:Georgia,serif;font-weight:500}
+.logo-mark.bold{font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:14px}
+.logo-mark.geo{font-weight:600;letter-spacing:.18em;font-size:13px;text-transform:uppercase}
+
+/* ============ PROBLEM / PROMISE ============ */
+.problem{
+  margin-top:128px;padding:0 80px;max-width:1280px;margin-left:auto;margin-right:auto;
+}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:.32em;color:var(--acc-blue-light);
+  font-weight:600;text-transform:uppercase;
+}
+.section-eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--acc-blue-light);box-shadow:0 0 8px var(--acc-blue-light)}
+.problem-h{
+  margin-top:18px;font-weight:600;font-size:46px;line-height:52px;color:#fff;
+  letter-spacing:-1.4px;max-width:820px;
+}
+.problem-h .muted{color:rgba(255,255,255,.38)}
+.problem-grid{
+  margin-top:52px;display:grid;grid-template-columns:1fr 1fr;gap:20px;
+}
+.problem-card{
+  background:var(--bg-card-outer);border:1px solid var(--border-1);border-radius:18px;
+  padding:32px;display:flex;flex-direction:column;gap:22px;
+  position:relative;overflow:hidden;
+}
+.problem-card.now{background:rgba(239,68,68,.025);border-color:rgba(239,68,68,.12)}
+.problem-card.now::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg, transparent 0%, rgba(239,68,68,.4) 50%, transparent 100%);
+}
+.problem-card.next{background:rgba(34,197,94,.025);border-color:rgba(34,197,94,.14)}
+.problem-card.next::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg, transparent 0%, rgba(34,197,94,.5) 50%, transparent 100%);
+}
+.pc-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:5px 11px;border-radius:9999px;
+  font-size:11px;font-weight:600;width:fit-content;letter-spacing:.06em;
+  font-family:var(--font-mono);text-transform:uppercase;
+}
+.problem-card.now .pc-tag{background:rgba(239,68,68,.1);color:var(--acc-red-text)}
+.problem-card.next .pc-tag{background:rgba(34,197,94,.1);color:var(--acc-green-text)}
+.pc-tag .dot{width:5px;height:5px;border-radius:50%}
+.problem-card.now .pc-tag .dot{background:var(--acc-red);box-shadow:0 0 6px var(--acc-red)}
+.problem-card.next .pc-tag .dot{background:var(--acc-green);box-shadow:0 0 6px var(--acc-green)}
+.pc-h{font-weight:600;font-size:22px;color:#fff;letter-spacing:-.5px;line-height:28px}
+.problem-card.now .pc-h{color:rgba(255,255,255,.6)}
+.pc-list{display:flex;flex-direction:column;gap:18px;margin-top:4px}
+.pc-row{display:flex;gap:14px;align-items:flex-start}
+.pc-row .icn{
+  width:32px;height:32px;border-radius:8px;flex:0 0 32px;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.pc-row .icn i{font-size:15px}
+.problem-card.now .pc-row .icn{background:rgba(239,68,68,.08);color:var(--acc-red-text)}
+.problem-card.next .pc-row .icn{background:rgba(34,197,94,.1);color:var(--acc-green-text)}
+.pc-row .body strong{display:block;color:#fff;font-weight:500;font-size:14.5px;margin-bottom:4px;letter-spacing:-.2px}
+.pc-row .body p{color:var(--t-979);font-size:13.5px;line-height:20px;font-weight:300}
+.problem-card.now .pc-row .body strong{color:rgba(255,255,255,.78)}
+
+.stats{
+  margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--border-1);border-radius:18px;overflow:hidden;
+  background:var(--bg-card-outer);
+}
+.stat{
+  padding:28px 30px;border-right:1px solid var(--border-2);
+  display:flex;flex-direction:column;gap:8px;position:relative;
+}
+.stat:last-child{border-right:0}
+.stat .icn{
+  position:absolute;top:24px;right:24px;
+  width:30px;height:30px;border-radius:8px;
+  background:rgba(255,255,255,.04);color:rgba(255,255,255,.5);
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.stat .icn i{font-size:14px}
+.stat .v{font-weight:600;font-size:36px;color:#fff;letter-spacing:-1.4px;line-height:40px;font-feature-settings:"tnum"}
+.stat .v .u{font-size:14px;color:var(--t-meta);font-weight:500;margin-left:4px;letter-spacing:0}
+.stat .lbl{font-size:12.5px;color:var(--t-979);line-height:18px;max-width:200px}
+
+/* ============ FEATURES ============ */
+.feat{
+  margin-top:144px;padding:0 80px;max-width:1280px;margin-left:auto;margin-right:auto;
+}
+.feat-h{margin-top:18px;font-weight:600;font-size:46px;line-height:52px;color:#fff;letter-spacing:-1.4px;max-width:680px}
+.feat-h .muted{color:rgba(255,255,255,.38)}
+.feat-sub{margin-top:16px;font-size:16px;line-height:24px;color:var(--t-979);max-width:560px;font-weight:400}
+
+.feat-tabs{margin-top:44px;display:flex;gap:0;border-bottom:1px solid var(--border-1)}
+.feat-tab{
+  padding:18px 0;margin-right:36px;
+  font-size:14px;color:var(--t-meta);font-weight:500;cursor:pointer;
+  border-bottom:1.5px solid transparent;margin-bottom:-1px;
+  display:inline-flex;align-items:center;gap:10px;transition:color .15s;
+}
+.feat-tab .num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.06);
+  font-size:11px;color:var(--t-meta);font-weight:600;font-family:var(--font-mono);
+}
+.feat-tab:hover{color:rgba(255,255,255,.85)}
+.feat-tab.on{color:#fff;border-bottom-color:#fff}
+.feat-tab.on .num{background:#fff;color:#000}
+
+.feat-panel{margin-top:56px;display:grid;grid-template-columns:380px 1fr;gap:72px;align-items:center}
+.feat-panel-left .eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:.16em;color:var(--acc-blue-light);font-weight:600;text-transform:uppercase;
+  padding:5px 10px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.18);border-radius:6px;
+}
+.feat-panel-left .eyebrow i{font-size:12px}
+.feat-panel-left h3{margin-top:18px;font-weight:600;font-size:34px;line-height:40px;color:#fff;letter-spacing:-.9px}
+.feat-panel-left .lede{margin-top:16px;font-size:15.5px;line-height:24px;color:var(--t-979);font-weight:400}
+.feat-steps{margin-top:28px;display:flex;flex-direction:column;gap:18px}
+.feat-step{display:flex;gap:14px;align-items:flex-start}
+.feat-step .icn{
+  width:26px;height:26px;border-radius:7px;flex:0 0 26px;
+  background:rgba(59,130,246,.1);color:var(--acc-blue-light);
+  display:inline-flex;align-items:center;justify-content:center;margin-top:1px;
+  border:1px solid rgba(59,130,246,.2);
+}
+.feat-step .icn i{font-size:13px}
+.feat-step .body strong{display:block;color:#fff;font-weight:500;font-size:14.5px;margin-bottom:3px;letter-spacing:-.2px}
+.feat-step .body p{color:var(--t-979);font-size:13.5px;line-height:20px;font-weight:300}
+.feat-panel-cta{
+  margin-top:32px;display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;color:var(--acc-blue-light);font-weight:500;
+  padding-bottom:2px;border-bottom:1px solid rgba(96,165,250,.3);transition:color .15s, border-color .15s;
+}
+.feat-panel-cta:hover{color:#fff;border-bottom-color:#fff}
+.feat-panel-cta i{font-size:13px}
+
+.feat-mock{
+  background:var(--bg-card-outer);border:1px solid var(--border-1);border-radius:18px;
+  padding:28px;min-height:460px;position:relative;overflow:hidden;box-shadow:var(--shadow-card);
+}
+.feat-mock::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,.06) 50%, transparent 100%);
+}
+
+.mka-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;gap:14px}
+.mka-h{font-size:13.5px;font-weight:600;color:#fff;letter-spacing:-.2px;line-height:18px}
+.mka-h .sub{display:block;font-size:11px;color:var(--t-meta);font-weight:400;margin-top:4px;letter-spacing:0}
+.mka-status{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:9999px;background:rgba(34,197,94,.12);color:var(--acc-green-text);font-size:11px;font-weight:500;border:1px solid rgba(34,197,94,.2);white-space:nowrap}
+.mka-status .dot{width:6px;height:6px;border-radius:50%;background:var(--acc-green);box-shadow:0 0 8px var(--acc-green)}
+.mka-tbl{background:var(--bg-card);border:1px solid var(--border-2);border-radius:12px;overflow:hidden}
+.mka-thd{display:grid;grid-template-columns:1.5fr 75px 80px 84px 55px;gap:8px;padding:11px 16px;border-bottom:1px solid var(--border-2);font-size:9.5px;color:var(--t-meta);text-transform:uppercase;letter-spacing:.08em;font-weight:600;background:rgba(255,255,255,.015)}
+.mka-row{display:grid;grid-template-columns:1.5fr 75px 80px 84px 55px;gap:8px;padding:14px 16px;border-bottom:1px solid var(--border-2);align-items:center;font-size:12px;color:var(--t-c8);transition:background .15s}
+.mka-row:last-child{border-bottom:0}
+.mka-row.best{background:rgba(34,197,94,.04);position:relative}
+.mka-row.best::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--acc-green)}
+.mka-sup{display:flex;align-items:center;gap:10px;min-width:0}
+.mka-sup .sm{width:22px;height:22px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:10px;flex:0 0 22px;letter-spacing:-.5px}
+.mka-sup .info{min-width:0;flex:1}
+.mka-sup .nm{font-size:12px;font-weight:500;color:#fff;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mka-sup .ct{font-size:10px;color:var(--t-meta);display:block;margin-top:1px}
+.mka-price{color:#fff;font-weight:600;font-feature-settings:"tnum";font-family:var(--font-mono);font-size:12px}
+.mka-price.best{color:var(--acc-green-text)}
+.mka-tag{font-size:10px;padding:3px 7px;border-radius:4px;background:rgba(255,255,255,.06);color:var(--t-c8);font-weight:500;text-align:center;width:fit-content}
+.mka-tag.green{background:rgba(34,197,94,.1);color:var(--acc-green-text)}
+.mka-tag.amber{background:rgba(245,158,11,.1);color:var(--acc-amber-text)}
+.mka-tag.grade{font-family:var(--font-mono);letter-spacing:.04em}
+.mka-foot{margin-top:18px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.mka-savings{font-size:12.5px;color:var(--t-979);display:flex;align-items:center;gap:8px}
+.mka-savings .icn{width:24px;height:24px;border-radius:6px;background:rgba(34,197,94,.1);color:var(--acc-green-text);display:inline-flex;align-items:center;justify-content:center}
+.mka-savings .icn i{font-size:12px}
+.mka-savings b{color:#fff;font-weight:600;font-family:var(--font-mono);font-feature-settings:"tnum"}
+.mka-cta{padding:9px 14px;border-radius:8px;background:var(--acc-blue);color:#fff;font-size:12.5px;font-weight:500;display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(59,130,246,.5);box-shadow:0 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.1)}
+.mka-cta i{font-size:13px;color:#fff}
+
+/* ============ TESTIMONIAL ============ */
+.testim{margin-top:144px;padding:0 80px;max-width:1280px;margin-left:auto;margin-right:auto}
+.testim-card{
+  background:linear-gradient(180deg, rgba(59,130,246,.05) 0%, rgba(59,130,246,0) 60%), var(--bg-card-outer);
+  border:1px solid var(--border-1);border-radius:22px;
+  padding:52px 60px;display:grid;grid-template-columns:1fr 280px;gap:56px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.testim-card::before{
+  content:"";position:absolute;top:0;left:20%;right:20%;height:1px;
+  background:linear-gradient(90deg, transparent 0%, rgba(96,165,250,.4) 50%, transparent 100%);
+}
+.testim-quote{display:flex;flex-direction:column;gap:22px}
+.testim-mark{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border-radius:11px;
+  background:rgba(96,165,250,.1);color:var(--acc-blue-light);
+  border:1px solid rgba(96,165,250,.18);
+}
+.testim-mark i{font-size:20px}
+.testim-body{font-weight:500;font-size:24px;line-height:34px;color:#fff;letter-spacing:-.5px}
+.testim-body span{color:var(--t-c8);font-weight:400}
+.testim-author{display:flex;align-items:center;gap:14px;margin-top:8px}
+.testim-author .av{
+  width:48px;height:48px;border-radius:50%;
+  background:linear-gradient(135deg,#3B82F6,#1D4ED8);color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;letter-spacing:-.5px;
+  border:2px solid rgba(255,255,255,.08);
+}
+.testim-author .nm{font-size:14.5px;font-weight:500;color:#fff;letter-spacing:-.2px}
+.testim-author .ti{font-size:12.5px;color:var(--t-979);margin-top:3px}
+.testim-metrics{display:flex;flex-direction:column;gap:24px;border-left:1px solid var(--border-1);padding-left:40px}
+.testim-metric .v{font-size:34px;font-weight:600;color:#fff;letter-spacing:-1.2px;line-height:38px;font-feature-settings:"tnum"}
+.testim-metric .v .u{font-size:14px;color:var(--t-meta);font-weight:500;margin-left:3px;letter-spacing:0}
+.testim-metric .lbl{font-size:12.5px;color:var(--t-979);margin-top:5px;line-height:18px}
+
+/* ============ HOW IT WORKS ============ */
+.how{margin-top:144px;padding:0 80px;max-width:1280px;margin-left:auto;margin-right:auto;text-align:center}
+.how-eyebrow{justify-content:center}
+.how-h{margin-top:18px;font-weight:600;font-size:46px;line-height:52px;color:#fff;letter-spacing:-1.4px;max-width:720px;margin-left:auto;margin-right:auto}
+.how-h .muted{color:rgba(255,255,255,.38)}
+.how-sub{margin-top:16px;font-size:16px;line-height:24px;color:var(--t-979);max-width:560px;margin-left:auto;margin-right:auto}
+.how-steps{margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.how-steps::before{
+  content:"";position:absolute;top:26px;left:80px;right:80px;height:1px;
+  background:linear-gradient(90deg, transparent 0%, var(--border-1) 12%, var(--border-1) 88%, transparent 100%);
+  z-index:0;
+}
+.how-step{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 12px}
+.how-step .n{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--bg-card-outer);border:1px solid var(--border-1);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:18px;font-weight:600;color:#fff;font-feature-settings:"tnum";
+}
+.how-step.active .n{
+  background:var(--acc-blue);border-color:var(--acc-blue);
+  box-shadow:0 0 0 6px rgba(59,130,246,.14), 0 8px 24px rgba(59,130,246,.3);
+}
+.how-step h4{font-size:16px;font-weight:600;color:#fff;letter-spacing:-.3px}
+.how-step p{font-size:13.5px;line-height:20px;color:var(--t-979);font-weight:300}
+.how-step .when{font-size:10.5px;color:var(--acc-blue-light);font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-family:var(--font-mono)}
+
+/* ============ FAQ ============ */
+.faq{margin-top:144px;padding:0 80px;max-width:1280px;margin-left:auto;margin-right:auto}
+.faq-grid{display:grid;grid-template-columns:380px 1fr;gap:80px;align-items:flex-start}
+.faq-left h2{margin-top:18px;font-weight:600;font-size:38px;line-height:44px;color:#fff;letter-spacing:-1px}
+.faq-left p{margin-top:18px;font-size:14.5px;line-height:22px;color:var(--t-979);font-weight:400}
+.faq-left a{color:var(--acc-blue-light);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(96,165,250,.4)}
+.faq-list{display:flex;flex-direction:column}
+.faq-item{padding:24px 0;border-bottom:1px solid var(--border-2);display:flex;flex-direction:column;gap:12px}
+.faq-item:first-child{padding-top:0}
+.faq-q{font-weight:500;font-size:16.5px;color:#fff;letter-spacing:-.3px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:16px;line-height:24px}
+.faq-q .icn{
+  width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid var(--border-2);
+  display:inline-flex;align-items:center;justify-content:center;color:var(--t-979);flex:0 0 26px;
+}
+.faq-q .icn i{font-size:12px}
+.faq-a{font-size:14px;line-height:22px;color:var(--t-979);font-weight:400;padding-right:42px}
+
+/* ============ CTA BLOCK ============ */
+.cta-section{
+  margin:144px 16px 0;border-radius:24px;
+  background:
+    radial-gradient(60% 80% at 50% 25%, rgba(139,92,246,.55) 0%, rgba(139,92,246,0) 60%),
+    radial-gradient(80% 60% at 50% 75%, rgba(245,158,11,.4) 0%, rgba(245,158,11,0) 65%),
+    linear-gradient(180deg, #1A1140 0%, #2D2452 40%, #B07A2A 95%);
+  padding:80px 0 0;position:relative;overflow:hidden;
+  border:1px solid rgba(255,255,255,.06);
+}
+.cta-section::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:50%;
+  background:linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,1) 100%);
+  pointer-events:none;
+}
+.cta-inner{position:relative;z-index:2;display:flex;justify-content:space-between;gap:48px;padding:32px 64px 140px;max-width:1280px;margin:0 auto}
+.cta-left{max-width:560px}
+.cta-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:5px 12px;border-radius:7px;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
+  color:#fff;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  font-family:var(--font-mono);backdrop-filter:blur(10px);
+}
+.cta-h{margin-top:22px;font-weight:600;font-size:54px;line-height:58px;color:#fff;letter-spacing:-1.6px}
+.cta-p{margin-top:22px;font-weight:400;font-size:16px;line-height:25px;color:rgba(255,255,255,.88);max-width:480px}
+.cta-ctas{display:flex;gap:12px;margin-top:30px;align-items:center}
+.cta-btn{padding:13px 22px;border-radius:9px;background:#fff;color:#0A0A0A;font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:9px;box-shadow:0 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.06)}
+.cta-btn.ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;backdrop-filter:blur(10px)}
+.cta-btn i{font-size:15px}
+.cta-trust{margin-top:18px;font-size:12.5px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:14px}
+.cta-trust .dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.4)}
+
+.cal-card{
+  width:400px;flex:0 0 400px;
+  background:rgba(10,10,10,.6);border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(24px);border-radius:16px;
+  padding:32px 28px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
+}
+.cal-icon{width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:inline-flex;align-items:center;justify-content:center;color:#fff}
+.cal-icon i{font-size:22px}
+.cal-h{font-weight:600;font-size:18px;color:#fff;letter-spacing:-.4px}
+.cal-p{font-size:13.5px;color:rgba(255,255,255,.72);line-height:20px;max-width:320px}
+.cal-btns{display:flex;gap:10px;margin-top:6px;width:100%}
+.cal-btn{flex:1;padding:10px 16px;border-radius:8px;background:#fff;color:#000;font-weight:500;font-size:13px;text-align:center;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.cal-btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.18);color:#fff}
+.cal-btn i{font-size:13px}
+
+/* ============ FOOTER ============ */
+.footer{padding:80px 80px 48px;max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+.footer-grid{display:grid;grid-template-columns:1.2fr 180px 180px 180px;gap:48px;align-items:flex-start}
+.f-brand{display:flex;flex-direction:column;gap:18px;max-width:340px}
+.f-logo{display:flex;align-items:center;gap:9px;color:#fff}
+.f-logo .word{font-weight:500;font-size:13px;letter-spacing:.22em}
+.f-tag{font-size:13.5px;color:var(--t-979);line-height:21px}
+.f-yc{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.85);font-size:13px;padding:6px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:9999px;width:fit-content}
+.f-yc .yc-mark{width:14px;height:14px;font-size:9px;border-radius:3px}
+.f-col h4{font-size:11px;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:18px;letter-spacing:.1em;text-transform:uppercase}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.f-col a{color:rgba(255,255,255,.82);font-size:13.5px;transition:color .12s}
+.f-col a:hover{color:#fff}
+.f-foot{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--border-2);color:var(--t-meta);font-size:12.5px}
+.f-foot .right{display:flex;gap:8px;align-items:center}
+.f-soc{
+  width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid var(--border-2);
+  display:inline-flex;align-items:center;justify-content:center;color:var(--t-c8);
+  transition:background .15s, color .15s;
+}
+.f-soc i{font-size:14px}
+.f-soc:hover{background:rgba(255,255,255,.08);color:#fff}
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<!-- ============ NAV ============ -->
+<header class="nav-wrap">
+  <a class="nav-logo" href="#">
+    <span class="mk">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M3 13L10 6L13 9L21 5L18 14L11 11L8 14L3 13Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" fill="#fff" fill-opacity=".1"/>
+      </svg>
+    </span>
+    <span class="word">CONDOR</span>
+  </a>
+  <nav class="nav-links">
+    <a class="nav-link active" href="#">Product</a>
+    <a class="nav-link" href="#">Customers</a>
+    <a class="nav-link" href="#">Pricing</a>
+    <a class="nav-link" href="#">Resources</a>
+  </nav>
+  <div class="nav-right">
+    <div class="lang"><span class="on">EN</span><span>FR</span></div>
+    <a class="nav-signin" href="#">Sign in</a>
+    <a class="btn-primary" href="#">Get Started <i class="hgi-stroke hgi-arrow-right-01"></i></a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="yc-pill">Backed by <span class="yc-mark">Y</span> Combinator</div>
+    <h1 class="hero-h1">Take back control of<br>your <span class="accent">energy strategy.</span></h1>
+    <p class="hero-sub">The energy OS for industrial buyers. <b>Cut procurement costs by 8–14%</b>, hedge with discipline, and ship board-ready reporting — without the spreadsheets.</p>
+    <div class="hero-ctas">
+      <a class="btn-hero-primary" href="#">
+        Get a free energy audit
+        <i class="hgi-stroke hgi-arrow-right-01"></i>
+      </a>
+      <a class="btn-hero-ghost" href="#">
+        <i class="hgi-stroke hgi-calendar-03"></i>
+        Book a 20-min demo
+      </a>
+    </div>
+    <div class="hero-trust">
+      <span class="ok"><i class="hgi-stroke hgi-checkmark-circle-02"></i>No credit card</span>
+      <span class="dot"></span>
+      <span>Audit in 5 business days</span>
+      <span class="dot"></span>
+      <span>SOC 2 in progress</span>
+    </div>
+  </div>
+
+  <!-- ============ DASHBOARD ============ -->
+  <div class="hero-dash-wrap">
+    <div class="hero-dash">
+      <div class="dash-chrome">
+        <div class="traffic"><span></span><span></span><span></span></div>
+        <div class="url"><i class="hgi-stroke hgi-lock-password"></i>app.condor.energy / dashboard</div>
+        <div class="browser-actions">
+          <i class="hgi-stroke hgi-share-08"></i>
+          <i class="hgi-stroke hgi-plus-sign"></i>
+          <i class="hgi-stroke hgi-copy-01"></i>
+        </div>
+      </div>
+      <div class="dash-body">
+        <!-- ====== SIDEBAR ====== -->
+        <aside class="h-side">
+          <div class="h-side-brand">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M3 13L10 6L13 9L21 5L18 14L11 11L8 14L3 13Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" fill="#fff" fill-opacity=".1"/>
+            </svg>
+            <span class="word">CONDOR</span>
+            <span class="plan">PRO</span>
+          </div>
+
+          <div class="h-side-search">
+            <i class="hgi-stroke hgi-search-01"></i>
+            <span>Search…</span>
+            <span class="kbd">⌘K</span>
+          </div>
+
+          <div class="h-side-section">Workspace</div>
+          <nav class="h-side-nav">
+            <a class="h-side-item active" href="#"><i class="hgi-stroke hgi-dashboard-square-02"></i>Dashboard</a>
+            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-flash"></i>Consumption<span class="dot-live"></span></a>
+            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-coins-euro"></i>Costs</a>
+            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-file-edit"></i>Contracts<span class="badge">1</span></a>
+            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-analytics-up"></i>Hedging</a>
+            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-chart-bar-line"></i>Reporting</a>
+            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-plant-02"></i>Decarbonize</a>
+          </nav>
+
+          <div class="h-side-section">Sites <span class="add"><i class="hgi-stroke hgi-add-01"></i></span></div>
+          <nav class="h-side-nav">
+            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-factory-01"></i>Lyon-Sud Plant<span class="badge neu">4</span></a>
+            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-factory-01"></i>Le Havre Refinery</a>
+            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-building-03"></i>Nantes DC</a>
+          </nav>
+
+          <div class="h-side-org">
+            <span class="av">AM</span>
+            <div class="info">
+              <div class="name">André-Marie Ampère</div>
+              <div class="co">ACME Energy · 12 sites</div>
+            </div>
+            <i class="hgi-stroke hgi-more-horizontal-circle-01 more"></i>
+          </div>
+        </aside>
+
+        <!-- ====== MAIN ====== -->
+        <div class="h-main">
+          <!-- topbar -->
+          <div class="h-topbar">
+            <div class="h-breadcrumb">
+              <span class="crumb">ACME Energy</span>
+              <i class="hgi-stroke hgi-arrow-right-01 sep"></i>
+              <span class="crumb cur">Dashboard</span>
+              <i class="hgi-stroke hgi-arrow-right-01 sep"></i>
+              <span class="crumb">May 2026</span>
+            </div>
+            <div class="h-topbar-right">
+              <button class="h-iconbtn"><i class="hgi-stroke hgi-search-01"></i></button>
+              <button class="h-iconbtn"><i class="hgi-stroke hgi-notification-03"></i><span class="ind"></span></button>
+              <button class="h-iconbtn"><i class="hgi-stroke hgi-help-circle"></i></button>
+              <div class="h-divider"></div>
+              <button class="h-iconbtn"><i class="hgi-stroke hgi-download-04"></i></button>
+              <button class="h-share-btn"><i class="hgi-stroke hgi-share-08"></i>Share</button>
+            </div>
+          </div>
+
+          <!-- hero row -->
+          <div class="h-hero">
+            <div class="h-hero-row">
+              <div class="h-hero-left">
+                <div class="ttl">Welcome back, André-Marie <i class="hgi-stroke hgi-sparkles" style="font-size:16px;color:var(--acc-purple)"></i></div>
+                <div class="sub">
+                  <span class="badge-good"><i class="hgi-stroke hgi-arrow-down-01"></i>Spend −4.1% vs last month</span>
+                  <span class="sep">·</span>
+                  <span><b>8</b> contracts active</span>
+                  <span class="sep">·</span>
+                  <span><b>1</b> renewal in <b>47 days</b></span>
+                </div>
+              </div>
+              <div class="h-period">
+                <span>1W</span><span>1M</span><span class="on">3M</span><span>YTD</span><span>1Y</span><span>ALL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- KPI strip -->
+          <div class="h-kpis">
+            <div class="h-kpi">
+              <div class="top">
+                <div class="lbl"><span class="sw"></span>CONSUMPTION YTD</div>
+                <i class="info-btn hgi-stroke hgi-information-circle"></i>
+              </div>
+              <div class="v">12,847<span class="unit">MWh</span></div>
+              <div class="bottom">
+                <span class="d warn"><i class="hgi-stroke hgi-arrow-up-01"></i>+2.4% YoY</span>
+                <svg class="spark" viewBox="0 0 64 22" preserveAspectRatio="none">
+                  <path d="M0 18 L8 14 L16 16 L24 10 L32 12 L40 7 L48 9 L56 4 L64 6" stroke="var(--acc-blue)" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+            <div class="h-kpi">
+              <div class="top">
+                <div class="lbl"><span class="sw"></span>AVG UNIT COST</div>
+                <i class="info-btn hgi-stroke hgi-information-circle"></i>
+              </div>
+              <div class="v">72.35<span class="unit">€/MWh</span></div>
+              <div class="bottom">
+                <span class="d up"><i class="hgi-stroke hgi-arrow-down-01"></i>−3.8% vs Q1</span>
+                <svg class="spark" viewBox="0 0 64 22" preserveAspectRatio="none">
+                  <path d="M0 6 L8 8 L16 10 L24 9 L32 12 L40 11 L48 14 L56 16 L64 18" stroke="var(--acc-blue)" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+            <div class="h-kpi">
+              <div class="top">
+                <div class="lbl"><span class="sw"></span>HEDGE COVERAGE</div>
+                <i class="info-btn hgi-stroke hgi-information-circle"></i>
+              </div>
+              <div class="v">68<span class="unit">%</span></div>
+              <div class="bottom">
+                <span class="d up"><i class="hgi-stroke hgi-arrow-up-01"></i>+12 pts since Jan</span>
+                <svg class="spark" viewBox="0 0 64 22" preserveAspectRatio="none">
+                  <path d="M0 18 L8 16 L16 13 L24 14 L32 11 L40 9 L48 7 L56 5 L64 4" stroke="var(--acc-blue)" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+            <div class="h-kpi">
+              <div class="top">
+                <div class="lbl"><span class="sw"></span>SPEND YTD</div>
+                <i class="info-btn hgi-stroke hgi-information-circle"></i>
+              </div>
+              <div class="v">930K<span class="unit">€</span></div>
+              <div class="bottom">
+                <span class="d up"><i class="hgi-stroke hgi-arrow-down-01"></i>−€41K vs budget</span>
+                <svg class="spark" viewBox="0 0 64 22" preserveAspectRatio="none">
+                  <path d="M0 8 L8 10 L16 12 L24 11 L32 14 L40 13 L48 16 L56 15 L64 17" stroke="var(--acc-blue)" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- main grid -->
+          <div class="h-grid">
+            <!-- main chart -->
+            <div class="h-chart-card">
+              <div class="h-chart-head">
+                <div class="left">
+                  <div class="ttl"><i class="hgi-stroke hgi-chart-line-data-01"></i>Power consumption</div>
+                  <div class="sub">Hourly load · all sites · UTC+2</div>
+                </div>
+                <div class="right">
+                  <div class="h-segmented">
+                    <span>15m</span><span class="on">1h</span><span>1d</span>
+                  </div>
+                  <button class="h-iconbtn"><i class="hgi-stroke hgi-filter-horizontal"></i></button>
+                  <button class="h-iconbtn"><i class="hgi-stroke hgi-more-horizontal-circle-01"></i></button>
+                </div>
+              </div>
+              <div class="h-chart-body">
+                <div class="h-chart-summary">
+                  <div class="big">9.26<span class="u">GWh</span></div>
+                  <div class="delta-pill"><i class="hgi-stroke hgi-arrow-up-01"></i>+5.2%</div>
+                  <div class="vs">vs. previous period</div>
+                </div>
+                <div class="h-chart-legend">
+                  <span class="item"><span class="sw" style="background:var(--cat-1)"></span>Grid</span>
+                  <span class="item"><span class="sw" style="background:var(--cat-2)"></span>Solar PV</span>
+                  <span class="item"><span class="sw" style="background:var(--cat-3)"></span>PPA</span>
+                  <span class="item" style="margin-left:auto;color:var(--acc-purple)"><span class="sw" style="background:var(--acc-purple);opacity:.6"></span>AI forecast</span>
+                </div>
+                <div class="h-chart-area">
+                  <svg viewBox="0 0 720 180" preserveAspectRatio="none">
+                    <!-- grid lines -->
+                    <line x1="0" y1="30" x2="720" y2="30" stroke="#1F1F1F" stroke-width="1" stroke-dasharray="2,3"/>
+                    <line x1="0" y1="75" x2="720" y2="75" stroke="#1F1F1F" stroke-width="1" stroke-dasharray="2,3"/>
+                    <line x1="0" y1="120" x2="720" y2="120" stroke="#1F1F1F" stroke-width="1" stroke-dasharray="2,3"/>
+                    <line x1="0" y1="165" x2="720" y2="165" stroke="#222" stroke-width="1"/>
+                    <!-- stacked bars: actuals use categorical scale, forecast uses purple -->
+                    <g>
+                      <!-- 1 -->
+                      <rect x="14" y="100" width="42" height="65" fill="#3B82F6" rx="2"/>
+                      <rect x="14" y="86" width="42" height="14" fill="#22D3EE"/>
+                      <rect x="14" y="70" width="42" height="16" fill="#14B8A6" rx="2"/>
+                      <!-- 2 -->
+                      <rect x="74" y="105" width="42" height="60" fill="#3B82F6" rx="2"/>
+                      <rect x="74" y="92" width="42" height="13" fill="#22D3EE"/>
+                      <rect x="74" y="76" width="42" height="16" fill="#14B8A6" rx="2"/>
+                      <!-- 3 -->
+                      <rect x="134" y="80" width="42" height="85" fill="#3B82F6" rx="2"/>
+                      <rect x="134" y="65" width="42" height="15" fill="#22D3EE"/>
+                      <rect x="134" y="48" width="42" height="17" fill="#14B8A6" rx="2"/>
+                      <!-- 4 -->
+                      <rect x="194" y="90" width="42" height="75" fill="#3B82F6" rx="2"/>
+                      <rect x="194" y="74" width="42" height="16" fill="#22D3EE"/>
+                      <rect x="194" y="58" width="42" height="16" fill="#14B8A6" rx="2"/>
+                      <!-- 5 -->
+                      <rect x="254" y="70" width="42" height="95" fill="#3B82F6" rx="2"/>
+                      <rect x="254" y="55" width="42" height="15" fill="#22D3EE"/>
+                      <rect x="254" y="38" width="42" height="17" fill="#14B8A6" rx="2"/>
+                      <!-- 6 -->
+                      <rect x="314" y="78" width="42" height="87" fill="#3B82F6" rx="2"/>
+                      <rect x="314" y="63" width="42" height="15" fill="#22D3EE"/>
+                      <rect x="314" y="46" width="42" height="17" fill="#14B8A6" rx="2"/>
+                      <!-- 7 — peak -->
+                      <rect x="374" y="60" width="42" height="105" fill="#3B82F6" rx="2"/>
+                      <rect x="374" y="44" width="42" height="16" fill="#22D3EE"/>
+                      <rect x="374" y="26" width="42" height="18" fill="#14B8A6" rx="2"/>
+                      <!-- 8 -->
+                      <rect x="434" y="85" width="42" height="80" fill="#3B82F6" rx="2"/>
+                      <rect x="434" y="68" width="42" height="17" fill="#22D3EE"/>
+                      <rect x="434" y="50" width="42" height="18" fill="#14B8A6" rx="2"/>
+                      <!-- 9 — forecast starts (purple) -->
+                      <rect x="494" y="92" width="42" height="73" fill="#A78BFA" opacity=".55" rx="2"/>
+                      <rect x="494" y="76" width="42" height="16" fill="#A78BFA" opacity=".75"/>
+                      <rect x="494" y="58" width="42" height="18" fill="#A78BFA" opacity=".9" rx="2"/>
+                      <!-- 10 -->
+                      <rect x="554" y="88" width="42" height="77" fill="#A78BFA" opacity=".55" rx="2"/>
+                      <rect x="554" y="71" width="42" height="17" fill="#A78BFA" opacity=".75"/>
+                      <rect x="554" y="53" width="42" height="18" fill="#A78BFA" opacity=".9" rx="2"/>
+                      <!-- 11 -->
+                      <rect x="614" y="100" width="42" height="65" fill="#A78BFA" opacity=".55" rx="2"/>
+                      <rect x="614" y="84" width="42" height="16" fill="#A78BFA" opacity=".75"/>
+                      <rect x="614" y="67" width="42" height="17" fill="#A78BFA" opacity=".9" rx="2"/>
+                      <!-- 12 -->
+                      <rect x="674" y="108" width="42" height="57" fill="#A78BFA" opacity=".55" rx="2"/>
+                      <rect x="674" y="93" width="42" height="15" fill="#A78BFA" opacity=".75"/>
+                      <rect x="674" y="76" width="42" height="17" fill="#A78BFA" opacity=".9" rx="2"/>
+                    </g>
+                    <!-- forecast separator -->
+                    <line x1="488" y1="0" x2="488" y2="165" stroke="#A78BFA" stroke-width="1" stroke-dasharray="3,3" opacity=".5"/>
+                    <text x="494" y="14" fill="#A78BFA" font-family="Geist Mono" font-size="9" font-weight="600">AI FORECAST →</text>
+                    <!-- peak marker on bucket 7 -->
+                    <circle cx="395" cy="26" r="4" fill="#EF4444" stroke="#0F0F0F" stroke-width="2"/>
+                    <text x="404" y="22" fill="#FCA5A5" font-family="Geist Mono" font-size="9" font-weight="600">PEAK</text>
+                  </svg>
+                </div>
+                <div class="h-chart-x">
+                  <span>06:00</span><span>09:00</span><span>12:00</span><span>15:00</span><span>18:00</span><span>21:00</span><span>00:00</span><span>03:00</span><span>06:00</span><span>09:00</span><span>12:00</span><span>15:00</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- right column -->
+            <div class="h-right-col">
+              <!-- alerts -->
+              <div class="h-alerts">
+                <div class="h-alerts-head">
+                  <div class="ttl"><i class="hgi-stroke hgi-alert-02"></i>Action items <span class="ct">3</span></div>
+                  <a href="#">View all <i class="hgi-stroke hgi-arrow-right-01"></i></a>
+                </div>
+                <div class="h-alerts-list">
+                  <div class="h-alert-row">
+                    <div class="icn red"><i class="hgi-stroke hgi-clock-04"></i></div>
+                    <div class="body">
+                      <div class="ttl">EDF contract renewal — Lyon-Sud</div>
+                      <div class="meta"><span>Locks in 47 days</span><span class="dot"></span><span>€312K/yr</span></div>
+                    </div>
+                    <i class="hgi-stroke hgi-arrow-right-01 arr"></i>
+                  </div>
+                  <div class="h-alert-row">
+                    <div class="icn amber"><i class="hgi-stroke hgi-flash"></i></div>
+                    <div class="body">
+                      <div class="ttl">Peak forecast breach risk</div>
+                      <div class="meta"><span>Thu 18:00–21:00</span><span class="dot"></span><span>+€8.4K exposure</span></div>
+                    </div>
+                    <i class="hgi-stroke hgi-arrow-right-01 arr"></i>
+                  </div>
+                  <div class="h-alert-row">
+                    <div class="icn purple"><i class="hgi-stroke hgi-sparkles"></i></div>
+                    <div class="body">
+                      <div class="ttl">AI recommends hedge: Q4 base load</div>
+                      <div class="meta"><span>EPEX −2.1%</span><span class="dot"></span><span>Suggested size 2.4 MW</span></div>
+                    </div>
+                    <i class="hgi-stroke hgi-arrow-right-01 arr"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- contracts -->
+              <div class="h-contracts">
+                <div class="h-contracts-head">
+                  <div class="ttl"><i class="hgi-stroke hgi-file-edit"></i>Active contracts</div>
+                  <a href="#">8 total <i class="hgi-stroke hgi-arrow-right-01"></i></a>
+                </div>
+                <div class="h-contracts-list">
+                  <div class="h-contract-row">
+                    <div class="sup" style="background:linear-gradient(135deg,#1E40AF,#0F3290)">E</div>
+                    <div class="body">
+                      <div class="nm">EDF Entreprises <span class="pill">Fixed</span></div>
+                      <div class="ctx">Lyon-Sud · 5,100 MWh/yr</div>
+                    </div>
+                    <div class="right">
+                      <div class="price">€68.40</div>
+                      <div class="renew soon"><i class="hgi-stroke hgi-clock-04"></i>47d</div>
+                    </div>
+                  </div>
+                  <div class="h-contract-row">
+                    <div class="sup" style="background:linear-gradient(135deg,#0F766E,#064E48)">E</div>
+                    <div class="body">
+                      <div class="nm">Engie B2B <span class="pill">Indexed</span></div>
+                      <div class="ctx">Le Havre · 3,200 MWh/yr</div>
+                    </div>
+                    <div class="right">
+                      <div class="price">€71.20</div>
+                      <div class="renew">8 mo</div>
+                    </div>
+                  </div>
+                  <div class="h-contract-row">
+                    <div class="sup" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">V</div>
+                    <div class="body">
+                      <div class="nm">Voltalis PPA <span class="pill">Green</span></div>
+                      <div class="ctx">Nantes DC · 1,800 MWh/yr</div>
+                    </div>
+                    <div class="right">
+                      <div class="price">€72.10</div>
+                      <div class="renew">14 mo</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- bottom row: cost breakdown + signals -->
+          <div class="h-bottom-grid">
+            <div class="h-cost">
+              <div class="h-cost-head">
+                <div class="ttl"><i class="hgi-stroke hgi-pie-chart"></i>Cost breakdown</div>
+                <div class="total">Total spend YTD <b>€930,127</b></div>
+              </div>
+              <div class="h-bar">
+                <span style="width:39.9%;background:var(--cat-1)"></span>
+                <span style="width:23.8%;background:var(--cat-2)"></span>
+                <span style="width:36.3%;background:var(--cat-3)"></span>
+              </div>
+              <div class="h-rows">
+                <div class="h-rcol">
+                  <div class="lbl"><span class="sw" style="background:var(--cat-1)"></span>Supply</div>
+                  <div class="v">€371,120</div>
+                  <div class="pct">39.9% of total</div>
+                </div>
+                <div class="h-rcol">
+                  <div class="lbl"><span class="sw" style="background:var(--cat-2)"></span>Grid fees</div>
+                  <div class="v">€221,540</div>
+                  <div class="pct">23.8% of total</div>
+                </div>
+                <div class="h-rcol">
+                  <div class="lbl"><span class="sw" style="background:var(--cat-3)"></span>Taxes &amp; levies</div>
+                  <div class="v">€337,467</div>
+                  <div class="pct">36.3% of total</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="h-news">
+              <div class="h-news-head">
+                <div class="ttl"><i class="hgi-stroke hgi-news-01"></i>Market signals</div>
+                <a href="#">All</a>
+              </div>
+              <div class="h-news-list">
+                <div class="h-news-item">
+                  <div class="h-news-tagrow"><span class="h-news-tag policy">Policy</span><span class="h-news-date">May 14</span></div>
+                  <div class="h-news-title">French PPE energy roadmap released</div>
+                </div>
+                <div class="h-news-item">
+                  <div class="h-news-tagrow"><span class="h-news-tag grid">Grid</span><span class="h-news-date">May 12</span></div>
+                  <div class="h-news-title">Winter blackout risks flagged for DCs</div>
+                </div>
+                <div class="h-news-item">
+                  <div class="h-news-tagrow"><span class="h-news-tag market">Market</span><span class="h-news-date">May 07</span></div>
+                  <div class="h-news-title">EPEX baseload +6.2% week-on-week</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGO STRIP ============ -->
+<section class="logos">
+  <div class="logos-label">Trusted by energy buyers across France &amp; the EU</div>
+  <div class="logos-row">
+    <span class="logo-mark serif">Cervo Foods</span>
+    <span class="logo-mark bold">METALWORKS</span>
+    <span class="logo-mark italic">aurélie & co</span>
+    <span class="logo-mark"><span class="mk">A</span>Atlas DC</span>
+    <span class="logo-mark geo">NORDIA</span>
+    <span class="logo-mark"><span class="mk">P</span>Plenum Retail</span>
+  </div>
+</section>
+
+<!-- ============ PROBLEM / PROMISE ============ -->
+<section class="problem">
+  <div class="section-eyebrow"><span class="dot"></span>THE SHIFT</div>
+  <h2 class="problem-h">Energy is too expensive — and too political — <span class="muted">to run on spreadsheets.</span></h2>
+
+  <div class="problem-grid">
+    <div class="problem-card now">
+      <span class="pc-tag"><span class="dot"></span>Without Condor</span>
+      <h3 class="pc-h">Spreadsheets, scattered meters, and surprise invoices.</h3>
+      <div class="pc-list">
+        <div class="pc-row">
+          <span class="icn"><i class="hgi-stroke hgi-spreadsheet"></i></span>
+          <div class="body"><strong>Meter data lives in 4 portals.</strong><p>You reconcile EDF, RTE, GRDF, and supplier exports by hand. Reporting takes a week.</p></div>
+        </div>
+        <div class="pc-row">
+          <span class="icn"><i class="hgi-stroke hgi-alert-02"></i></span>
+          <div class="body"><strong>Hedging is a gut call.</strong><p>No model to size positions, no audit trail. The board asks "why didn't we lock?" — and there's no good answer.</p></div>
+        </div>
+        <div class="pc-row">
+          <span class="icn"><i class="hgi-stroke hgi-clock-04"></i></span>
+          <div class="body"><strong>CAPEX cases stall.</strong><p>"Should we put solar on site 2?" → 6 weeks of consultant time → a deck no one trusts.</p></div>
+        </div>
+        <div class="pc-row">
+          <span class="icn"><i class="hgi-stroke hgi-notification-snooze-01"></i></span>
+          <div class="body"><strong>Renewals creep up.</strong><p>You find out about a contract auto-renewal 3 days before it locks for 12 months.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-card next">
+      <span class="pc-tag"><span class="dot"></span>With Condor</span>
+      <h3 class="pc-h">One workspace. Real-time meters. Decisions with the math attached.</h3>
+      <div class="pc-list">
+        <div class="pc-row">
+          <span class="icn"><i class="hgi-stroke hgi-plug-socket"></i></span>
+          <div class="body"><strong>Every kWh, every euro, in one place.</strong><p>Native connectors to EDF, Engie, RTE, Enedis, and supplier APIs. Reports generate in 30 seconds.</p></div>
+        </div>
+        <div class="pc-row">
+          <span class="icn"><i class="hgi-stroke hgi-shield-01"></i></span>
+          <div class="body"><strong>Hedging with a paper trail.</strong><p>Stochastic load model + EPEX curves recommend block sizes. Every trade explained, exportable to your IC memo.</p></div>
+        </div>
+        <div class="pc-row">
+          <span class="icn"><i class="hgi-stroke hgi-sparkles"></i></span>
+          <div class="body"><strong>CAPEX in 20 minutes, not 6 weeks.</strong><p>Drop in load curves, get IRR / NPV / sensitivity for PV, BESS, and PPAs. Board-ready output.</p></div>
+        </div>
+        <div class="pc-row">
+          <span class="icn"><i class="hgi-stroke hgi-radar-01"></i></span>
+          <div class="body"><strong>Renewal radar.</strong><p>Alerts at T-90, T-60, T-30 with market context. Never lock at the wrong moment again.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+      <div class="v">8–14<span class="u">%</span></div>
+      <div class="lbl">Procurement savings on first renewal</div>
+    </div>
+    <div class="stat">
+      <span class="icn"><i class="hgi-stroke hgi-clock-04"></i></span>
+      <div class="v">−86<span class="u">%</span></div>
+      <div class="lbl">Hours spent on monthly reporting</div>
+    </div>
+    <div class="stat">
+      <span class="icn"><i class="hgi-stroke hgi-coins-euro"></i></span>
+      <div class="v">€2.4M</div>
+      <div class="lbl">Avg. hedge book actively managed</div>
+    </div>
+    <div class="stat">
+      <span class="icn"><i class="hgi-stroke hgi-calendar-03"></i></span>
+      <div class="v">47<span class="u">days</span></div>
+      <div class="lbl">From connect-meters to first decision</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES (JOBS) ============ -->
+<section class="feat">
+  <div class="section-eyebrow"><span class="dot"></span>WHAT YOU'LL DO IN CONDOR</div>
+  <h2 class="feat-h">Three jobs. <span class="muted">One workspace.</span></h2>
+  <p class="feat-sub">Built around the decisions an industrial energy team actually makes — not a feature checklist.</p>
+
+  <div class="feat-tabs">
+    <div class="feat-tab on"><span class="num">01</span>Procure</div>
+    <div class="feat-tab"><span class="num">02</span>Hedge</div>
+    <div class="feat-tab"><span class="num">03</span>Decarbonize</div>
+  </div>
+
+  <div class="feat-panel">
+    <div class="feat-panel-left">
+      <div class="eyebrow"><i class="hgi-stroke hgi-search-list-01"></i>PROCURE</div>
+      <h3>Run a real RFQ in a week, not a quarter.</h3>
+      <p class="lede">Stop emailing 6 suppliers from a personal inbox. Send a structured RFQ, compare offers on the same basis, and sign — all in Condor.</p>
+      <div class="feat-steps">
+        <div class="feat-step">
+          <span class="icn"><i class="hgi-stroke hgi-file-edit"></i></span>
+          <div class="body"><strong>Define your need once.</strong><p>Volume profile, term, indexation preference, green credentials. Sent to all suppliers in identical format.</p></div>
+        </div>
+        <div class="feat-step">
+          <span class="icn"><i class="hgi-stroke hgi-chart-line-data-01"></i></span>
+          <div class="body"><strong>Compare apples to apples.</strong><p>Normalize fixed-price vs indexed vs hybrid. See blended cost, downside risk, and CSR delta side by side.</p></div>
+        </div>
+        <div class="feat-step">
+          <span class="icn"><i class="hgi-stroke hgi-task-done-02"></i></span>
+          <div class="body"><strong>Sign with a paper trail.</strong><p>Every assumption logged. Your CFO and the auditor see the same comparison you did.</p></div>
+        </div>
+      </div>
+      <a class="feat-panel-cta" href="#">
+        See a sample RFQ output
+        <i class="hgi-stroke hgi-arrow-right-01"></i>
+      </a>
+    </div>
+
+    <div class="feat-mock">
+      <div class="mka-head">
+        <div class="mka-h">RFQ — Cal-26 Base Load <span class="sub">5,100 MWh · 12 months · 4 suppliers responded</span></div>
+        <span class="mka-status"><span class="dot"></span>Ready to sign</span>
+      </div>
+
+      <div class="mka-tbl">
+        <div class="mka-thd">
+          <span>Supplier</span><span>Type</span><span>Blended</span><span>Downside</span><span>CSR</span>
+        </div>
+        <div class="mka-row best">
+          <div class="mka-sup">
+            <span class="sm" style="background:linear-gradient(135deg,#1E40AF,#0F3290)">E</span>
+            <div class="info"><span class="nm">EDF Entreprises</span><span class="ct">Fixed + 20% block</span></div>
+          </div>
+          <span class="mka-tag green">Hybrid</span>
+          <span class="mka-price best">€68.40</span>
+          <span class="mka-tag green">+€2.1K</span>
+          <span class="mka-tag grade">A</span>
+        </div>
+        <div class="mka-row">
+          <div class="mka-sup">
+            <span class="sm" style="background:linear-gradient(135deg,#0F766E,#064E48)">E</span>
+            <div class="info"><span class="nm">Engie B2B</span><span class="ct">EPEX indexed</span></div>
+          </div>
+          <span class="mka-tag amber">Indexed</span>
+          <span class="mka-price">€71.20</span>
+          <span class="mka-tag amber">±€18K</span>
+          <span class="mka-tag grade">B</span>
+        </div>
+        <div class="mka-row">
+          <div class="mka-sup">
+            <span class="sm" style="background:linear-gradient(135deg,#B91C1C,#7F1313)">T</span>
+            <div class="info"><span class="nm">TotalEnergies</span><span class="ct">Fixed 12m</span></div>
+          </div>
+          <span class="mka-tag">Fixed</span>
+          <span class="mka-price">€73.85</span>
+          <span class="mka-tag green">+€0</span>
+          <span class="mka-tag grade">B</span>
+        </div>
+        <div class="mka-row">
+          <div class="mka-sup">
+            <span class="sm" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">V</span>
+            <div class="info"><span class="nm">Voltalis Green</span><span class="ct">PPA + grid backup</span></div>
+          </div>
+          <span class="mka-tag green">PPA</span>
+          <span class="mka-price">€72.10</span>
+          <span class="mka-tag amber">±€9K</span>
+          <span class="mka-tag grade">A+</span>
+        </div>
+      </div>
+
+      <div class="mka-foot">
+        <div class="mka-savings">
+          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+          Best offer saves <b>€24,800/yr</b> vs current contract
+        </div>
+        <a class="mka-cta" href="#">
+          Sign with EDF
+          <i class="hgi-stroke hgi-arrow-right-01"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIAL ============ -->
+<section class="testim">
+  <div class="testim-card">
+    <div class="testim-quote">
+      <div class="testim-mark"><i class="hgi-stroke hgi-quote-up"></i></div>
+      <p class="testim-body">We were running €4M of energy spend on three spreadsheets and a WhatsApp group. <span>Condor replaced all of it in a month — and caught a renewal we were 4 days from sleepwalking into.</span></p>
+      <div class="testim-author">
+        <span class="av">CL</span>
+        <div>
+          <div class="nm">Claire Lemaire</div>
+          <div class="ti">Head of Energy · Cervo Foods (12 sites · 38 GWh/yr)</div>
+        </div>
+      </div>
+    </div>
+    <div class="testim-metrics">
+      <div class="testim-metric">
+        <div class="v">€340K</div>
+        <div class="lbl">Saved on Cal-26 renewal</div>
+      </div>
+      <div class="testim-metric">
+        <div class="v">11<span class="u">%</span></div>
+        <div class="lbl">Unit cost reduction YoY</div>
+      </div>
+      <div class="testim-metric">
+        <div class="v">3<span class="u">days</span></div>
+        <div class="lbl">From onboarding to first hedge</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how">
+  <div class="section-eyebrow how-eyebrow"><span class="dot"></span>HOW IT WORKS</div>
+  <h2 class="how-h">From first call to <span class="muted">first savings in 6 weeks.</span></h2>
+  <p class="how-sub">No long IT project. No data migration. We do the heavy lifting on connectors.</p>
+
+  <div class="how-steps">
+    <div class="how-step active">
+      <div class="n">1</div>
+      <div class="when">Week 1</div>
+      <h4>Free audit</h4>
+      <p>We analyze 12 months of your bills and contracts. You get a written report with savings potential — no commitment.</p>
+    </div>
+    <div class="how-step">
+      <div class="n">2</div>
+      <div class="when">Week 2–3</div>
+      <h4>Connect your meters</h4>
+      <p>We plug Condor into EDF, Engie, RTE, Enedis and your suppliers. You don't touch a thing.</p>
+    </div>
+    <div class="how-step">
+      <div class="n">3</div>
+      <div class="when">Week 4</div>
+      <h4>Calibrate &amp; train</h4>
+      <p>We set up your hedging policy, reporting templates, and CAPEX assumptions with your team.</p>
+    </div>
+    <div class="how-step">
+      <div class="n">4</div>
+      <div class="when">Week 5–6</div>
+      <h4>Ship your first decision</h4>
+      <p>Run your first RFQ, hedge, or CAPEX case — with our team on Slack until you're confident.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq">
+  <div class="faq-grid">
+    <div class="faq-left">
+      <div class="section-eyebrow"><span class="dot"></span>FAQ</div>
+      <h2>Questions we get on every first call.</h2>
+      <p>If you have a different one, write to <a href="mailto:founders@condor.energy">founders@condor.energy</a> — we usually reply within the day.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          Where does my meter and contract data actually live?
+          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+        </div>
+        <div class="faq-a">Encrypted at rest in EU-hosted Postgres (OVH, Gravelines). SOC 2 Type I in progress, Type II by Q4 2026. Your data is never used to train models or shared with other clients.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          Do you replace our existing supplier — or sit alongside?
+          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+        </div>
+        <div class="faq-a">We sit alongside. Condor is supplier-agnostic — we connect to whoever you buy from today. The point is to make you a better customer to them, not to replace them.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          What does it cost?
+          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+        </div>
+        <div class="faq-a">Flat annual fee based on number of sites and GWh under management. Starts at €18K/yr for a single-site industrial; large multi-site portfolios are priced per consumption. The free audit always comes first.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          We're a data center / a retailer / not French — does Condor still fit?
+          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+        </div>
+        <div class="faq-a">Yes for data centers (10 of our 30+ pilots) and retailers (5). Geography: France and Benelux today. Germany and Iberia in pilot for Q3 2026. EU only for now.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          How long until I see savings?
+          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+        </div>
+        <div class="faq-a">Typically your first renewal — most teams capture 8–14% on procurement alone. Hedging discipline compounds from there. If your next renewal is &gt;9 months out, the audit will tell you whether to wait or act now.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA + CALENDAR ============ -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <span class="cta-tag">GET STARTED</span>
+      <h2 class="cta-h">Stop bleeding margin to volatility.</h2>
+      <p class="cta-p">Send us 12 months of your energy bills. We'll send back a written audit with where your money is leaking — and what Condor would do about it.</p>
+      <div class="cta-ctas">
+        <a class="cta-btn" href="#">
+          Get my free audit
+          <i class="hgi-stroke hgi-arrow-right-01"></i>
+        </a>
+        <a class="cta-btn ghost" href="#">
+          <i class="hgi-stroke hgi-calendar-03"></i>
+          Book a 20-min call
+        </a>
+      </div>
+      <div class="cta-trust">
+        <span>No credit card</span>
+        <span class="dot"></span>
+        <span>Audit in 5 days</span>
+        <span class="dot"></span>
+        <span>NDA available</span>
+      </div>
+    </div>
+
+    <div class="cal-card">
+      <div class="cal-icon"><i class="hgi-stroke hgi-calendar-03"></i></div>
+      <h3 class="cal-h">Pick a slot on our calendar</h3>
+      <p class="cal-p">20 minutes with one of our founders. We'll ask about your sites and contracts — no slide deck, promise.</p>
+      <div class="cal-btns">
+        <a class="cal-btn" href="#"><i class="hgi-stroke hgi-calendar-03"></i>Show calendar</a>
+        <a class="cal-btn ghost" href="#"><i class="hgi-stroke hgi-mail-01"></i>Email us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="f-brand">
+      <div class="f-logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M3 13L10 6L13 9L21 5L18 14L11 11L8 14L3 13Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" fill="#fff" fill-opacity=".1"/>
+        </svg>
+        <span class="word">CONDOR</span>
+      </div>
+      <div class="f-tag">The energy OS that helps industrial buyers cut costs, hedge with discipline, and decarbonize with the math attached.</div>
+      <div class="f-yc">Backed by <span class="yc-mark">Y</span> Combinator</div>
+    </div>
+    <div class="f-col">
+      <h4>PRODUCT</h4>
+      <ul>
+        <li><a href="#">Procurement</a></li>
+        <li><a href="#">Hedging</a></li>
+        <li><a href="#">CAPEX screening</a></li>
+        <li><a href="#">Reporting</a></li>
+        <li><a href="#">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>COMPANY</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Customers</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>LEGAL &amp; TRUST</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Legal Notice</a></li>
+        <li><a href="#">SOC 2 status</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="f-foot">
+    <span>© 2026 Condor Energy SAS · 12 rue La Boétie, 75008 Paris</span>
+    <div class="right">
+      <a class="f-soc" href="#" aria-label="LinkedIn"><i class="hgi-stroke hgi-linkedin-01"></i></a>
+      <a class="f-soc" href="#" aria-label="Twitter"><i class="hgi-stroke hgi-new-twitter"></i></a>
+      <a class="f-soc" href="#" aria-label="GitHub"><i class="hgi-stroke hgi-github"></i></a>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+</body>
+</html>
