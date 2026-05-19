@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<!-- Hugeicons stroke-rounded font -->
-<link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+<!-- Iconify web component — renders Hugeicons set as real SVGs (no font/CJK fallback) -->
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@3.0.2/dist/iconify-icon.min.js"></script>
 <style>
 /* ============ TOKENS ============ */
 :root{
@@ -103,8 +103,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 img,svg{display:block}
 .wrap{width:1440px;margin:0 auto;position:relative;overflow:hidden}
 
-/* Hugeicons sizing helper */
-.hgi-stroke{font-style:normal;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+/* Iconify renders as a web component; treat it like inline text */
+iconify-icon{display:inline-flex;vertical-align:-0.125em;line-height:1}
 .ic-sm{font-size:14px}
 .ic-md{font-size:16px}
 .ic-lg{font-size:18px}
@@ -858,7 +858,7 @@ img,svg{display:block}
   <div class="nav-right">
     <div class="lang"><span class="on">EN</span><span>FR</span></div>
     <a class="nav-signin" href="#">Sign in</a>
-    <a class="btn-primary" href="#">Get Started <i class="hgi-stroke hgi-arrow-right-01"></i></a>
+    <a class="btn-primary" href="#">Get Started <iconify-icon icon="hugeicons:arrow-right-01"></iconify-icon></a>
   </div>
 </header>
 
@@ -871,15 +871,15 @@ img,svg{display:block}
     <div class="hero-ctas">
       <a class="btn-hero-primary" href="#">
         Get a free energy audit
-        <i class="hgi-stroke hgi-arrow-right-01"></i>
+        <iconify-icon icon="hugeicons:arrow-right-01"></iconify-icon>
       </a>
       <a class="btn-hero-ghost" href="#">
-        <i class="hgi-stroke hgi-calendar-03"></i>
+        <iconify-icon icon="hugeicons:calendar-03"></iconify-icon>
         Book a 20-min demo
       </a>
     </div>
     <div class="hero-trust">
-      <span class="ok"><i class="hgi-stroke hgi-checkmark-circle-02"></i>No credit card</span>
+      <span class="ok"><iconify-icon icon="hugeicons:checkmark-circle-02"></iconify-icon>No credit card</span>
       <span class="dot"></span>
       <span>Audit in 5 business days</span>
       <span class="dot"></span>
@@ -892,11 +892,11 @@ img,svg{display:block}
     <div class="hero-dash">
       <div class="dash-chrome">
         <div class="traffic"><span></span><span></span><span></span></div>
-        <div class="url"><i class="hgi-stroke hgi-lock-password"></i>app.condor.energy / dashboard</div>
+        <div class="url"><iconify-icon icon="hugeicons:lock-password"></iconify-icon>app.condor.energy / dashboard</div>
         <div class="browser-actions">
-          <i class="hgi-stroke hgi-share-08"></i>
-          <i class="hgi-stroke hgi-plus-sign"></i>
-          <i class="hgi-stroke hgi-copy-01"></i>
+          <iconify-icon icon="hugeicons:share-08"></iconify-icon>
+          <iconify-icon icon="hugeicons:plus-sign"></iconify-icon>
+          <iconify-icon icon="hugeicons:copy-01"></iconify-icon>
         </div>
       </div>
       <div class="dash-body">
@@ -911,27 +911,27 @@ img,svg{display:block}
           </div>
 
           <div class="h-side-search">
-            <i class="hgi-stroke hgi-search-01"></i>
+            <iconify-icon icon="hugeicons:search-01"></iconify-icon>
             <span>Search…</span>
             <span class="kbd">⌘K</span>
           </div>
 
           <div class="h-side-section">Workspace</div>
           <nav class="h-side-nav">
-            <a class="h-side-item active" href="#"><i class="hgi-stroke hgi-dashboard-square-02"></i>Dashboard</a>
-            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-flash"></i>Consumption<span class="dot-live"></span></a>
-            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-coins-euro"></i>Costs</a>
-            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-file-edit"></i>Contracts<span class="badge">1</span></a>
-            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-analytics-up"></i>Hedging</a>
-            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-chart-bar-line"></i>Reporting</a>
-            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-plant-02"></i>Decarbonize</a>
+            <a class="h-side-item active" href="#"><iconify-icon icon="hugeicons:dashboard-square-02"></iconify-icon>Dashboard</a>
+            <a class="h-side-item" href="#"><iconify-icon icon="hugeicons:flash"></iconify-icon>Consumption<span class="dot-live"></span></a>
+            <a class="h-side-item" href="#"><iconify-icon icon="hugeicons:coins-euro"></iconify-icon>Costs</a>
+            <a class="h-side-item" href="#"><iconify-icon icon="hugeicons:file-edit"></iconify-icon>Contracts<span class="badge">1</span></a>
+            <a class="h-side-item" href="#"><iconify-icon icon="hugeicons:analytics-up"></iconify-icon>Hedging</a>
+            <a class="h-side-item" href="#"><iconify-icon icon="hugeicons:chart-bar-line"></iconify-icon>Reporting</a>
+            <a class="h-side-item" href="#"><iconify-icon icon="hugeicons:plant-02"></iconify-icon>Decarbonize</a>
           </nav>
 
-          <div class="h-side-section">Sites <span class="add"><i class="hgi-stroke hgi-add-01"></i></span></div>
+          <div class="h-side-section">Sites <span class="add"><iconify-icon icon="hugeicons:add-01"></iconify-icon></span></div>
           <nav class="h-side-nav">
-            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-factory-01"></i>Lyon-Sud Plant<span class="badge neu">4</span></a>
-            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-factory-01"></i>Le Havre Refinery</a>
-            <a class="h-side-item" href="#"><i class="hgi-stroke hgi-building-03"></i>Nantes DC</a>
+            <a class="h-side-item" href="#"><iconify-icon icon="hugeicons:factory-01"></iconify-icon>Lyon-Sud Plant<span class="badge neu">4</span></a>
+            <a class="h-side-item" href="#"><iconify-icon icon="hugeicons:factory-01"></iconify-icon>Le Havre Refinery</a>
+            <a class="h-side-item" href="#"><iconify-icon icon="hugeicons:building-03"></iconify-icon>Nantes DC</a>
           </nav>
 
           <div class="h-side-org">
@@ -940,7 +940,7 @@ img,svg{display:block}
               <div class="name">André-Marie Ampère</div>
               <div class="co">ACME Energy · 12 sites</div>
             </div>
-            <i class="hgi-stroke hgi-more-horizontal-circle-01 more"></i>
+            <iconify-icon icon="hugeicons:more-horizontal-circle-01" class="more"></iconify-icon>
           </div>
         </aside>
 
@@ -950,18 +950,18 @@ img,svg{display:block}
           <div class="h-topbar">
             <div class="h-breadcrumb">
               <span class="crumb">ACME Energy</span>
-              <i class="hgi-stroke hgi-arrow-right-01 sep"></i>
+              <iconify-icon icon="hugeicons:arrow-right-01" class="sep"></iconify-icon>
               <span class="crumb cur">Dashboard</span>
-              <i class="hgi-stroke hgi-arrow-right-01 sep"></i>
+              <iconify-icon icon="hugeicons:arrow-right-01" class="sep"></iconify-icon>
               <span class="crumb">May 2026</span>
             </div>
             <div class="h-topbar-right">
-              <button class="h-iconbtn"><i class="hgi-stroke hgi-search-01"></i></button>
-              <button class="h-iconbtn"><i class="hgi-stroke hgi-notification-03"></i><span class="ind"></span></button>
-              <button class="h-iconbtn"><i class="hgi-stroke hgi-help-circle"></i></button>
+              <button class="h-iconbtn"><iconify-icon icon="hugeicons:search-01"></iconify-icon></button>
+              <button class="h-iconbtn"><iconify-icon icon="hugeicons:notification-03"></iconify-icon><span class="ind"></span></button>
+              <button class="h-iconbtn"><iconify-icon icon="hugeicons:help-circle"></iconify-icon></button>
               <div class="h-divider"></div>
-              <button class="h-iconbtn"><i class="hgi-stroke hgi-download-04"></i></button>
-              <button class="h-share-btn"><i class="hgi-stroke hgi-share-08"></i>Share</button>
+              <button class="h-iconbtn"><iconify-icon icon="hugeicons:download-04"></iconify-icon></button>
+              <button class="h-share-btn"><iconify-icon icon="hugeicons:share-08"></iconify-icon>Share</button>
             </div>
           </div>
 
@@ -969,9 +969,9 @@ img,svg{display:block}
           <div class="h-hero">
             <div class="h-hero-row">
               <div class="h-hero-left">
-                <div class="ttl">Welcome back, André-Marie <i class="hgi-stroke hgi-sparkles" style="font-size:16px;color:var(--acc-purple)"></i></div>
+                <div class="ttl">Welcome back, André-Marie <iconify-icon icon="hugeicons:sparkles" style="font-size:16px;color:var(--acc-purple)"></iconify-icon></div>
                 <div class="sub">
-                  <span class="badge-good"><i class="hgi-stroke hgi-arrow-down-01"></i>Spend −4.1% vs last month</span>
+                  <span class="badge-good"><iconify-icon icon="hugeicons:arrow-down-01"></iconify-icon>Spend −4.1% vs last month</span>
                   <span class="sep">·</span>
                   <span><b>8</b> contracts active</span>
                   <span class="sep">·</span>
@@ -989,11 +989,11 @@ img,svg{display:block}
             <div class="h-kpi">
               <div class="top">
                 <div class="lbl"><span class="sw"></span>CONSUMPTION YTD</div>
-                <i class="info-btn hgi-stroke hgi-information-circle"></i>
+                <iconify-icon icon="hugeicons:information-circle" class="info-btn"></iconify-icon>
               </div>
               <div class="v">12,847<span class="unit">MWh</span></div>
               <div class="bottom">
-                <span class="d warn"><i class="hgi-stroke hgi-arrow-up-01"></i>+2.4% YoY</span>
+                <span class="d warn"><iconify-icon icon="hugeicons:arrow-up-01"></iconify-icon>+2.4% YoY</span>
                 <svg class="spark" viewBox="0 0 64 22" preserveAspectRatio="none">
                   <path d="M0 18 L8 14 L16 16 L24 10 L32 12 L40 7 L48 9 L56 4 L64 6" stroke="var(--acc-blue)" stroke-width="1.5" fill="none"/>
                 </svg>
@@ -1002,11 +1002,11 @@ img,svg{display:block}
             <div class="h-kpi">
               <div class="top">
                 <div class="lbl"><span class="sw"></span>AVG UNIT COST</div>
-                <i class="info-btn hgi-stroke hgi-information-circle"></i>
+                <iconify-icon icon="hugeicons:information-circle" class="info-btn"></iconify-icon>
               </div>
               <div class="v">72.35<span class="unit">€/MWh</span></div>
               <div class="bottom">
-                <span class="d up"><i class="hgi-stroke hgi-arrow-down-01"></i>−3.8% vs Q1</span>
+                <span class="d up"><iconify-icon icon="hugeicons:arrow-down-01"></iconify-icon>−3.8% vs Q1</span>
                 <svg class="spark" viewBox="0 0 64 22" preserveAspectRatio="none">
                   <path d="M0 6 L8 8 L16 10 L24 9 L32 12 L40 11 L48 14 L56 16 L64 18" stroke="var(--acc-blue)" stroke-width="1.5" fill="none"/>
                 </svg>
@@ -1015,11 +1015,11 @@ img,svg{display:block}
             <div class="h-kpi">
               <div class="top">
                 <div class="lbl"><span class="sw"></span>HEDGE COVERAGE</div>
-                <i class="info-btn hgi-stroke hgi-information-circle"></i>
+                <iconify-icon icon="hugeicons:information-circle" class="info-btn"></iconify-icon>
               </div>
               <div class="v">68<span class="unit">%</span></div>
               <div class="bottom">
-                <span class="d up"><i class="hgi-stroke hgi-arrow-up-01"></i>+12 pts since Jan</span>
+                <span class="d up"><iconify-icon icon="hugeicons:arrow-up-01"></iconify-icon>+12 pts since Jan</span>
                 <svg class="spark" viewBox="0 0 64 22" preserveAspectRatio="none">
                   <path d="M0 18 L8 16 L16 13 L24 14 L32 11 L40 9 L48 7 L56 5 L64 4" stroke="var(--acc-blue)" stroke-width="1.5" fill="none"/>
                 </svg>
@@ -1028,11 +1028,11 @@ img,svg{display:block}
             <div class="h-kpi">
               <div class="top">
                 <div class="lbl"><span class="sw"></span>SPEND YTD</div>
-                <i class="info-btn hgi-stroke hgi-information-circle"></i>
+                <iconify-icon icon="hugeicons:information-circle" class="info-btn"></iconify-icon>
               </div>
               <div class="v">930K<span class="unit">€</span></div>
               <div class="bottom">
-                <span class="d up"><i class="hgi-stroke hgi-arrow-down-01"></i>−€41K vs budget</span>
+                <span class="d up"><iconify-icon icon="hugeicons:arrow-down-01"></iconify-icon>−€41K vs budget</span>
                 <svg class="spark" viewBox="0 0 64 22" preserveAspectRatio="none">
                   <path d="M0 8 L8 10 L16 12 L24 11 L32 14 L40 13 L48 16 L56 15 L64 17" stroke="var(--acc-blue)" stroke-width="1.5" fill="none"/>
                 </svg>
@@ -1046,21 +1046,21 @@ img,svg{display:block}
             <div class="h-chart-card">
               <div class="h-chart-head">
                 <div class="left">
-                  <div class="ttl"><i class="hgi-stroke hgi-chart-line-data-01"></i>Power consumption</div>
+                  <div class="ttl"><iconify-icon icon="hugeicons:chart-line-data-01"></iconify-icon>Power consumption</div>
                   <div class="sub">Hourly load · all sites · UTC+2</div>
                 </div>
                 <div class="right">
                   <div class="h-segmented">
                     <span>15m</span><span class="on">1h</span><span>1d</span>
                   </div>
-                  <button class="h-iconbtn"><i class="hgi-stroke hgi-filter-horizontal"></i></button>
-                  <button class="h-iconbtn"><i class="hgi-stroke hgi-more-horizontal-circle-01"></i></button>
+                  <button class="h-iconbtn"><iconify-icon icon="hugeicons:filter-horizontal"></iconify-icon></button>
+                  <button class="h-iconbtn"><iconify-icon icon="hugeicons:more-horizontal-circle-01"></iconify-icon></button>
                 </div>
               </div>
               <div class="h-chart-body">
                 <div class="h-chart-summary">
                   <div class="big">9.26<span class="u">GWh</span></div>
-                  <div class="delta-pill"><i class="hgi-stroke hgi-arrow-up-01"></i>+5.2%</div>
+                  <div class="delta-pill"><iconify-icon icon="hugeicons:arrow-up-01"></iconify-icon>+5.2%</div>
                   <div class="vs">vs. previous period</div>
                 </div>
                 <div class="h-chart-legend">
@@ -1146,33 +1146,33 @@ img,svg{display:block}
               <!-- alerts -->
               <div class="h-alerts">
                 <div class="h-alerts-head">
-                  <div class="ttl"><i class="hgi-stroke hgi-alert-02"></i>Action items <span class="ct">3</span></div>
-                  <a href="#">View all <i class="hgi-stroke hgi-arrow-right-01"></i></a>
+                  <div class="ttl"><iconify-icon icon="hugeicons:alert-02"></iconify-icon>Action items <span class="ct">3</span></div>
+                  <a href="#">View all <iconify-icon icon="hugeicons:arrow-right-01"></iconify-icon></a>
                 </div>
                 <div class="h-alerts-list">
                   <div class="h-alert-row">
-                    <div class="icn red"><i class="hgi-stroke hgi-clock-04"></i></div>
+                    <div class="icn red"><iconify-icon icon="hugeicons:clock-04"></iconify-icon></div>
                     <div class="body">
                       <div class="ttl">EDF contract renewal — Lyon-Sud</div>
                       <div class="meta"><span>Locks in 47 days</span><span class="dot"></span><span>€312K/yr</span></div>
                     </div>
-                    <i class="hgi-stroke hgi-arrow-right-01 arr"></i>
+                    <iconify-icon icon="hugeicons:arrow-right-01" class="arr"></iconify-icon>
                   </div>
                   <div class="h-alert-row">
-                    <div class="icn amber"><i class="hgi-stroke hgi-flash"></i></div>
+                    <div class="icn amber"><iconify-icon icon="hugeicons:flash"></iconify-icon></div>
                     <div class="body">
                       <div class="ttl">Peak forecast breach risk</div>
                       <div class="meta"><span>Thu 18:00–21:00</span><span class="dot"></span><span>+€8.4K exposure</span></div>
                     </div>
-                    <i class="hgi-stroke hgi-arrow-right-01 arr"></i>
+                    <iconify-icon icon="hugeicons:arrow-right-01" class="arr"></iconify-icon>
                   </div>
                   <div class="h-alert-row">
-                    <div class="icn purple"><i class="hgi-stroke hgi-sparkles"></i></div>
+                    <div class="icn purple"><iconify-icon icon="hugeicons:sparkles"></iconify-icon></div>
                     <div class="body">
                       <div class="ttl">AI recommends hedge: Q4 base load</div>
                       <div class="meta"><span>EPEX −2.1%</span><span class="dot"></span><span>Suggested size 2.4 MW</span></div>
                     </div>
-                    <i class="hgi-stroke hgi-arrow-right-01 arr"></i>
+                    <iconify-icon icon="hugeicons:arrow-right-01" class="arr"></iconify-icon>
                   </div>
                 </div>
               </div>
@@ -1180,8 +1180,8 @@ img,svg{display:block}
               <!-- contracts -->
               <div class="h-contracts">
                 <div class="h-contracts-head">
-                  <div class="ttl"><i class="hgi-stroke hgi-file-edit"></i>Active contracts</div>
-                  <a href="#">8 total <i class="hgi-stroke hgi-arrow-right-01"></i></a>
+                  <div class="ttl"><iconify-icon icon="hugeicons:file-edit"></iconify-icon>Active contracts</div>
+                  <a href="#">8 total <iconify-icon icon="hugeicons:arrow-right-01"></iconify-icon></a>
                 </div>
                 <div class="h-contracts-list">
                   <div class="h-contract-row">
@@ -1192,7 +1192,7 @@ img,svg{display:block}
                     </div>
                     <div class="right">
                       <div class="price">€68.40</div>
-                      <div class="renew soon"><i class="hgi-stroke hgi-clock-04"></i>47d</div>
+                      <div class="renew soon"><iconify-icon icon="hugeicons:clock-04"></iconify-icon>47d</div>
                     </div>
                   </div>
                   <div class="h-contract-row">
@@ -1226,7 +1226,7 @@ img,svg{display:block}
           <div class="h-bottom-grid">
             <div class="h-cost">
               <div class="h-cost-head">
-                <div class="ttl"><i class="hgi-stroke hgi-pie-chart"></i>Cost breakdown</div>
+                <div class="ttl"><iconify-icon icon="hugeicons:pie-chart"></iconify-icon>Cost breakdown</div>
                 <div class="total">Total spend YTD <b>€930,127</b></div>
               </div>
               <div class="h-bar">
@@ -1255,7 +1255,7 @@ img,svg{display:block}
 
             <div class="h-news">
               <div class="h-news-head">
-                <div class="ttl"><i class="hgi-stroke hgi-news-01"></i>Market signals</div>
+                <div class="ttl"><iconify-icon icon="hugeicons:news-01"></iconify-icon>Market signals</div>
                 <a href="#">All</a>
               </div>
               <div class="h-news-list">
@@ -1305,19 +1305,19 @@ img,svg{display:block}
       <h3 class="pc-h">Spreadsheets, scattered meters, and surprise invoices.</h3>
       <div class="pc-list">
         <div class="pc-row">
-          <span class="icn"><i class="hgi-stroke hgi-spreadsheet"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:spreadsheet"></iconify-icon></span>
           <div class="body"><strong>Meter data lives in 4 portals.</strong><p>You reconcile EDF, RTE, GRDF, and supplier exports by hand. Reporting takes a week.</p></div>
         </div>
         <div class="pc-row">
-          <span class="icn"><i class="hgi-stroke hgi-alert-02"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:alert-02"></iconify-icon></span>
           <div class="body"><strong>Hedging is a gut call.</strong><p>No model to size positions, no audit trail. The board asks "why didn't we lock?" — and there's no good answer.</p></div>
         </div>
         <div class="pc-row">
-          <span class="icn"><i class="hgi-stroke hgi-clock-04"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:clock-04"></iconify-icon></span>
           <div class="body"><strong>CAPEX cases stall.</strong><p>"Should we put solar on site 2?" → 6 weeks of consultant time → a deck no one trusts.</p></div>
         </div>
         <div class="pc-row">
-          <span class="icn"><i class="hgi-stroke hgi-notification-snooze-01"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:notification-snooze-01"></iconify-icon></span>
           <div class="body"><strong>Renewals creep up.</strong><p>You find out about a contract auto-renewal 3 days before it locks for 12 months.</p></div>
         </div>
       </div>
@@ -1328,19 +1328,19 @@ img,svg{display:block}
       <h3 class="pc-h">One workspace. Real-time meters. Decisions with the math attached.</h3>
       <div class="pc-list">
         <div class="pc-row">
-          <span class="icn"><i class="hgi-stroke hgi-plug-socket"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:plug-socket"></iconify-icon></span>
           <div class="body"><strong>Every kWh, every euro, in one place.</strong><p>Native connectors to EDF, Engie, RTE, Enedis, and supplier APIs. Reports generate in 30 seconds.</p></div>
         </div>
         <div class="pc-row">
-          <span class="icn"><i class="hgi-stroke hgi-shield-01"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:shield-01"></iconify-icon></span>
           <div class="body"><strong>Hedging with a paper trail.</strong><p>Stochastic load model + EPEX curves recommend block sizes. Every trade explained, exportable to your IC memo.</p></div>
         </div>
         <div class="pc-row">
-          <span class="icn"><i class="hgi-stroke hgi-sparkles"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:sparkles"></iconify-icon></span>
           <div class="body"><strong>CAPEX in 20 minutes, not 6 weeks.</strong><p>Drop in load curves, get IRR / NPV / sensitivity for PV, BESS, and PPAs. Board-ready output.</p></div>
         </div>
         <div class="pc-row">
-          <span class="icn"><i class="hgi-stroke hgi-radar-01"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:radar-01"></iconify-icon></span>
           <div class="body"><strong>Renewal radar.</strong><p>Alerts at T-90, T-60, T-30 with market context. Never lock at the wrong moment again.</p></div>
         </div>
       </div>
@@ -1349,22 +1349,22 @@ img,svg{display:block}
 
   <div class="stats">
     <div class="stat">
-      <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+      <span class="icn"><iconify-icon icon="hugeicons:arrow-down-01"></iconify-icon></span>
       <div class="v">8–14<span class="u">%</span></div>
       <div class="lbl">Procurement savings on first renewal</div>
     </div>
     <div class="stat">
-      <span class="icn"><i class="hgi-stroke hgi-clock-04"></i></span>
+      <span class="icn"><iconify-icon icon="hugeicons:clock-04"></iconify-icon></span>
       <div class="v">−86<span class="u">%</span></div>
       <div class="lbl">Hours spent on monthly reporting</div>
     </div>
     <div class="stat">
-      <span class="icn"><i class="hgi-stroke hgi-coins-euro"></i></span>
+      <span class="icn"><iconify-icon icon="hugeicons:coins-euro"></iconify-icon></span>
       <div class="v">€2.4M</div>
       <div class="lbl">Avg. hedge book actively managed</div>
     </div>
     <div class="stat">
-      <span class="icn"><i class="hgi-stroke hgi-calendar-03"></i></span>
+      <span class="icn"><iconify-icon icon="hugeicons:calendar-03"></iconify-icon></span>
       <div class="v">47<span class="u">days</span></div>
       <div class="lbl">From connect-meters to first decision</div>
     </div>
@@ -1385,26 +1385,26 @@ img,svg{display:block}
 
   <div class="feat-panel">
     <div class="feat-panel-left">
-      <div class="eyebrow"><i class="hgi-stroke hgi-search-list-01"></i>PROCURE</div>
+      <div class="eyebrow"><iconify-icon icon="hugeicons:search-list-01"></iconify-icon>PROCURE</div>
       <h3>Run a real RFQ in a week, not a quarter.</h3>
       <p class="lede">Stop emailing 6 suppliers from a personal inbox. Send a structured RFQ, compare offers on the same basis, and sign — all in Condor.</p>
       <div class="feat-steps">
         <div class="feat-step">
-          <span class="icn"><i class="hgi-stroke hgi-file-edit"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:file-edit"></iconify-icon></span>
           <div class="body"><strong>Define your need once.</strong><p>Volume profile, term, indexation preference, green credentials. Sent to all suppliers in identical format.</p></div>
         </div>
         <div class="feat-step">
-          <span class="icn"><i class="hgi-stroke hgi-chart-line-data-01"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:chart-line-data-01"></iconify-icon></span>
           <div class="body"><strong>Compare apples to apples.</strong><p>Normalize fixed-price vs indexed vs hybrid. See blended cost, downside risk, and CSR delta side by side.</p></div>
         </div>
         <div class="feat-step">
-          <span class="icn"><i class="hgi-stroke hgi-task-done-02"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:task-done-02"></iconify-icon></span>
           <div class="body"><strong>Sign with a paper trail.</strong><p>Every assumption logged. Your CFO and the auditor see the same comparison you did.</p></div>
         </div>
       </div>
       <a class="feat-panel-cta" href="#">
         See a sample RFQ output
-        <i class="hgi-stroke hgi-arrow-right-01"></i>
+        <iconify-icon icon="hugeicons:arrow-right-01"></iconify-icon>
       </a>
     </div>
 
@@ -1462,12 +1462,12 @@ img,svg{display:block}
 
       <div class="mka-foot">
         <div class="mka-savings">
-          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:arrow-down-01"></iconify-icon></span>
           Best offer saves <b>€24,800/yr</b> vs current contract
         </div>
         <a class="mka-cta" href="#">
           Sign with EDF
-          <i class="hgi-stroke hgi-arrow-right-01"></i>
+          <iconify-icon icon="hugeicons:arrow-right-01"></iconify-icon>
         </a>
       </div>
     </div>
@@ -1478,7 +1478,7 @@ img,svg{display:block}
 <section class="testim">
   <div class="testim-card">
     <div class="testim-quote">
-      <div class="testim-mark"><i class="hgi-stroke hgi-quote-up"></i></div>
+      <div class="testim-mark"><iconify-icon icon="hugeicons:quote-up"></iconify-icon></div>
       <p class="testim-body">We were running €4M of energy spend on three spreadsheets and a WhatsApp group. <span>Condor replaced all of it in a month — and caught a renewal we were 4 days from sleepwalking into.</span></p>
       <div class="testim-author">
         <span class="av">CL</span>
@@ -1551,35 +1551,35 @@ img,svg{display:block}
       <div class="faq-item">
         <div class="faq-q">
           Where does my meter and contract data actually live?
-          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:arrow-down-01"></iconify-icon></span>
         </div>
         <div class="faq-a">Encrypted at rest in EU-hosted Postgres (OVH, Gravelines). SOC 2 Type I in progress, Type II by Q4 2026. Your data is never used to train models or shared with other clients.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">
           Do you replace our existing supplier — or sit alongside?
-          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:arrow-down-01"></iconify-icon></span>
         </div>
         <div class="faq-a">We sit alongside. Condor is supplier-agnostic — we connect to whoever you buy from today. The point is to make you a better customer to them, not to replace them.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">
           What does it cost?
-          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:arrow-down-01"></iconify-icon></span>
         </div>
         <div class="faq-a">Flat annual fee based on number of sites and GWh under management. Starts at €18K/yr for a single-site industrial; large multi-site portfolios are priced per consumption. The free audit always comes first.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">
           We're a data center / a retailer / not French — does Condor still fit?
-          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:arrow-down-01"></iconify-icon></span>
         </div>
         <div class="faq-a">Yes for data centers (10 of our 30+ pilots) and retailers (5). Geography: France and Benelux today. Germany and Iberia in pilot for Q3 2026. EU only for now.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">
           How long until I see savings?
-          <span class="icn"><i class="hgi-stroke hgi-arrow-down-01"></i></span>
+          <span class="icn"><iconify-icon icon="hugeicons:arrow-down-01"></iconify-icon></span>
         </div>
         <div class="faq-a">Typically your first renewal — most teams capture 8–14% on procurement alone. Hedging discipline compounds from there. If your next renewal is &gt;9 months out, the audit will tell you whether to wait or act now.</div>
       </div>
@@ -1597,10 +1597,10 @@ img,svg{display:block}
       <div class="cta-ctas">
         <a class="cta-btn" href="#">
           Get my free audit
-          <i class="hgi-stroke hgi-arrow-right-01"></i>
+          <iconify-icon icon="hugeicons:arrow-right-01"></iconify-icon>
         </a>
         <a class="cta-btn ghost" href="#">
-          <i class="hgi-stroke hgi-calendar-03"></i>
+          <iconify-icon icon="hugeicons:calendar-03"></iconify-icon>
           Book a 20-min call
         </a>
       </div>
@@ -1614,12 +1614,12 @@ img,svg{display:block}
     </div>
 
     <div class="cal-card">
-      <div class="cal-icon"><i class="hgi-stroke hgi-calendar-03"></i></div>
+      <div class="cal-icon"><iconify-icon icon="hugeicons:calendar-03"></iconify-icon></div>
       <h3 class="cal-h">Pick a slot on our calendar</h3>
       <p class="cal-p">20 minutes with one of our founders. We'll ask about your sites and contracts — no slide deck, promise.</p>
       <div class="cal-btns">
-        <a class="cal-btn" href="#"><i class="hgi-stroke hgi-calendar-03"></i>Show calendar</a>
-        <a class="cal-btn ghost" href="#"><i class="hgi-stroke hgi-mail-01"></i>Email us</a>
+        <a class="cal-btn" href="#"><iconify-icon icon="hugeicons:calendar-03"></iconify-icon>Show calendar</a>
+        <a class="cal-btn ghost" href="#"><iconify-icon icon="hugeicons:mail-01"></iconify-icon>Email us</a>
       </div>
     </div>
   </div>
@@ -1672,9 +1672,9 @@ img,svg{display:block}
   <div class="f-foot">
     <span>© 2026 Condor Energy SAS · 12 rue La Boétie, 75008 Paris</span>
     <div class="right">
-      <a class="f-soc" href="#" aria-label="LinkedIn"><i class="hgi-stroke hgi-linkedin-01"></i></a>
-      <a class="f-soc" href="#" aria-label="Twitter"><i class="hgi-stroke hgi-new-twitter"></i></a>
-      <a class="f-soc" href="#" aria-label="GitHub"><i class="hgi-stroke hgi-github"></i></a>
+      <a class="f-soc" href="#" aria-label="LinkedIn"><iconify-icon icon="hugeicons:linkedin-01"></iconify-icon></a>
+      <a class="f-soc" href="#" aria-label="Twitter"><iconify-icon icon="hugeicons:new-twitter"></iconify-icon></a>
+      <a class="f-soc" href="#" aria-label="GitHub"><iconify-icon icon="hugeicons:github"></iconify-icon></a>
     </div>
   </div>
 </footer>
