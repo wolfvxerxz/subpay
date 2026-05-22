@@ -2,1386 +2,1656 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=1440, initial-scale=1" />
-<title>Moda — What your agent is actually doing.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HeyClicky — your lil cursor buddy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Surface */
-    --bg:            #F4EEE3;
-    --paper:         #FBF7EE;
-    --panel:         #FBF7EE;
-    --panel-2:       #EFE7D8;
-    --hair:          rgba(26, 23, 20, 0.08);
-    --hair-2:        rgba(26, 23, 20, 0.10);
-    --hair-3:        rgba(26, 23, 20, 0.14);
+    --light-96: #F7F5F3;
+    --light-94: #F3F0ED;
+    --light-92: #EFEBE7;
+    --light-90: #EBE6E0;
+    --light-81: #D6D0C8;
+    --dark-10: #1A1A1A;
+    --dark-15: #262626;
+    --dark-25: #404040;
+    --dark-35: #595959;
+    --dark-40: #666666;
+    --dark-55: #8C8C8C;
+    --blue-58: #3745F1;
+    --blue-54: #2434EF;
+    --blue-63: #4F5CF2;
+    --blue-deep: #3C4AF1;
+    --accent-mint: #00B881;
+    --accent-yellow: #FFD544;
+    --accent-pink: #FF4D6D;
+    --accent-red: #C9184A;
 
-    /* Ink */
-    --ink:           #1A1714;
-    --ink-2:         #3A332B;
-    --ink-3:         #6B6055;
-    --ink-70:        rgba(26, 23, 20, 0.78);
-    --ink-60:        rgba(26, 23, 20, 0.62);
-    --ink-50:        rgba(26, 23, 20, 0.50);
-    --ink-45:        rgba(26, 23, 20, 0.45);
-    --ink-40:        rgba(26, 23, 20, 0.40);
-    --ink-32:        rgba(26, 23, 20, 0.32);
-    --ink-25:        rgba(26, 23, 20, 0.25);
-    --ink-20:        rgba(26, 23, 20, 0.20);
-    --ink-16:        rgba(26, 23, 20, 0.16);
-
-    /* Accent + Series */
-    --accent:        #B8593A;    /* terracotta */
-    --accent-2:      #8C7A3E;    /* olive ochre */
-    --series-1:      #4A6B7C;    /* slate blue */
-    --series-2:      #B8593A;    /* terracotta */
-    --series-3:      #7A5C8E;    /* dusty plum */
-    --series-4:      #C28A2C;    /* warm amber */
-    --pos:           #4F6B3A;
-    --neg:           #B8593A;
-
-    /* Type */
-    --serif:         'Geist', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    --sans:          'Geist', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    --mono:          'Geist', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-
-    /* Radii */
-    --r-pill:        999px;
-    --r-card:        8px;
-    --r-sm:          4px;
-    --r-xs:          2px;
+    --s-1: 4px;
+    --s-2: 8px;
+    --s-3: 12px;
+    --s-4: 16px;
+    --s-5: 20px;
+    --s-6: 24px;
+    --s-8: 32px;
+    --s-10: 40px;
+    --s-12: 48px;
+    --s-16: 64px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html, body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.5;
+    font-family: 'Geist', sans-serif;
+    background: var(--light-96);
+    color: var(--dark-10);
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'ss01', 'ss02', 'cv11';
+    letter-spacing: -0.011em;
+    overflow-x: hidden;
   }
 
-  a { text-decoration: none; color: inherit; }
-
-  /* Paper grain overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 100;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    mix-blend-mode: multiply;
-    opacity: 0.65;
-  }
-
-  /* ---------- Page shell (1440 wide) ---------- */
-  .page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    min-width: 1440px;
-    background: var(--bg);
-  }
-
-  /* ---------- Header (52px) ---------- */
-  header {
-    width: 100%;
-    height: 52px;
-    padding: 0 70px;
-    background: var(--bg);
-  }
-  .header-inner {
-    width: 1300px;
-    max-width: 1300px;
-    height: 52px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
+  /* ============================================
+     TOP STRIPE (kept blue for accent only)
+     ============================================ */
+  .top-stripe {
+    height: 28px;
+    background: var(--dark-10);
     position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .brand {
-    font-family: var(--sans);
+  .top-stripe-text {
+    position: relative;
+    z-index: 2;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .top-stripe-text .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-mint);
+    box-shadow: 0 0 8px var(--accent-mint);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
+  }
+
+  /* ============================================
+     NAV
+     ============================================ */
+  nav.main-nav {
+    height: 72px;
+    border-bottom: 1px solid var(--light-81);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--s-10);
+    background: var(--light-96);
+  }
+  .nav-inner {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 var(--s-5);
+    gap: var(--s-8);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--dark-10);
+    flex-shrink: 0;
+  }
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--dark-10);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.1);
+  }
+  .logo-mark::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .logo-mark::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--dark-10);
+    border-radius: 50%;
+    top: 10px;
+    left: 14px;
+  }
+  .logo-text {
     font-weight: 600;
     font-size: 17px;
     letter-spacing: -0.025em;
-    color: var(--ink);
+  }
+  .nav-links {
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: var(--s-1);
+    flex: 1;
+    justify-content: center;
   }
-  .brand-mark {
-    width: 22px; height: 22px;
-    border: 1.5px solid var(--ink);
-    border-radius: 50%;
-    position: relative;
-    display: inline-block;
-  }
-  .brand-mark::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 7px; height: 7px;
-    background: var(--ink);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .brand-mark::after {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 3px; height: 3px;
-    background: var(--paper);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  nav.nav {
-    display: flex;
-    align-items: center;
-    gap: 0;
-  }
-  nav.nav a {
-    padding: 5.6px 15px;
-    color: var(--ink-70);
-    font-weight: 400;
+  .nav-link {
+    padding: 8px 14px;
     font-size: 14px;
-    line-height: 21px;
-  }
-  nav.nav a:hover { color: var(--ink); }
-
-  .header-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 7.5px;
-  }
-  .header-right .login {
-    padding: 4px;
-    color: var(--ink-70);
     font-weight: 500;
-    font-size: 14px;
-    line-height: 21px;
+    color: var(--dark-35);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    border-radius: 8px;
+    transition: all .15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
-  .header-right .login:hover { color: var(--ink); }
-  .btn-demo {
+  .nav-link:hover { color: var(--dark-10); background: var(--light-92); }
+  .nav-link.active {
+    color: var(--dark-10);
+    background: var(--light-92);
+  }
+  .nav-link .chevron {
+    opacity: .5;
+    font-size: 10px;
+  }
+  .nav-cta {
+    display: flex;
+    gap: var(--s-2);
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .btn-secondary {
+    padding: 10px 16px;
+    background: transparent;
+    border: 1px solid var(--light-81);
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-15);
+    cursor: pointer;
+    letter-spacing: -0.01em;
+    transition: all .15s;
+  }
+  .btn-secondary:hover { background: var(--light-94); border-color: var(--dark-25); }
+  .btn-primary {
+    padding: 10px 18px;
+    background: var(--dark-10);
+    border: 1px solid var(--dark-25);
+    border-radius: 100px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 2px 6px rgba(0,0,0,.15);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    letter-spacing: -0.01em;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 5.6px 14px 5.88px 12px;
-    background: var(--ink);
-    color: var(--paper);
-    border: 1px solid var(--ink);
-    border-radius: var(--r-pill);
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 17px;
-    cursor: pointer;
+    transition: all .15s;
   }
-  .btn-demo svg { width: 13px; height: 13px; }
-  .btn-demo:hover { background: #2a2520; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 4px 12px rgba(0,0,0,.2); }
 
-  /* ---------- Hero text block ---------- */
-  .hero {
-    width: 1300px;
-    max-width: 1300px;
-    padding: 72px 0 48px;
-    display: flex;
-    justify-content: center;
+  /* ============================================
+     HERO — LIGHT
+     ============================================ */
+  .hero-wrapper {
+    padding: 0 var(--s-10);
+    background: var(--light-96);
   }
-  .hero-inner {
-    width: 1300px;
+  .hero {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    overflow: hidden;
+    isolation: isolate;
+    padding-bottom: var(--s-12);
+    border-bottom: 1px solid var(--light-81);
+  }
+
+  /* horizontal divider beneath the dot rings */
+  .hero-divider {
+    position: absolute;
+    top: 88px;
+    left: 80px;
+    right: 80px;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--light-81) 15%,
+      var(--light-81) 85%,
+      transparent 100%);
+    z-index: 4;
+  }
+
+  .corner-dot {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--light-81);
+    border-radius: 50%;
+    z-index: 6;
+    top: 56px;
+    background: var(--light-96);
+  }
+  .corner-dot::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--light-81);
+    border-radius: 50%;
+  }
+  .corner-dot::after {
+    content: '';
+    position: absolute;
+    inset: 24px;
+    background: var(--dark-25);
+    border-radius: 50%;
+  }
+  .corner-dot-tl { left: 48px; }
+  .corner-dot-tr { right: 48px; }
+
+  /* ============================================
+     HERO CONTENT
+     ============================================ */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 132px var(--s-8) 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    text-align: center;
+    gap: var(--s-6);
   }
 
-  .pill-funding {
+  .eyebrow {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 5px 12px 5px 10px;
-    height: 34px;
-    background: rgba(26, 23, 20, 0.04);
-    border: 1px solid var(--hair-2);
-    border-radius: var(--r-pill);
-    color: var(--ink-60);
-    font-family: var(--sans);
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 400;
+    gap: var(--s-2);
+    padding: 6px 6px 6px 14px;
+    background: #fff;
+    border: 1px solid var(--light-81);
+    border-radius: 100px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
   }
-  .pill-funding .live-led {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--pos);
-    display: inline-block;
-    box-shadow: 0 0 0 0 rgba(79, 107, 58, 0.45);
-    animation: pulse 2s infinite;
+  .eyebrow-text {
+    color: var(--dark-25);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    font-family: 'Geist Mono', monospace;
   }
-  @keyframes pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(79, 107, 58, 0.5); }
-    70%  { box-shadow: 0 0 0 6px rgba(79, 107, 58, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(79, 107, 58, 0); }
-  }
-  .pill-funding strong { color: var(--ink); font-weight: 500; }
-
-  h1.hero-title {
-    width: 1300px;
-    text-align: center;
-    color: var(--ink);
-    font-family: var(--sans);
+  .eyebrow-pill {
+    padding: 4px 10px;
+    background: var(--dark-10);
+    border-radius: 100px;
+    color: #fff;
+    font-size: 11px;
     font-weight: 600;
-    font-size: 72px;
-    line-height: 1.02;
-    letter-spacing: -0.035em;
-    padding: 8px 0;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
-  h1.hero-title em {
-    font-style: normal;
-    font-weight: 400;
-    color: var(--ink-60);
-  }
-  h1.hero-title .dot { color: var(--accent); font-style: normal; font-weight: 600; }
 
-  .hero-sub {
-    width: 540px;
-    max-width: 700px;
-    text-align: center;
-    color: var(--ink-60);
-    font-family: var(--sans);
+  .title-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+    align-items: center;
+  }
+  h1.hero-title {
+    font-family: 'Geist', sans-serif;
+    font-weight: 600;
+    font-size: 68px;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    color: var(--dark-10);
+    max-width: 760px;
+  }
+  h1.hero-title .accent-wrap {
+    position: relative;
+    display: inline-block;
+    color: var(--blue-58);
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: -0.04em;
+  }
+  h1.hero-title .accent-wrap::after {
+    content: '';
+    position: absolute;
+    left: -4px;
+    right: -4px;
+    bottom: 4px;
+    height: 10px;
+    background: rgba(55,69,241,.12);
+    border-radius: 4px;
+    z-index: -1;
+  }
+
+  p.hero-sub {
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--dark-35);
+    letter-spacing: -0.015em;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
+    max-width: 560px;
   }
 
   .cta-row {
     display: flex;
-    justify-content: center;
+    gap: var(--s-3);
     align-items: center;
-    gap: 12px;
-    padding-top: 16px;
+    margin-top: var(--s-2);
   }
-  .btn-primary {
+  .cta-primary {
+    padding: 14px 22px;
+    background: var(--dark-10);
+    color: #fff;
+    border: 1px solid var(--dark-25);
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: -0.015em;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 11px 22px 13px;
-    height: 42px;
-    background: var(--ink);
-    color: var(--paper);
-    border: none;
-    border-radius: var(--r-pill);
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 13.5px;
-    line-height: 18px;
-    cursor: pointer;
+    gap: var(--s-2);
+    box-shadow: 0 4px 16px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.15);
+    transition: all .15s;
   }
-  .btn-secondary {
+  .cta-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  .cta-secondary {
+    padding: 14px 22px;
+    background: #fff;
+    color: var(--dark-10);
+    border: 1px solid var(--light-81);
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: -0.015em;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 11px 22px;
-    height: 42px;
-    background: transparent;
-    color: var(--ink-70);
-    border: 1px solid var(--hair-3);
-    border-radius: var(--r-pill);
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 13.5px;
-    line-height: 18px;
-    cursor: pointer;
+    gap: var(--s-2);
+    transition: all .15s;
   }
-  .btn-primary:hover { background: #2a2520; }
-  .btn-secondary:hover { color: var(--ink); border-color: var(--ink); }
-  .btn-primary svg, .btn-secondary svg { width: 14px; height: 14px; }
+  .cta-secondary:hover { background: var(--light-94); border-color: var(--dark-25); }
 
-  /* ---------- Dashboard band (1300 × 632 with painted bg) ---------- */
-  .band {
-    width: 1300px;
-    height: 632px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 6px;
-    isolation: isolate;
-  }
-  .band-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  .band-bg svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  .dash {
-    position: absolute;
-    left: 48px;
-    right: 48px;
-    top: 50.88px;
-    height: 495px;
-    background: var(--paper);
-    border: 1px solid var(--hair-2);
-    border-radius: var(--r-card);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow:
-      0 30px 60px -20px rgba(26, 23, 20, 0.28),
-      0 12px 24px -12px rgba(26, 23, 20, 0.18),
-      0 1px 0 rgba(255, 255, 255, 0.5) inset;
-  }
-
-  /* Window chrome */
-  .chrome {
+  .trust-line {
     display: flex;
     align-items: center;
-    gap: 7px;
-    padding: 9px 16px;
-    height: 33px;
-    background: var(--panel-2);
-    border-bottom: 1px solid var(--hair);
-    flex: none;
-  }
-  .chrome .dot { width: 9px; height: 9px; border-radius: 4.5px; flex: none; }
-  .chrome .dot.r { background: #FF5F57; }
-  .chrome .dot.y { background: #FFBD2E; }
-  .chrome .dot.g { background: #28C940; }
-  .chrome .addr {
-    flex: 1;
-    text-align: center;
-    color: var(--ink-45);
-    font-family: var(--mono);
-    font-size: 10.5px;
-    line-height: 14px;
+    gap: var(--s-4);
+    margin-top: var(--s-1);
+    color: var(--dark-40);
+    font-size: 13px;
     font-weight: 400;
   }
-
-  /* Inner 3-col layout */
-  .inner {
-    flex: 1;
-    height: 460px;
-    display: grid;
-    grid-template-columns: 218px 1fr 340px;
+  .trust-line .sep {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--light-81);
   }
-
-  /* ---------- Sidebar (Taxonomy only) ---------- */
-  .sidebar {
-    background: var(--panel);
-    padding: 14px 12px;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid var(--hair);
-    overflow: hidden;
-  }
-  .sb-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6px 10px;
-    border-bottom: 1px solid var(--hair);
-    margin-bottom: 10px;
-  }
-  .sb-head .title {
-    font-family: var(--mono);
-    font-weight: 500;
-    font-size: 9.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-40);
-  }
-  .sb-head .title b { color: var(--ink); font-weight: 500; }
-  .sb-head .seg {
-    display: inline-flex;
-    gap: 1px;
-    background: var(--panel-2);
-    border-radius: 3px;
-    padding: 1px;
-  }
-  .sb-head .seg span {
-    font-family: var(--mono);
-    font-size: 9px;
-    padding: 2px 5px;
-    color: var(--ink-40);
-    border-radius: 2px;
-    letter-spacing: 0.04em;
-  }
-  .sb-head .seg span.on {
-    background: var(--paper);
-    color: var(--ink);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-  }
-
-  .tax-list { display: flex; flex-direction: column; gap: 1px; }
-  .tax-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    padding: 5px 6px;
-    gap: 6px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  .tax-row:hover { background: rgba(26, 23, 20, 0.025); }
-  .tax-row.parent .name {
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 11.5px;
-    font-weight: 500;
-    line-height: 16px;
-  }
-  .tax-row.parent.expanded { background: rgba(26, 23, 20, 0.03); }
-  .tax-row.child {
-    padding-left: 18px;
-    position: relative;
-  }
-  .tax-row.child::before {
-    content: '';
-    position: absolute;
-    left: 9px; top: 50%;
-    width: 6px; height: 1px;
-    background: var(--ink-32);
-  }
-  .tax-row.child .name {
-    color: var(--ink-2);
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 15px;
-  }
-  .tax-row.child.highlight {
-    background: rgba(184, 89, 58, 0.06);
-  }
-  .tax-row.child.highlight .name { color: var(--accent); font-weight: 500; }
-  .tax-row .meta {
+  .trust-line .badge-mac {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--ink-32);
-    font-variant-numeric: tabular-nums;
   }
-  .tax-row .delta {
-    font-family: var(--mono);
-    font-size: 9px;
-    padding: 1px 4px;
-    border-radius: 2px;
-  }
-  .tax-row .delta.up { color: var(--accent); background: rgba(184, 89, 58, 0.08); }
-  .tax-row .delta.new {
-    background: var(--ink);
-    color: var(--paper);
-    font-weight: 500;
-  }
-  .tax-row .caret {
-    display: inline-block;
-    width: 8px;
-    margin-right: 2px;
-    color: var(--ink-32);
-    font-family: var(--mono);
-    font-size: 8px;
+  .stars {
+    color: #FFB800;
+    letter-spacing: 1px;
+    font-size: 12px;
   }
 
-  /* sparkline at bottom of sidebar */
-  .sb-foot {
-    margin-top: auto;
-    padding: 10px 6px 4px;
-    border-top: 1px solid var(--hair);
+  /* ============================================
+     BROWSER VIDEO FRAME — LIGHT
+     ============================================ */
+  .video-section {
+    position: relative;
+    z-index: 9;
+    width: 100%;
+    max-width: 1080px;
+    margin: var(--s-10) auto 0;
+    padding: 0 var(--s-8);
   }
-  .sb-foot .lbl {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-40);
-    font-weight: 500;
+  .browser {
+    background: #fff;
+    border: 1px solid var(--light-81);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.5) inset,
+      0 40px 80px -20px rgba(60,74,100,.15),
+      0 16px 40px -8px rgba(60,74,100,.1);
+  }
+  .browser-bar {
+    height: 42px;
+    border-bottom: 1px solid var(--light-90);
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--s-4);
+    position: relative;
+    background: var(--light-94);
+  }
+  .traffic-lights {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .traffic-lights span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+  .traffic-lights span:nth-child(1) { background: #FF5F57; }
+  .traffic-lights span:nth-child(2) { background: #FEBC2E; }
+  .traffic-lights span:nth-child(3) { background: #28C840; }
+
+  .url-bar-wrap {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+  }
+  .url-bar {
+    background: #fff;
+    border: 1px solid var(--light-90);
+    height: 26px;
+    padding: 0 14px;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--dark-25);
+    font-family: 'Geist Mono', monospace;
+    letter-spacing: -0.01em;
+    min-width: 320px;
+    justify-content: center;
+  }
+  .url-bar svg { opacity: .6; flex-shrink: 0; }
+
+  .browser-actions {
+    margin-left: auto;
+    display: flex;
+    gap: var(--s-2);
+    color: var(--dark-55);
+  }
+
+  /* Video poster — keep darker for contrast/depth on white page */
+  .video-poster {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background:
+      linear-gradient(135deg, #1e2533 0%, #0f1419 100%);
+    overflow: hidden;
+  }
+  .desktop-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(94,123,180,.5) 0%, transparent 45%),
+      radial-gradient(circle at 70% 60%, rgba(180,140,200,.35) 0%, transparent 45%),
+      radial-gradient(circle at 50% 90%, rgba(55,69,241,.3) 0%, transparent 55%),
+      linear-gradient(180deg, #2a3142 0%, #1a1f2b 100%);
+  }
+  .menubar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 28px;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 18px;
+    z-index: 3;
+  }
+  .menubar-apple {
+    width: 14px;
+    height: 14px;
+    color: #fff;
+    opacity: .9;
+  }
+  .menubar-app {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .menubar-items {
+    display: flex;
+    gap: 14px;
+    color: rgba(255,255,255,.85);
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .menubar-right {
+    margin-left: auto;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    color: rgba(255,255,255,.85);
+    font-size: 11px;
+    font-family: 'Geist Mono', monospace;
+  }
+
+  .desktop-window {
+    position: absolute;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow:
+      0 30px 60px rgba(0,0,0,.4),
+      0 0 0 1px rgba(0,0,0,.1);
+    overflow: hidden;
+  }
+  .desktop-window .win-bar {
+    height: 32px;
+    background: linear-gradient(180deg, #f8f8f8 0%, #ececec 100%);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 6px;
+  }
+  .desktop-window .win-lights {
+    display: flex;
+    gap: 6px;
+  }
+  .desktop-window .win-lights span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+  .desktop-window .win-lights span:nth-child(1) { background: #FF5F57; }
+  .desktop-window .win-lights span:nth-child(2) { background: #FEBC2E; }
+  .desktop-window .win-lights span:nth-child(3) { background: #28C840; }
+  .desktop-window .win-title {
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateX(-22px);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--dark-35);
+    letter-spacing: -0.01em;
+  }
+
+  .win-code {
+    top: 56px;
+    left: 32px;
+    width: 360px;
+    height: 240px;
+  }
+  .win-code .win-content {
+    padding: 14px;
+    height: calc(100% - 32px);
+    background: #1E1E2E;
+  }
+  .win-code .code-line {
+    display: flex;
+    gap: 10px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    line-height: 1.6;
+    color: #cdd6f4;
+  }
+  .win-code .code-line .num {
+    color: #6c7086;
+    width: 14px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .win-code .kw { color: #cba6f7; }
+  .win-code .fn { color: #89b4fa; }
+  .win-code .str { color: #a6e3a1; }
+  .win-code .cmt { color: #6c7086; font-style: italic; }
+
+  .win-research {
+    top: 88px;
+    right: 36px;
+    width: 320px;
+    height: 280px;
+    background: linear-gradient(180deg, #fff 0%, #f7f7f7 100%);
+  }
+  .win-research .win-content {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .win-research .search-pill {
+    height: 24px;
+    background: var(--light-94);
+    border: 1px solid var(--light-90);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--dark-35);
+    font-family: 'Geist Mono', monospace;
+  }
+  .win-research .result-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 4px;
+  }
+  .win-research .result-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .win-research .result-avatar.a1 { background: linear-gradient(135deg, #FF6B9D, #C9184A); }
+  .win-research .result-avatar.a2 { background: linear-gradient(135deg, #84E542, #428317); }
+  .win-research .result-avatar.a3 { background: linear-gradient(135deg, #FFD544, #FFA500); }
+  .win-research .result-avatar.a4 { background: linear-gradient(135deg, #4F5CF2, #2434EF); }
+  .win-research .result-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .win-research .result-name {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--dark-10);
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .win-research .result-meta {
+    font-size: 8px;
+    font-weight: 400;
+    color: var(--dark-35);
+    font-family: 'Geist Mono', monospace;
+    margin-top: 2px;
+  }
+  .win-research .result-badge {
+    font-size: 8px;
+    font-weight: 600;
+    padding: 2px 6px;
+    background: rgba(0,184,129,.12);
+    color: #00805a;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .cursor-buddy-group {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-30%);
+    z-index: 5;
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+  }
+  .desktop-cursor svg {
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.4));
+  }
+  .clicky-buddy {
+    position: relative;
+    margin-left: -8px;
     margin-bottom: 6px;
   }
-  .sb-foot .lbl .v {
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 11px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-  .sb-foot .spark {
-    height: 32px;
-  }
-  .sb-foot .spark svg { width: 100%; height: 100%; display: block; }
-
-  /* ---------- Center: CONVERSATION (the hero) ---------- */
-  .center {
-    background: var(--panel);
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid var(--hair);
-    overflow: hidden;
-  }
-  .center-head {
-    padding: 12px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--hair);
-    flex: none;
-  }
-  .ch-left {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-  }
-  .ch-left .title {
-    font-family: var(--sans);
-    font-weight: 600;
-    font-size: 13.5px;
-    color: var(--ink);
-    letter-spacing: -0.012em;
-  }
-  .ch-left .id {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    color: var(--ink-40);
-  }
-  .ch-right {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--ink-40);
-    letter-spacing: 0.04em;
-  }
-  .ch-right .led {
-    width: 6px; height: 6px;
+  .clicky-buddy .body {
+    width: 52px;
+    height: 52px;
+    background: var(--blue-58);
     border-radius: 50%;
-    background: var(--accent);
-  }
-
-  /* Cluster context strip */
-  .ctx {
-    padding: 10px 18px;
     display: flex;
     align-items: center;
-    gap: 14px;
-    background: rgba(184, 89, 58, 0.04);
-    border-bottom: 1px solid var(--hair);
-    font-family: var(--mono);
-    font-size: 10.5px;
-    color: var(--ink-2);
-  }
-  .ctx .crumb {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .ctx .crumb b { color: var(--ink); font-weight: 500; }
-  .ctx .crumb .sep { color: var(--ink-32); }
-  .ctx .crumb-stat {
-    margin-left: auto;
-    color: var(--accent);
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 500;
-  }
-  .ctx .crumb-stat em { font-style: normal; font-weight: 600; font-size: 12px; }
-
-  /* Conversation transcript */
-  .transcript {
-    flex: 1;
-    padding: 16px 18px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .turn {
-    display: grid;
-    grid-template-columns: 44px 1fr;
-    gap: 12px;
-  }
-  .turn .who {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-32);
-    line-height: 1.4;
-    padding-top: 2px;
-  }
-  .turn .who b {
-    color: var(--ink-2);
-    font-weight: 500;
-    display: block;
-  }
-  .turn .bubble {
-    padding: 9px 13px;
-    border-radius: 6px;
-    font-family: var(--sans);
-    font-size: 12.5px;
-    line-height: 1.5;
-    color: var(--ink-2);
+    justify-content: center;
+    box-shadow:
+      0 8px 24px rgba(0,0,0,.4),
+      0 4px 8px rgba(55,69,241,.4),
+      inset 0 -3px 6px rgba(0,0,0,.2),
+      inset 0 3px 6px rgba(255,255,255,.2);
+    animation: bob 2.6s ease-in-out infinite;
     position: relative;
   }
-  .turn.user .bubble {
-    background: var(--panel-2);
-    color: var(--ink);
+  .clicky-buddy .eye {
+    width: 30px;
+    height: 30px;
+    background: var(--dark-10);
+    border-radius: 50%;
+    position: relative;
   }
-  .turn.agent .bubble {
-    background: rgba(74, 107, 124, 0.07);
-    border: 1px solid rgba(74, 107, 124, 0.12);
-    color: var(--ink-2);
-  }
-  .turn.agent.broken .bubble {
-    background: rgba(184, 89, 58, 0.06);
-    border: 1px solid rgba(184, 89, 58, 0.25);
-    color: var(--ink);
-  }
-  .turn .bubble .stale {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    background: var(--accent);
-    color: var(--paper);
-    padding: 1px 5px;
-    border-radius: 2px;
-    margin: 0 4px;
-    vertical-align: 1px;
-    font-weight: 500;
-    line-height: 1.3;
-  }
-  .turn .bubble code {
-    font-family: var(--mono);
-    font-size: 11px;
-    background: rgba(26, 23, 20, 0.06);
-    padding: 1px 4px;
-    border-radius: 2px;
-    color: var(--ink);
-  }
-  .turn .bubble .quote {
-    color: var(--accent);
-    font-weight: 500;
-  }
-  .turn .break-callout {
-    margin-top: 8px;
-    padding: 7px 10px;
-    background: var(--ink);
-    color: var(--paper);
-    border-radius: 4px;
-    font-family: var(--mono);
-    font-size: 10px;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-    display: grid;
-    grid-template-columns: 10px 1fr 12px;
-    gap: 8px;
-    align-items: start;
-  }
-  .turn .break-callout .icon {
-    color: var(--accent);
-    font-size: 11px;
-    line-height: 1.4;
-  }
-  .turn .break-callout b {
-    color: var(--paper);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-right: 6px;
-  }
-  .turn .break-callout .x {
-    color: rgba(255,255,255,0.4);
-    font-size: 12px;
-    cursor: pointer;
-    line-height: 1;
-    text-align: right;
-  }
-
-  /* ---------- Right: Diagnosis + Patch (the action) ---------- */
-  .right {
-    background: var(--panel);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  .right-head {
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--hair);
-    flex: none;
-  }
-  .rh-left {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 13.5px;
-    font-weight: 600;
-    letter-spacing: -0.012em;
-  }
-  .rh-left .ico {
-    width: 14px; height: 14px;
-    color: var(--accent);
-  }
-  .rh-left .ico svg { width: 14px; height: 14px; display: block; }
-  .rh-right {
-    font-family: var(--mono);
-    font-size: 9.5px;
-    color: var(--ink-40);
-    letter-spacing: 0.06em;
-  }
-
-  /* Root cause card */
-  .diagnosis {
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--hair);
-  }
-  .diag-label {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-40);
-    font-weight: 500;
-    margin-bottom: 6px;
-  }
-  .diag-text {
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 1.4;
-    color: var(--ink);
-    letter-spacing: -0.012em;
-    margin-bottom: 12px;
-  }
-  .diag-text em {
-    font-family: var(--sans);
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12.5px;
-    background: rgba(184, 89, 58, 0.1);
-    padding: 1px 6px;
-    border-radius: 3px;
-    color: var(--accent);
-    letter-spacing: 0;
-  }
-
-  .diag-meta {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--hair);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .diag-meta .cell {
-    background: var(--panel-2);
-    padding: 8px 10px;
-  }
-  .diag-meta .k {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-40);
-    font-weight: 500;
-    margin-bottom: 3px;
-    display: block;
-  }
-  .diag-meta .v {
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--ink);
-    font-weight: 500;
-    font-variant-numeric: tabular-nums;
-  }
-  .diag-meta .v .unit {
-    font-family: var(--mono);
-    font-size: 10px;
-    font-weight: 400;
-    color: var(--ink-40);
-    margin-left: 3px;
-    letter-spacing: 0.02em;
-  }
-  .diag-meta .v em {
-    font-style: normal;
-    font-weight: 600;
-    color: var(--accent);
-    font-size: 13px;
-  }
-
-  /* Patch panel — dark, contrasts heavily */
-  .patch {
-    flex: 1;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-  }
-  .patch-label {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(244, 238, 227, 0.5);
-    font-weight: 500;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .patch-label::before {
+  .clicky-buddy .eye::after {
     content: '';
-    width: 14px;
-    height: 1px;
-    background: rgba(244, 238, 227, 0.4);
-  }
-  .patch-diff {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    line-height: 1.75;
-    margin-bottom: 12px;
-  }
-  .patch-diff .file {
-    color: rgba(244, 238, 227, 0.55);
-    margin-bottom: 6px;
-    font-size: 10.5px;
-    letter-spacing: 0.02em;
-  }
-  .patch-diff .line {
-    display: flex;
-    gap: 8px;
-    padding: 2px 8px;
-    margin: 0 -8px;
-    border-radius: 2px;
-  }
-  .patch-diff .line.minus { background: rgba(184, 89, 58, 0.18); color: #ffb39a; }
-  .patch-diff .line.plus  { background: rgba(168, 192, 136, 0.15); color: #b8d490; }
-  .patch-diff .line .sign {
-    color: rgba(244, 238, 227, 0.4);
+    position: absolute;
     width: 8px;
-    flex: none;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    top: 7px;
+    right: 6px;
   }
-  .patch-diff .line.minus .sign { color: #ffb39a; }
-  .patch-diff .line.plus .sign  { color: #b8d490; }
-
-  .patch-eval {
-    padding: 8px 10px;
-    background: rgba(244, 238, 227, 0.05);
-    border: 1px solid rgba(244, 238, 227, 0.08);
-    border-radius: 4px;
-    font-family: var(--mono);
-    font-size: 10.5px;
-    line-height: 1.6;
-    margin-bottom: 12px;
-    color: rgba(244, 238, 227, 0.75);
-  }
-  .patch-eval .ok { color: #b8d490; }
-  .patch-eval .n  { color: var(--paper); font-weight: 500; }
-
-  .patch-actions {
-    display: flex;
-    gap: 8px;
-    margin-top: auto;
-  }
-  .patch-btn {
-    flex: 1;
-    padding: 9px 12px;
-    background: var(--paper);
-    color: var(--ink);
-    border: none;
-    border-radius: 4px;
-    font-family: var(--sans);
-    font-size: 12px;
+  .clicky-buddy .speech {
+    position: absolute;
+    top: -32px;
+    left: 36px;
+    background: #fff;
+    padding: 6px 10px;
+    border-radius: 100px;
+    font-size: 11px;
     font-weight: 500;
-    cursor: pointer;
-    display: inline-flex;
+    color: var(--dark-10);
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    letter-spacing: -0.01em;
+  }
+  .clicky-buddy .speech::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 10px;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    transform: rotate(45deg);
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .play-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 84px;
+    height: 84px;
+    background: var(--blue-58);
+    border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    cursor: pointer;
+    z-index: 10;
+    border: none;
+    box-shadow:
+      0 16px 40px rgba(0,0,0,.45),
+      0 0 0 8px rgba(255,255,255,.1),
+      0 0 0 16px rgba(255,255,255,.05);
+    transition: all .2s;
   }
-  .patch-btn.ghost {
-    background: transparent;
-    color: var(--paper);
-    border: 1px solid rgba(244, 238, 227, 0.2);
-    flex: 0 0 auto;
+  .play-btn:hover {
+    transform: translate(-50%,-50%) scale(1.05);
+    box-shadow:
+      0 20px 50px rgba(0,0,0,.5),
+      0 0 0 10px rgba(255,255,255,.12),
+      0 0 0 20px rgba(255,255,255,.06);
   }
-  .patch-btn svg { width: 12px; height: 12px; }
+  .play-btn .inner {
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,.1);
+  }
 
-  /* ---------- Powered by ---------- */
-  .powered {
-    width: 1300px;
-    max-width: 1300px;
-    padding: 40px 20px 32px;
-    margin: 0 auto;
-  }
-  .powered-inner {
-    width: 1260px;
+  /* ============================================
+     FLOATING UI — LIGHT
+     ============================================ */
+
+  .float-voice {
+    position: absolute;
+    top: 220px;
+    left: 28px;
+    transform: rotate(-8deg);
+    z-index: 14;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    margin: 0 auto;
+    gap: 8px;
   }
-  .powered h2 {
-    font-family: var(--mono);
-    font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    text-align: center;
+  .voice-card {
+    background: #fff;
+    border: 1px solid var(--light-90);
+    border-radius: 16px;
+    padding: 14px;
     display: flex;
     align-items: center;
     gap: 12px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.6) inset,
+      0 4px 8px rgba(60,74,100,.06),
+      0 16px 32px rgba(60,74,100,.12),
+      0 32px 64px rgba(60,74,100,.1);
+    width: 220px;
   }
-  .powered h2::before, .powered h2::after {
-    content: '';
-    width: 32px;
-    height: 1px;
-    background: var(--ink-3);
-    opacity: 0.4;
-    display: inline-block;
-  }
-  .logos {
-    width: 1260px;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 8px;
-  }
-  .logo-cell {
-    height: 60px;
-    background: rgba(26, 23, 20, 0.02);
-    border: 1px solid var(--hair);
-    border-radius: var(--r-sm);
+  .voice-mic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B9D 0%, var(--accent-red) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--ink-2);
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 15px;
-    letter-spacing: -0.02em;
+    flex-shrink: 0;
+    box-shadow:
+      0 4px 12px rgba(201,24,74,.4),
+      inset 0 1px 0 rgba(255,255,255,.3),
+      inset 0 -2px 4px rgba(0,0,0,.15);
   }
-  .logo-cell svg { display: block; }
-  .logo-cell.sans { font-weight: 600; }
-  .logo-cell.italic { font-weight: 400; opacity: 0.75; }
-  .logo-cell.mono {
-    font-weight: 500;
-    font-size: 12.5px;
-    letter-spacing: 0.14em;
+  .voice-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .voice-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--dark-35);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
-  .logo-cell .mk {
-    width: 12px; height: 12px;
-    border: 1.4px solid var(--ink-2);
-    border-radius: 50%;
-    margin-right: 7px;
-    display: inline-block;
-    flex: none;
+  .voice-bars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 18px;
   }
-  .logo-cell .mk.sq { border-radius: 2px; background: var(--ink-2); }
-  .logo-cell .mk.tri {
-    width: 0; height: 0;
-    border: none;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 10px solid var(--ink-2);
-    border-radius: 0;
+  .voice-bars span {
+    width: 3px;
+    background: var(--dark-15);
+    border-radius: 2px;
+    animation: voicepulse 1.2s ease-in-out infinite;
+  }
+  .voice-bars span:nth-child(1) { height: 30%; animation-delay: 0s; }
+  .voice-bars span:nth-child(2) { height: 65%; animation-delay: .08s; }
+  .voice-bars span:nth-child(3) { height: 90%; animation-delay: .16s; }
+  .voice-bars span:nth-child(4) { height: 75%; animation-delay: .24s; }
+  .voice-bars span:nth-child(5) { height: 100%; animation-delay: .12s; }
+  .voice-bars span:nth-child(6) { height: 55%; animation-delay: .3s; }
+  .voice-bars span:nth-child(7) { height: 85%; animation-delay: .2s; }
+  .voice-bars span:nth-child(8) { height: 45%; animation-delay: .14s; }
+  .voice-bars span:nth-child(9) { height: 70%; animation-delay: .36s; }
+  .voice-bars span:nth-child(10) { height: 35%; animation-delay: .42s; }
+  .voice-bars span:nth-child(11) { height: 60%; animation-delay: .22s; }
+  .voice-bars span:nth-child(12) { height: 25%; animation-delay: .5s; }
+  @keyframes voicepulse {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(.45); opacity: .6; }
+  }
+  .voice-transcript {
+    background: var(--dark-10);
+    color: #fff;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    transform: rotate(4deg);
+    font-family: 'Geist Mono', monospace;
+    letter-spacing: -0.01em;
+  }
+  .voice-transcript .quote {
+    color: var(--accent-mint);
+    margin-right: 2px;
   }
 
-  svg { shape-rendering: geometricPrecision; }
+  .float-connectors {
+    position: absolute;
+    top: 220px;
+    right: 28px;
+    transform: rotate(7deg);
+    z-index: 14;
+    background: #fff;
+    border: 1px solid var(--light-90);
+    border-radius: 16px;
+    padding: 14px 16px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.6) inset,
+      0 4px 8px rgba(60,74,100,.06),
+      0 16px 32px rgba(60,74,100,.12);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+  }
+  .connectors-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .connectors-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--dark-35);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .connectors-status {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    color: #00805a;
+  }
+  .connectors-status .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-mint);
+    box-shadow: 0 0 6px var(--accent-mint);
+  }
+  .connectors-stack {
+    display: flex;
+    align-items: center;
+  }
+  .conn-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -10px;
+    box-shadow: 0 2px 6px rgba(60,74,100,.15);
+  }
+  .conn-icon:first-child { margin-left: 0; }
+  .conn-icon.more {
+    background: var(--light-92);
+    color: var(--dark-35);
+    font-size: 10px;
+    font-weight: 600;
+    font-family: 'Geist Mono', monospace;
+  }
+  .connectors-footer {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--dark-15);
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+  }
+  .connectors-footer strong {
+    font-weight: 600;
+  }
+
+  .float-agent {
+    position: absolute;
+    bottom: 200px;
+    right: -24px;
+    transform: rotate(-5deg);
+    z-index: 16;
+    background: #fff;
+    border: 1px solid var(--light-90);
+    border-radius: 14px;
+    padding: 12px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.6) inset,
+      0 4px 8px rgba(60,74,100,.06),
+      0 16px 32px rgba(60,74,100,.15),
+      0 40px 80px rgba(60,74,100,.12);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 260px;
+  }
+  .agent-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .agent-avatar {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #84E542 0%, #428317 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    position: relative;
+    box-shadow:
+      0 4px 8px rgba(31,74,2,.3),
+      inset 0 1px 0 rgba(255,255,255,.3);
+    font-family: 'Geist', sans-serif;
+  }
+  .agent-avatar::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+  }
+  .agent-avatar::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: var(--accent-mint);
+    border-radius: 50%;
+    margin-bottom: 2px;
+    margin-right: 2px;
+    z-index: 1;
+    box-shadow: 0 0 6px var(--accent-mint);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  .agent-text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .agent-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .agent-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark-10);
+    letter-spacing: -0.02em;
+  }
+  .agent-tag {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    background: rgba(255,77,109,.12);
+    color: var(--accent-red);
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: 'Geist Mono', monospace;
+  }
+  .agent-meta {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--dark-35);
+    letter-spacing: -0.01em;
+    font-family: 'Geist Mono', monospace;
+  }
+  .agent-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .agent-task {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--dark-15);
+    letter-spacing: -0.015em;
+    line-height: 1.35;
+  }
+  .progress-bar {
+    height: 4px;
+    background: var(--light-92);
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+  }
+  .progress-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 68%;
+    background: linear-gradient(90deg, var(--blue-58), var(--accent-mint));
+    border-radius: 100px;
+    animation: progress 3s ease-in-out infinite;
+  }
+  @keyframes progress {
+    0% { width: 30%; }
+    50% { width: 75%; }
+    100% { width: 30%; }
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--dark-40);
+    font-family: 'Geist Mono', monospace;
+  }
+
+  .float-sticky {
+    position: absolute;
+    bottom: 200px;
+    left: -24px;
+    transform: rotate(-9deg);
+    z-index: 15;
+    width: 200px;
+    background: var(--accent-yellow);
+    padding: 20px 18px 18px;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,.08) inset,
+      0 4px 8px rgba(0,0,0,.08),
+      0 16px 32px rgba(0,0,0,.15);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 14% 100%, 0 86%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .float-sticky::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 24px;
+    background: linear-gradient(180deg, rgba(0,0,0,.08), transparent);
+  }
+  .sticky-quote {
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--dark-10);
+    letter-spacing: -0.02em;
+  }
+  .sticky-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 4px;
+    border-top: 1px dashed rgba(0,0,0,.2);
+  }
+  .sticky-avatar {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B9D, var(--accent-red));
+    flex-shrink: 0;
+  }
+  .sticky-handle {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--dark-15);
+    letter-spacing: -0.01em;
+  }
+  .sticky-platform {
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--dark-25);
+    margin-left: auto;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ============================================
+     STATS BAR — LIGHT
+     ============================================ */
+  .stats-bar {
+    position: relative;
+    z-index: 11;
+    width: 100%;
+    max-width: 1080px;
+    margin: var(--s-10) auto 0;
+    padding: var(--s-6) var(--s-8) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--s-8);
+    border-top: 1px solid var(--light-81);
+  }
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+  .stat-value {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--dark-10);
+    letter-spacing: -0.035em;
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .stat-value .unit {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue-58);
+  }
+  .stat-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--dark-40);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .stat-sep {
+    width: 1px;
+    height: 32px;
+    background: var(--light-81);
+  }
 </style>
 </head>
 <body>
 
-<div class="page">
+  <!-- TOP STRIPE -->
+  <div class="top-stripe">
+    <div class="top-stripe-text">
+      <span class="dot"></span>
+      <span>Now in beta · Free during launch · Mac only for now</span>
+    </div>
+  </div>
 
-  <!-- HEADER ============================================== -->
-  <header>
-    <div class="header-inner">
-      <a class="brand" href="#" aria-label="Moda home">
-        <span class="brand-mark"></span>
-        <span>Moda</span>
+  <!-- NAV -->
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-mark"></div>
+        <span class="logo-text">Clicky</span>
       </a>
-
-      <nav class="nav">
-        <a href="#">Platform</a>
-        <a href="#">Docs</a>
-        <a href="#">Customers</a>
-        <a href="#">Blog</a>
-      </nav>
-
-      <div class="header-right">
-        <a class="login" href="#">Sign in</a>
-        <a class="btn-demo" href="#">
-          Book a demo
-          <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 11 L11 4 M5.5 4 L11 4 L11 9.5"/>
+      <div class="nav-links">
+        <a href="#" class="nav-link active">Home</a>
+        <a href="#" class="nav-link">How it works</a>
+        <a href="#" class="nav-link">Agents</a>
+        <a href="#" class="nav-link">Pricing</a>
+        <a href="#" class="nav-link">Blog <span class="chevron">▾</span></a>
+      </div>
+      <div class="nav-cta">
+        <button class="btn-secondary">Sign in</button>
+        <button class="btn-primary">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <path d="M6.5 1v9M3 6.5l3.5 3.5L10 6.5M1.5 12h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </a>
+          Download
+        </button>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <!-- HERO TEXT =========================================== -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="pill-funding">
-        <span class="live-led"></span>
-        <span>Observing <strong>8,134 conversations</strong> right now across <strong>23 agents</strong></span>
+  <!-- HERO -->
+  <section class="hero-wrapper">
+    <div class="hero">
+      <div class="corner-dot corner-dot-tl"></div>
+      <div class="corner-dot corner-dot-tr"></div>
+      <div class="hero-divider"></div>
+
+      <div class="hero-content">
+        <div class="eyebrow">
+          <span class="eyebrow-text">4 weeks old · viral on Instagram</span>
+          <span class="eyebrow-pill">
+            <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+              <path d="M4.5 1l1 2.5 2.5.4-2 1.7.5 2.4L4.5 6.8 2 8l.5-2.4-2-1.7 2.5-.4L4.5 1z" fill="currentColor"/>
+            </svg>
+            Trending
+          </span>
+        </div>
+
+        <div class="title-group">
+          <h1 class="hero-title">
+            The lil AI buddy that<br/>
+            lives <span class="accent-wrap">right next to</span> your cursor
+          </h1>
+          <p class="hero-sub">
+            Just talk. Clicky sees what you see, walks you through anything, and spawns agents to build, research, or run errands — all from a tiny button next to your mouse.
+          </p>
+        </div>
+
+        <div class="cta-row">
+          <button class="cta-primary">
+            <svg width="14" height="17" viewBox="0 0 14 17" fill="none">
+              <path d="M10.5 8.8c0-2.4 1.9-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.7 0-3.2 1-4 2.5C-2 9-1 13.3.5 15.6c.9 1.1 1.9 2.4 3.2 2.3 1.3 0 1.8-.8 3.3-.8 1.5 0 2 .8 3.3.8 1.4 0 2.3-1.1 3.1-2.3.9-1.3 1.3-2.6 1.4-2.7-.1-.1-2.6-1-2.6-4.1zM8.1 1.8C8.7 1 9.2 0 9 0c-.9.1-1.9.6-2.6 1.4-.6.7-1.1 1.7-1 2.7 1 .1 2-.6 2.7-1.3z" fill="currentColor"/>
+            </svg>
+            Download for Mac
+          </button>
+          <button class="cta-secondary">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.4" fill="none"/>
+              <path d="M5.5 4.5L10 7l-4.5 2.5v-5z" fill="currentColor"/>
+            </svg>
+            Watch 90s demo
+          </button>
+        </div>
+
+        <div class="trust-line">
+          <span class="badge-mac">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+              <path d="M9 9V5a3.5 3.5 0 0 0-7 0v4M1 9h9M3 5.5h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+            </svg>
+            macOS 13+
+          </span>
+          <span class="sep"></span>
+          <span>14.2k downloads this week</span>
+          <span class="sep"></span>
+          <span><span class="stars">★★★★★</span> 4.9 on Product Hunt</span>
+        </div>
       </div>
 
-      <h1 class="hero-title">What your agent <em>is&nbsp;actually</em> doing<span class="dot">.</span></h1>
-
-      <p class="hero-sub">Moda turns every production conversation into a cohort, a signal, or a fix — automatically. The dashboard you should already have.</p>
-
-      <div class="cta-row">
-        <a class="btn-primary" href="#">
-          Book a demo
-          <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 11 L11 4 M5.5 4 L11 4 L11 9.5"/>
-          </svg>
-        </a>
-        <a class="btn-secondary" href="#">Read the docs</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- DASHBOARD BAND ====================================== -->
-  <section class="band">
-
-    <!-- Painted background: warm dawn mountains, light version -->
-    <div class="band-bg" aria-hidden="true">
-      <svg viewBox="0 0 1300 632" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="sky-l" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0"    stop-color="#F4DCC2"/>
-            <stop offset="0.35" stop-color="#F0CFA8"/>
-            <stop offset="0.7"  stop-color="#E8B584"/>
-            <stop offset="1"    stop-color="#D89968"/>
-          </linearGradient>
-          <linearGradient id="ground-l" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0"    stop-color="#B47E48"/>
-            <stop offset="0.6"  stop-color="#8B5C30"/>
-            <stop offset="1"    stop-color="#5E3D1F"/>
-          </linearGradient>
-          <radialGradient id="sun-l" cx="0.6" cy="0.3" r="0.55">
-            <stop offset="0"    stop-color="#FFE8C4" stop-opacity="0.85"/>
-            <stop offset="0.35" stop-color="#FFD089" stop-opacity="0.4"/>
-            <stop offset="1"    stop-color="#000" stop-opacity="0"/>
-          </radialGradient>
-          <filter id="grain-l" x="0" y="0" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="5"/>
-            <feColorMatrix values="0 0 0 0 0.55  0 0 0 0 0.4  0 0 0 0 0.22  0 0 0 0.4 0"/>
-            <feComposite in2="SourceGraphic" operator="in"/>
-          </filter>
-          <filter id="brush-l" x="-10%" y="-10%" width="120%" height="120%">
-            <feTurbulence type="turbulence" baseFrequency="0.022" numOctaves="2" seed="9"/>
-            <feDisplacementMap in="SourceGraphic" scale="14"/>
-          </filter>
-          <filter id="brush2-l" x="-10%" y="-10%" width="120%" height="120%">
-            <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="3" seed="17"/>
-            <feDisplacementMap in="SourceGraphic" scale="8"/>
-          </filter>
-        </defs>
-
-        <!-- base sky -->
-        <rect width="1300" height="632" fill="url(#sky-l)"/>
-        <rect width="1300" height="632" fill="url(#sun-l)"/>
-
-        <!-- distant mountains -->
-        <g filter="url(#brush-l)" opacity="0.85">
-          <path d="M0,320 C200,260 350,300 500,270 C650,240 800,290 950,260 C1100,235 1200,275 1300,255 L1300,400 L0,400 Z" fill="#A77B4A" opacity="0.6"/>
-          <path d="M0,370 C150,340 300,360 480,340 C660,322 820,360 1000,340 C1140,326 1240,348 1300,340 L1300,430 L0,430 Z" fill="#8B5F32" opacity="0.7"/>
-        </g>
-
-        <!-- foreground ground -->
-        <rect x="0" y="410" width="1300" height="222" fill="url(#ground-l)"/>
-
-        <!-- brushy field texture -->
-        <g filter="url(#brush2-l)" opacity="0.55">
-          <path d="M0,470 C220,460 440,480 660,468 C880,458 1080,478 1300,468 L1300,510 L0,510 Z" fill="#7a4f25"/>
-          <path d="M0,530 C240,520 480,540 720,528 C940,518 1140,538 1300,530 L1300,570 L0,570 Z" fill="#5e3d1c"/>
-          <path d="M0,590 C220,582 480,596 740,588 C940,580 1160,594 1300,590 L1300,632 L0,632 Z" fill="#432a14"/>
-        </g>
-
-        <!-- tree silhouettes -->
-        <g filter="url(#brush-l)" opacity="0.55">
-          <ellipse cx="1090" cy="370" rx="50" ry="55" fill="#3d2812"/>
-          <ellipse cx="1140" cy="385" rx="40" ry="50" fill="#4a3018"/>
-          <rect x="1085" y="410" width="6" height="55" fill="#2e1d0a"/>
-        </g>
-        <g filter="url(#brush-l)" opacity="0.5">
-          <ellipse cx="170" cy="385" rx="35" ry="45" fill="#3a2511"/>
-          <rect x="168" y="415" width="4" height="40" fill="#2c1c0a"/>
-        </g>
-
-        <!-- grain -->
-        <rect width="1300" height="632" filter="url(#grain-l)" opacity="0.4"/>
-
-        <!-- vignette so dashboard reads -->
-        <radialGradient id="vig-l" cx="0.5" cy="0.5" r="0.85">
-          <stop offset="0.4" stop-color="#FFFFFF" stop-opacity="0"/>
-          <stop offset="1" stop-color="#3a2510" stop-opacity="0.35"/>
-        </radialGradient>
-        <rect width="1300" height="632" fill="url(#vig-l)"/>
-      </svg>
-    </div>
-
-    <!-- DASHBOARD ========================================== -->
-    <div class="dash">
-
-      <!-- window chrome -->
-      <div class="chrome">
-        <span class="dot r"></span>
-        <span class="dot y"></span>
-        <span class="dot g"></span>
-        <div class="addr">app.moda.dev &nbsp;—&nbsp; refund-agent · prod · 7d</div>
-      </div>
-
-      <!-- inner 3-col -->
-      <div class="inner">
-
-        <!-- SIDEBAR: Taxonomy -->
-        <aside class="sidebar">
-          <div class="sb-head">
-            <span class="title">Live <b>Taxonomy</b></span>
-            <span class="seg">
-              <span>24h</span>
-              <span class="on">7d</span>
-              <span>30d</span>
-            </span>
-          </div>
-
-          <div class="tax-list">
-            <div class="tax-row parent">
-              <span class="name"><span class="caret">▸</span>Account &amp; billing</span>
-              <span class="meta">1,847</span>
+      <!-- BROWSER VIDEO -->
+      <div class="video-section">
+        <div class="browser">
+          <div class="browser-bar">
+            <div class="traffic-lights">
+              <span></span><span></span><span></span>
             </div>
-            <div class="tax-row parent">
-              <span class="name"><span class="caret">▸</span>Order management</span>
-              <span class="meta">1,283</span>
+            <div class="url-bar-wrap">
+              <div class="url-bar">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <rect x="2" y="4.2" width="6" height="4.5" rx=".8" fill="currentColor"/>
+                  <path d="M3.4 4.2V2.8a1.6 1.6 0 0 1 3.2 0v1.4" stroke="currentColor" stroke-width="1" fill="none"/>
+                </svg>
+                heyclicky.com/demo
+              </div>
             </div>
-
-            <div class="tax-row parent expanded">
-              <span class="name"><span class="caret">▾</span>Returns &amp; refunds</span>
-              <span class="meta">924 <span class="delta up">+38%</span></span>
-            </div>
-            <div class="tax-row child">
-              <span class="name">Where is my refund?</span>
-              <span class="meta">412</span>
-            </div>
-            <div class="tax-row child highlight">
-              <span class="name">Refund missing · card</span>
-              <span class="meta"><span class="delta new">NEW</span></span>
-            </div>
-            <div class="tax-row child">
-              <span class="name">Wrong refund amount</span>
-              <span class="meta">225</span>
-            </div>
-            <div class="tax-row child">
-              <span class="name">Refund denied</span>
-              <span class="meta">287</span>
-            </div>
-
-            <div class="tax-row parent">
-              <span class="name"><span class="caret">▸</span>Product questions</span>
-              <span class="meta">681</span>
-            </div>
-            <div class="tax-row parent">
-              <span class="name"><span class="caret">▸</span>Shipping inquiries</span>
-              <span class="meta">514</span>
-            </div>
-          </div>
-
-          <div class="sb-foot">
-            <div class="lbl">
-              <span>Emergent intents</span>
-              <span class="v">4 new</span>
-            </div>
-            <div class="spark">
-              <svg viewBox="0 0 200 32" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="sparkfill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#B8593A" stop-opacity="0.25"/>
-                    <stop offset="1" stop-color="#B8593A" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <polyline fill="url(#sparkfill)" stroke="none"
-                  points="0,26 20,24 40,25 60,22 80,20 100,21 120,17 140,14 160,11 180,7 200,4 200,32 0,32"/>
-                <polyline fill="none" stroke="#B8593A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
-                  points="0,26 20,24 40,25 60,22 80,20 100,21 120,17 140,14 160,11 180,7 200,4"/>
-                <circle cx="200" cy="4" r="2.5" fill="#B8593A"/>
+            <div class="browser-actions">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5 4l4 3-4 3V4z" fill="currentColor" opacity=".6"/>
+              </svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <circle cx="3" cy="7" r="1.2" fill="currentColor"/>
+                <circle cx="7" cy="7" r="1.2" fill="currentColor"/>
+                <circle cx="11" cy="7" r="1.2" fill="currentColor"/>
               </svg>
             </div>
           </div>
-        </aside>
 
-        <!-- CENTER: Conversation -->
-        <section class="center">
-          <div class="center-head">
-            <div class="ch-left">
-              <span class="title">Conversation replay</span>
-              <span class="id">conv_8f21a · 4 turns · 1m 47s</span>
-            </div>
-            <div class="ch-right">
-              <span class="led"></span>
-              TRUST BREAK DETECTED
-            </div>
-          </div>
+          <div class="video-poster">
+            <div class="desktop-bg"></div>
 
-          <!-- Cluster context strip -->
-          <div class="ctx">
-            <span class="crumb">
-              <b>Returns &amp; refunds</b>
-              <span class="sep">→</span>
-              <span>refund_missing</span>
-              <span class="sep">→</span>
-              <b style="color: var(--accent)">Refund missing on credit card</b>
-            </span>
-            <span class="crumb-stat"><em>924</em> conversations this week</span>
-          </div>
-
-          <!-- Transcript -->
-          <div class="transcript">
-            <div class="turn user">
-              <div class="who"><b>User</b>T1</div>
-              <div class="bubble">I returned my order on Tuesday and the refund still hasn't shown up on my card.</div>
+            <div class="menubar">
+              <svg class="menubar-apple" viewBox="0 0 14 14" fill="currentColor">
+                <path d="M10.5 8.8c0-2.4 1.9-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.7 0-3.2 1-4 2.5C-2 9-1 13.3.5 15.6c.9 1.1 1.9 2.4 3.2 2.3 1.3 0 1.8-.8 3.3-.8 1.5 0 2 .8 3.3.8 1.4 0 2.3-1.1 3.1-2.3.9-1.3 1.3-2.6 1.4-2.7-.1-.1-2.6-1-2.6-4.1z"/>
+              </svg>
+              <span class="menubar-app">Safari</span>
+              <div class="menubar-items">
+                <span>File</span><span>Edit</span><span>View</span><span>Window</span>
+              </div>
+              <div class="menubar-right">
+                <span>🔋 87%</span>
+                <span>Wed 2:14 PM</span>
+              </div>
             </div>
 
-            <div class="turn agent">
-              <div class="who"><b>Agent</b>T2</div>
-              <div class="bubble">Refunds usually take <code>3–5 business days</code> after processing. Let me check the status of your order.</div>
+            <div class="desktop-window win-code">
+              <div class="win-bar">
+                <div class="win-lights">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="win-title">main.swift — MacApp</div>
+              </div>
+              <div class="win-content">
+                <div class="code-line"><span class="num">1</span><span><span class="kw">import</span> SwiftUI</span></div>
+                <div class="code-line"><span class="num">2</span><span></span></div>
+                <div class="code-line"><span class="num">3</span><span><span class="cmt">// Built by Clicky in 4 mins</span></span></div>
+                <div class="code-line"><span class="num">4</span><span><span class="kw">struct</span> <span class="fn">ContentView</span>: View {</span></div>
+                <div class="code-line"><span class="num">5</span><span>&nbsp;&nbsp;<span class="kw">var</span> body: <span class="kw">some</span> View {</span></div>
+                <div class="code-line"><span class="num">6</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">VStack</span> {</span></div>
+                <div class="code-line"><span class="num">7</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">Text</span>(<span class="str">"Hello!"</span>)</span></div>
+                <div class="code-line"><span class="num">8</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">Button</span>(<span class="str">"Launch"</span>)</span></div>
+                <div class="code-line"><span class="num">9</span><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></div>
+                <div class="code-line"><span class="num">10</span><span>&nbsp;&nbsp;}</span></div>
+                <div class="code-line"><span class="num">11</span><span>}</span></div>
+              </div>
             </div>
 
-            <div class="turn user">
-              <div class="who"><b>User</b>T3</div>
-              <div class="bubble">It's been 9 days. I've checked my card every day.</div>
-            </div>
-
-            <div class="turn agent broken">
-              <div class="who"><b>Agent</b>T4</div>
-              <div class="bubble">
-                I've confirmed your refund was issued on <code>Nov 2</code><span class="stale">stale · 14d old</span>. Please allow <code>3–5 business days</code> for it to appear.
-                <div class="break-callout">
-                  <span class="icon">◆</span>
-                  <span><b>Self-contradiction</b>Agent restated the 3–5 day window after confirming the refund was 14 days ago.</span>
-                  <span class="x">×</span>
+            <div class="desktop-window win-research">
+              <div class="win-bar">
+                <div class="win-lights">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="win-title">IG Research · Clicky Agent</div>
+              </div>
+              <div class="win-content">
+                <div class="search-pill">
+                  <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+                    <circle cx="3.8" cy="3.8" r="2.5" stroke="currentColor" stroke-width="1" fill="none"/>
+                    <path d="M5.8 5.8L8 8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+                  </svg>
+                  pet micro-influencers · 10k-50k
+                </div>
+                <div class="result-row">
+                  <div class="result-avatar a1"></div>
+                  <div class="result-info">
+                    <div class="result-name">@maya.pawsome</div>
+                    <div class="result-meta">28.4k · 4.2% eng</div>
+                  </div>
+                  <span class="result-badge">Match</span>
+                </div>
+                <div class="result-row">
+                  <div class="result-avatar a2"></div>
+                  <div class="result-info">
+                    <div class="result-name">@bodi.the.corgi</div>
+                    <div class="result-meta">41.2k · 5.8% eng</div>
+                  </div>
+                  <span class="result-badge">Match</span>
+                </div>
+                <div class="result-row">
+                  <div class="result-avatar a3"></div>
+                  <div class="result-info">
+                    <div class="result-name">@catdadchronicle</div>
+                    <div class="result-meta">19.7k · 6.1% eng</div>
+                  </div>
+                  <span class="result-badge">Match</span>
+                </div>
+                <div class="result-row">
+                  <div class="result-avatar a4"></div>
+                  <div class="result-info">
+                    <div class="result-name">@goodboybella</div>
+                    <div class="result-meta">35.1k · 3.9% eng</div>
+                  </div>
+                  <span class="result-badge">Match</span>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        <!-- RIGHT: Diagnosis + Patch -->
-        <aside class="right">
-          <div class="right-head">
-            <div class="rh-left">
-              <span class="ico">
-                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-                  <path d="M7 1.5 L7 7 L10.5 9"/>
-                  <circle cx="7" cy="7" r="5.4"/>
+            <div class="cursor-buddy-group">
+              <div class="desktop-cursor">
+                <svg width="22" height="28" viewBox="0 0 22 28" fill="none">
+                  <path d="M2 2L2 22L7 17L10 24L14 22L11 15L18 15L2 2Z" fill="#1A1A1A" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
                 </svg>
-              </span>
-              Diagnosis
-            </div>
-            <div class="rh-right">cluster #cl_re14</div>
-          </div>
-
-          <!-- Root cause -->
-          <div class="diagnosis">
-            <div class="diag-label">Root cause</div>
-            <div class="diag-text">
-              <em>lookup_order</em> returns cached refund records past Stripe's webhook lag.
-            </div>
-
-            <div class="diag-meta">
-              <div class="cell">
-                <span class="k">Affected</span>
-                <span class="v">23 conv<span class="unit">/ 24h</span></span>
               </div>
-              <div class="cell">
-                <span class="k">Trend 7d</span>
-                <span class="v" style="color: var(--accent)">+38%</span>
+              <div class="clicky-buddy">
+                <div class="body">
+                  <div class="eye"></div>
+                </div>
+                <div class="speech">hey, need help?</div>
               </div>
             </div>
-          </div>
 
-          <!-- Patch (dark contrast panel) -->
-          <div class="patch">
-            <div class="patch-label">Suggested patch</div>
-            <div class="patch-diff">
-              <div class="file">tools/lookup_order.config.ts</div>
-              <div class="line minus"><span class="sign">−</span>cache_ttl: 3600</div>
-              <div class="line plus"><span class="sign">+</span>cache_ttl: 60</div>
-              <div class="line plus"><span class="sign">+</span>invalidate_on: ["stripe.refund.updated"]</div>
-            </div>
-
-            <div class="patch-eval">
-              <span class="ok">✓</span> Replay across <span class="n">23 cases</span> → <span class="n">21 resolved</span>, 0 regressions
-            </div>
-
-            <div class="patch-actions">
-              <button class="patch-btn">
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                  <path d="M2.5 6 L5 8.5 L9.5 3.5"/>
+            <button class="play-btn" aria-label="Play demo">
+              <div class="inner">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 4v16l13-8L7 4z" fill="#1A1A1A"/>
                 </svg>
-                Apply &amp; replay
-              </button>
-              <button class="patch-btn ghost">Open PR</button>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLOATING UI -->
+
+      <div class="float-voice">
+        <div class="voice-card">
+          <div class="voice-mic">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <rect x="6.5" y="3" width="5" height="8" rx="2.5" fill="#fff"/>
+              <path d="M3.5 9.5a5.5 5.5 0 0 0 11 0M9 15v2" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <div class="voice-content">
+            <div class="voice-label">Listening</div>
+            <div class="voice-bars">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
             </div>
           </div>
-        </aside>
+        </div>
+        <div class="voice-transcript"><span class="quote">"</span>Clicky Agent, find me influencers<span class="quote">"</span></div>
+      </div>
 
+      <div class="float-connectors">
+        <div class="connectors-header">
+          <span class="connectors-label">Connected</span>
+          <span class="connectors-status">
+            <span class="dot"></span>
+            Synced
+          </span>
+        </div>
+        <div class="connectors-stack">
+          <div class="conn-icon" title="Notion">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="2" y="2" width="16" height="16" rx="3" fill="#000"/>
+              <path d="M7 6v8M7 6l6 8M13 6v8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="conn-icon" title="Gmail">
+            <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
+              <path d="M1 2.5L10 8.5L19 2.5V13.5C19 14.3 18.3 15 17.5 15H2.5C1.7 15 1 14.3 1 13.5V2.5Z" fill="#EA4335"/>
+              <path d="M1 2.5L10 8.5L19 2.5" stroke="#fff" stroke-width="1.2" fill="none"/>
+              <path d="M1 2.5L10 8.5V15H2.5C1.7 15 1 14.3 1 13.5V2.5Z" fill="#C5221F" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="conn-icon" title="Calendar">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="2" y="3.5" width="16" height="14" rx="2" fill="#fff" stroke="#1A1A1A" stroke-width="1"/>
+              <rect x="2" y="3.5" width="16" height="4" rx="2" fill="#4285F4"/>
+              <path d="M6 1.5v3M14 1.5v3" stroke="#1A1A1A" stroke-width="1.4" stroke-linecap="round"/>
+              <circle cx="6.5" cy="11" r="1" fill="#EA4335"/>
+              <circle cx="10" cy="11" r="1" fill="#34A853"/>
+              <circle cx="13.5" cy="11" r="1" fill="#FBBC05"/>
+              <rect x="5.5" y="13.5" width="9" height="1.5" rx=".5" fill="#dadce0"/>
+            </svg>
+          </div>
+          <div class="conn-icon" title="Slack">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <rect x="7" y="1.5" width="3.5" height="9" rx="1.7" fill="#36C5F0"/>
+              <rect x="7" y="11" width="3.5" height="3.5" rx="1.7" fill="#2EB67D"/>
+              <rect x="1.5" y="7" width="9" height="3.5" rx="1.7" fill="#ECB22E"/>
+              <rect x="11" y="7" width="3.5" height="3.5" rx="1.7" fill="#E01E5A"/>
+            </svg>
+          </div>
+          <div class="conn-icon more">+9</div>
+        </div>
+        <div class="connectors-footer">
+          <strong>13 apps</strong> talking to Clicky
+        </div>
+      </div>
+
+      <div class="float-sticky">
+        <div class="sticky-quote">
+          "Clicky built me a whole game during math class fr 😭"
+        </div>
+        <div class="sticky-meta">
+          <div class="sticky-avatar"></div>
+          <span class="sticky-handle">@kid_dev_06</span>
+          <span class="sticky-platform">IG</span>
+        </div>
+      </div>
+
+      <div class="float-agent">
+        <div class="agent-header">
+          <div class="agent-avatar">RA</div>
+          <div class="agent-text">
+            <div class="agent-row">
+              <span class="agent-title">Research Agent</span>
+              <span class="agent-tag">Live</span>
+            </div>
+            <div class="agent-meta">Running in background · 02:14</div>
+          </div>
+        </div>
+        <div class="agent-progress">
+          <div class="agent-task">Finding 50 pet micro-influencers on IG with 10k–50k followers...</div>
+          <div class="progress-bar"></div>
+          <div class="progress-meta">
+            <span>32 of 50 found</span>
+            <span>est. 1m left</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-value">14.2<span class="unit">k</span></div>
+          <div class="stat-label">Downloads / wk</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+          <div class="stat-value">2.8<span class="unit">M</span></div>
+          <div class="stat-label">IG views</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+          <div class="stat-value">4 <span class="unit">weeks</span></div>
+          <div class="stat-label">Since launch</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+          <div class="stat-value">13 <span class="unit">apps</span></div>
+          <div class="stat-label">Connected</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+          <div class="stat-value">0 <span class="unit">setup</span></div>
+          <div class="stat-label">Just download</div>
+        </div>
       </div>
     </div>
-
   </section>
-
-  <!-- IN PRODUCTION AT ==================================== -->
-  <section class="powered">
-    <div class="powered-inner">
-      <h2>In production at</h2>
-      <div class="logos">
-
-        <div class="logo-cell sans"><span class="mk sq"></span>Boardy</div>
-        <div class="logo-cell"><span class="mk"></span>Kanu</div>
-        <div class="logo-cell italic"><span class="mk"></span>Pax Historia</div>
-        <div class="logo-cell sans"><span class="mk sq"></span>Cardboard</div>
-        <div class="logo-cell"><span class="mk"></span>Codewisp</div>
-        <div class="logo-cell italic"><span class="mk"></span>Corelayer</div>
-        <div class="logo-cell mono">OCTOLANE</div>
-        <div class="logo-cell"><span class="mk"></span>Corvera</div>
-
-      </div>
-    </div>
-  </section>
-
-</div>
 
 </body>
 </html>
